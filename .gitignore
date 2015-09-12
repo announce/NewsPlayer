@@ -1,6 +1,8 @@
+# NewsPlayer
+NewsPlayer/Credentials.plist
+
 # Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+# https://github.com/github/gitignore/blob/4323f1e2c8faa792dac2619a1983fc9ffa4fffc1/Swift.gitignore
 
 ## Build generated
 build/

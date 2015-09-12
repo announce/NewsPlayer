@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E4E5B0714E5829B3A6C2875 /* Pods_NewsPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4118D673C1EBB29C980E205F /* Pods_NewsPlayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C5C42CBB1BA48127003D07A3 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5C42CBA1BA48127003D07A3 /* Credentials.plist */; };
 		C5DE79491BA1D59A00E594EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DE79481BA1D59A00E594EE /* AppDelegate.swift */; };
 		C5DE794C1BA1D59A00E594EE /* NewsPlayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5DE794A1BA1D59A00E594EE /* NewsPlayer.xcdatamodeld */; };
 		C5DE794E1BA1D59A00E594EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DE794D1BA1D59A00E594EE /* ViewController.swift */; };
@@ -31,6 +32,8 @@
 		071E12B021F99866BE22A7D1 /* Pods-NewsPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewsPlayer/Pods-NewsPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		1EDC13D2D3710B616636FCCA /* Pods-NewsPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NewsPlayer/Pods-NewsPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		4118D673C1EBB29C980E205F /* Pods_NewsPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5C42CB91BA47704003D07A3 /* NewsPlayer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewsPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
+		C5C42CBA1BA48127003D07A3 /* Credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
 		C5DE79431BA1D59A00E594EE /* NewsPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5DE79471BA1D59A00E594EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5DE79481BA1D59A00E594EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +113,8 @@
 				C5DE79541BA1D59A00E594EE /* LaunchScreen.xib */,
 				C5DE794A1BA1D59A00E594EE /* NewsPlayer.xcdatamodeld */,
 				C5DE79461BA1D59A00E594EE /* Supporting Files */,
+				C5C42CB91BA47704003D07A3 /* NewsPlayer-Bridging-Header.h */,
+				C5C42CBA1BA48127003D07A3 /* Credentials.plist */,
 			);
 			path = NewsPlayer;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5DE79511BA1D59A00E594EE /* Main.storyboard in Resources */,
+				C5C42CBB1BA48127003D07A3 /* Credentials.plist in Resources */,
 				C5DE79561BA1D59A00E594EE /* LaunchScreen.xib in Resources */,
 				C5DE79531BA1D59A00E594EE /* Images.xcassets in Resources */,
 			);
@@ -423,6 +429,7 @@
 				INFOPLIST_FILE = NewsPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "NewsPlayer/NewsPlayer-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -434,6 +441,7 @@
 				INFOPLIST_FILE = NewsPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "NewsPlayer/NewsPlayer-Bridging-Header.h";
 			};
 			name = Release;
 		};
