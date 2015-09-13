@@ -7,19 +7,21 @@
 //
 
 import UIKit
+import youtube_ios_player_helper
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var videoPlayer: YTPlayerView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        videoPlayer.loadWithVideoId("VjYQ4gw9WEg")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func load(sender: UIBarButtonItem) {
         fetchData()
     }
@@ -50,7 +52,10 @@ class ViewController: UIViewController {
             var snippet:NSDictionary = res[i].objectForKey("snippet") as! NSDictionary
             var title:String = snippet.objectForKey("title") as! String
             
-            println(title)
+            var contentDetails:NSDictionary = res[i].objectForKey("contentDetails") as! NSDictionary
+            var video:NSDictionary = contentDetails.objectForKey("upload") as! NSDictionary
+            var videoId:String = video.objectForKey("videoId") as! String
+            println("Title:\(title), VideoID:\(videoId)")
         }
     }
 }
