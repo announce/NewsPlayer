@@ -16,12 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CxL-dh-SR4" customClass="YTPlayerView">
-                                <rect key="frame" x="26" y="-8" width="600" height="600"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CxL-dh-SR4" customClass="YTPlayerView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="472"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CxL-dh-SR4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="FAF-Dq-Dob"/>
+                            <constraint firstAttribute="centerX" secondItem="CxL-dh-SR4" secondAttribute="centerX" id="FfL-vd-590"/>
+                            <constraint firstItem="CxL-dh-SR4" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="Zoz-2w-IDq"/>
+                            <constraint firstAttribute="centerY" secondItem="CxL-dh-SR4" secondAttribute="centerY" id="k15-BM-sEQ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3hn-cY-XY1">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="eOT-QB-xpr">
@@ -36,7 +42,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1081" y="-374"/>
+            <point key="canvasLocation" x="1069" y="-374"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KTR-s4-JYB">
