@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BLO-u9-TDP">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -20,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="472"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FY1-gQ-fA1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FY1-gQ-fA1">
                                 <rect key="frame" x="16" y="544" width="30" height="30"/>
                                 <state key="normal" title="Play">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -29,8 +30,8 @@
                                     <action selector="playVideo:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="keE-tm-jRs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zwq-EO-EbK">
-                                <rect key="frame" x="283" y="285" width="33" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zwq-EO-EbK">
+                                <rect key="frame" x="80" y="544" width="33" height="30"/>
                                 <state key="normal" title="Stop">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -39,13 +40,28 @@
                                     <action selector="stopVideo:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZyD-In-JgM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hiO-Is-d6E">
+                                <rect key="frame" x="530" y="550" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loadApi:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="MMq-vE-3OI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="zwq-EO-EbK" firstAttribute="leading" secondItem="FY1-gQ-fA1" secondAttribute="trailing" constant="34" id="7Lh-Jb-w11"/>
+                            <constraint firstAttribute="bottom" secondItem="hiO-Is-d6E" secondAttribute="bottom" constant="20" symbolic="YES" id="8lf-Wf-yb7"/>
                             <constraint firstItem="CxL-dh-SR4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="FAF-Dq-Dob"/>
                             <constraint firstAttribute="centerX" secondItem="CxL-dh-SR4" secondAttribute="centerX" id="FfL-vd-590"/>
+                            <constraint firstItem="FY1-gQ-fA1" firstAttribute="baseline" secondItem="zwq-EO-EbK" secondAttribute="baseline" id="KTm-nS-ZCS"/>
+                            <constraint firstItem="FY1-gQ-fA1" firstAttribute="top" secondItem="CxL-dh-SR4" secondAttribute="bottom" constant="8" symbolic="YES" id="OPE-x9-Kyq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hiO-Is-d6E" secondAttribute="trailing" constant="8" id="Z91-xG-bIm"/>
                             <constraint firstItem="CxL-dh-SR4" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="Zoz-2w-IDq"/>
                             <constraint firstAttribute="centerY" secondItem="CxL-dh-SR4" secondAttribute="centerY" id="k15-BM-sEQ"/>
+                            <constraint firstItem="FY1-gQ-fA1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="zIn-4d-WW3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3hn-cY-XY1">

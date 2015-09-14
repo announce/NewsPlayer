@@ -9,8 +9,8 @@
 import UIKit
 import youtube_ios_player_helper
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, YTPlayerViewDelegate {
+    
     @IBOutlet weak var videoPlayer: YTPlayerView!
     @IBAction func playVideo(sender: UIButton) {
         videoPlayer.playVideo()
@@ -20,9 +20,10 @@ class ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        videoPlayer.loadWithVideoId("VjYQ4gw9WEg", playerVars: ["playsinline": 1])
+        videoPlayer.delegate = self
+        videoPlayer.loadWithVideoId("LxaJMjFvnS8", playerVars: ["playsinline": 1])
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -31,6 +32,30 @@ class ViewController: UIViewController {
     @IBAction func load(sender: UIBarButtonItem) {
         fetchData()
     }
+    @IBAction func loadApi(sender: UIButton) {
+        fetchData()
+    }
+    
+    // MARK: -
+    // MARK: YTPlayerViewDelegate
+    func playerViewDidBecomeReady(playerView: YTPlayerView!) {
+        println("playerViewDidBecomeReady")
+    }
+    
+    func playerView(playerView: YTPlayerView!, didChangeToState state: YTPlayerState) {
+        println("didChangeToState: \(state)")
+    }
+    func playerView(playerView: YTPlayerView!, didChangeToQuality quality: YTPlaybackQuality) {
+        println("didChangeToQuality: \(quality)")
+    }
+    func playerView(playerView: YTPlayerView!, receivedError error: YTPlayerError) {
+        println("receivedError: \(error)")
+    }
+    func playerView(playerView: YTPlayerView!, didPlayTime playTime: Float) {
+        println("didPlayTime: \(playTime)")
+    }
+    
+    // MARK: -
     
     func fetchData() {
         let credentialsPath = NSBundle.mainBundle().pathForResource("Credentials", ofType: "plist")
@@ -64,5 +89,6 @@ class ViewController: UIViewController {
             println("Title:\(title), VideoID:\(videoId)")
         }
     }
+    
 }
 
