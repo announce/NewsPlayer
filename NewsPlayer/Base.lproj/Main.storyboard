@@ -45,9 +45,6 @@
                                 <state key="normal" title="Reload">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="loadApi:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="MMq-vE-3OI"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -65,11 +62,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3hn-cY-XY1">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="eOT-QB-xpr">
-                            <connections>
-                                <action selector="load:" destination="vXZ-lx-hvc" id="2K7-yW-fo1"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="eOT-QB-xpr"/>
                     </navigationItem>
                     <connections>
                         <outlet property="videoPlayer" destination="CxL-dh-SR4" id="Rh6-GF-iHI"/>
