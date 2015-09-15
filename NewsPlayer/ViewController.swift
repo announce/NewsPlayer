@@ -45,18 +45,20 @@ class ViewController: UIViewController, YTPlayerViewDelegate {
     func playerView(playerView: YTPlayerView!, didChangeToState state: YTPlayerState) {
         println("didChangeToState: \(state)")
     }
+    
     func playerView(playerView: YTPlayerView!, didChangeToQuality quality: YTPlaybackQuality) {
         println("didChangeToQuality: \(quality)")
     }
+    
     func playerView(playerView: YTPlayerView!, receivedError error: YTPlayerError) {
         println("receivedError: \(error)")
     }
+    
     func playerView(playerView: YTPlayerView!, didPlayTime playTime: Float) {
         println("didPlayTime: \(playTime)")
     }
     
     // MARK: -
-    
     func fetchData() {
         let credentialsPath = NSBundle.mainBundle().pathForResource("Credentials", ofType: "plist")
         let credentials = NSDictionary(contentsOfFile: credentialsPath!)
