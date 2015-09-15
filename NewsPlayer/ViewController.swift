@@ -11,20 +11,25 @@ import youtube_ios_player_helper
 
 class ViewController: UIViewController, YTPlayerViewDelegate {
     
+    let playerParams = [
+        "playsinline":      1,  // TODO: Remember last settings
+        "controls":         1,
+        "cc_load_policy":   1,
+        "showinfo":         0,
+        "modestbranding":   0,
+    ]
     var playerReady = false;
     
     @IBOutlet weak var videoPlayer: YTPlayerView!
     
-    @IBAction func playVideo(sender: UIButton) {
-        videoPlayer.playVideo()
+    @IBAction func nextVideo(sender: UIBarButtonItem) {
+        playNextVideo()
     }
-    @IBAction func stopVideo(sender: UIButton) {
-        videoPlayer.pauseVideo()
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         videoPlayer.delegate = self
-        videoPlayer.loadWithVideoId("", playerVars: ["playsinline": 1])
+        videoPlayer.loadWithVideoId("", playerVars: playerParams)
         ChannelModel.sharedInstance.addObserver(
             self, forKeyPath: "queue", options: .New, context: nil)
         ChannelModel.sharedInstance.enqueue()
@@ -45,8 +50,7 @@ class ViewController: UIViewController, YTPlayerViewDelegate {
     }
     
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
-        if (keyPath == "queue" && playerReady && ChannelModel.sharedInstance.queue.count > 0) {
-            //            videoPlayer.cueVideoById(ChannelModel.sharedInstance.queue.removeLast(), startSeconds: 0, suggestedQuality: YTPlaybackQuality.Default)
+        if (keyPath == "queue" && playerReady) {
         }
     }
     
@@ -126,8 +130,8 @@ class ViewController: UIViewController, YTPlayerViewDelegate {
         }
     }
     
-    func playerView(playerView: YTPlayerView!, didPlayTime playTime: Float) {
-        println("didPlayTime: \(playTime)")
-    }
+//    func playerView(playerView: YTPlayerView!, didPlayTime playTime: Float) {
+//        println("didPlayTime: \(playTime)")
+//    }
 }
 
