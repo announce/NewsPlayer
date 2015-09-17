@@ -11,24 +11,12 @@ import youtube_ios_player_helper
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, YTPlayerViewDelegate {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int  {
-        var count = ChannelModel.sharedInstance.queue.count
-        return (count > 0) ? count : 10
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
-        let cell = tableView.dequeueReusableCellWithIdentifier("VideoTable", forIndexPath: indexPath) as! UITableViewCell
-        cell.textLabel!.text = "textLabel #\(indexPath.row)"
-        return cell
-    }
-
     let playerParams = [
         "playsinline":      1,  // TODO: Remember last settings
         "controls":         1,
         "cc_load_policy":   1,
         "showinfo":         0,
-        "modestbranding":   0,
+        "modestbranding":   1,
     ]
     var playerReady = false;
     
@@ -72,13 +60,31 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     private func playNextVideo() {
-        let videoId: String? = ChannelModel.sharedInstance.nextVideoId()
-        if (videoId != nil) {
+        if let video: ChannelModel.Video = ChannelModel.sharedInstance.nextVideo() {
             videoPlayer.loadVideoById(
-                videoId, startSeconds: 0, suggestedQuality: YTPlaybackQuality.Default)
+                video.id, startSeconds: 0, suggestedQuality: YTPlaybackQuality.Default)
         } else {
             println("No VideoID yet")
         }
+    }
+    
+    // MARK: -
+    // MARK UITableViewDelegate
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int  {
+        let count = ChannelModel.sharedInstance.queue.count
+        return (count > 0) ? count : 10
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCellWithIdentifier("VideoTable", forIndexPath: indexPath) as! UITableViewCell
+        
+        if let video = ChannelModel.sharedInstance.getVideoByIndex(indexPath.row) {
+            cell.textLabel!.text = video.title
+        } else {
+            cell.textLabel!.text = "textLabel #\(indexPath.row)"
+        }
+        return cell
     }
     
     // MARK: -
