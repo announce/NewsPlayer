@@ -9,8 +9,20 @@
 import UIKit
 import youtube_ios_player_helper
 
-class ViewController: UIViewController, YTPlayerViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, YTPlayerViewDelegate {
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int  {
+        var count = ChannelModel.sharedInstance.queue.count
+        return (count > 0) ? count : 10
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCellWithIdentifier("VideoTable", forIndexPath: indexPath) as! UITableViewCell
+        cell.textLabel!.text = "textLabel #\(indexPath.row)"
+        return cell
+    }
+
     let playerParams = [
         "playsinline":      1,  // TODO: Remember last settings
         "controls":         1,
@@ -21,6 +33,7 @@ class ViewController: UIViewController, YTPlayerViewDelegate {
     var playerReady = false;
     
     @IBOutlet weak var videoPlayer: YTPlayerView!
+    @IBOutlet weak var videoTable: UITableView!
     
     @IBAction func nextVideo(sender: UIBarButtonItem) {
         playNextVideo()
@@ -28,6 +41,10 @@ class ViewController: UIViewController, YTPlayerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        videoTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "VideoTable")
+        videoTable.dataSource = self
+        videoTable.delegate = self
+        
         videoPlayer.delegate = self
         videoPlayer.loadWithVideoId("", playerVars: playerParams)
         ChannelModel.sharedInstance.addObserver(
