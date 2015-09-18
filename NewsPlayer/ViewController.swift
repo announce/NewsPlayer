@@ -54,7 +54,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Dispose of any resources that can be recreated.
     }
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if (keyPath == "queue" && playerReady) {
         }
     }
@@ -64,7 +64,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             videoPlayer.loadVideoById(
                 video.id, startSeconds: 0, suggestedQuality: YTPlaybackQuality.Default)
         } else {
-            println("No VideoID yet")
+            print("No VideoID yet")
         }
     }
     
@@ -77,7 +77,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("VideoTable", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("VideoTable", forIndexPath: indexPath) 
         
         if let video = ChannelModel.sharedInstance.getVideoByIndex(indexPath.row) {
             cell.textLabel!.text = video.title
@@ -90,7 +90,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: -
     // MARK: YTPlayerViewDelegate
     func playerViewDidBecomeReady(playerView: YTPlayerView!) {
-        println("playerViewDidBecomeReady")
+        print("playerViewDidBecomeReady")
         playerReady = true
         playNextVideo()
     }
@@ -98,58 +98,58 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func playerView(playerView: YTPlayerView!, didChangeToState state: YTPlayerState) {
         switch state {
         case YTPlayerState.Unstarted:
-            println("didChangeToState: Unstarted")
+            print("didChangeToState: Unstarted")
         case YTPlayerState.Ended:
-            println("didChangeToState: Ended")
+            print("didChangeToState: Ended")
             playNextVideo()
         case YTPlayerState.Playing:
-            println("didChangeToState: Playing")
+            print("didChangeToState: Playing")
         case YTPlayerState.Paused:
-            println("didChangeToState: Paused")
+            print("didChangeToState: Paused")
         case YTPlayerState.Buffering:
-            println("didChangeToState: Buffering")
+            print("didChangeToState: Buffering")
         case YTPlayerState.Queued:
-            println("didChangeToState: Queued")
+            print("didChangeToState: Queued")
         default:
-            println("didChangeToState: \(state.rawValue)")
+            print("didChangeToState: \(state.rawValue)")
         }
     }
     
     func playerView(playerView: YTPlayerView!, didChangeToQuality quality: YTPlaybackQuality) {
         switch quality {
         case YTPlaybackQuality.Small:
-            println("didChangeToQuality: Small")
+            print("didChangeToQuality: Small")
         case YTPlaybackQuality.Medium:
-            println("didChangeToQuality: Medium")
+            print("didChangeToQuality: Medium")
         case YTPlaybackQuality.Large:
-            println("didChangeToQuality: Large")
+            print("didChangeToQuality: Large")
         case YTPlaybackQuality.HD720:
-            println("didChangeToQuality: HD720")
+            print("didChangeToQuality: HD720")
         case YTPlaybackQuality.HD1080:
-            println("didChangeToQuality: HD1080")
+            print("didChangeToQuality: HD1080")
         case YTPlaybackQuality.HighRes:
-            println("didChangeToQuality: HighRes")
+            print("didChangeToQuality: HighRes")
         case YTPlaybackQuality.Auto:
-            println("didChangeToQuality: Auto")
+            print("didChangeToQuality: Auto")
         case YTPlaybackQuality.Default:
-            println("didChangeToQuality: Default")
+            print("didChangeToQuality: Default")
         default:
-            println("didChangeToQuality: \(quality.rawValue)")
+            print("didChangeToQuality: \(quality.rawValue)")
         }
     }
     
     func playerView(playerView: YTPlayerView!, receivedError error: YTPlayerError) {
         switch error {
         case YTPlayerError.InvalidParam:
-            println("receivedError: InvalidParam")
+            print("receivedError: InvalidParam")
         case YTPlayerError.HTML5Error:
-            println("receivedError: HTML5Error")
+            print("receivedError: HTML5Error")
         case YTPlayerError.VideoNotFound:
-            println("receivedError: VideoNotFound")
-        case YTPlayerError.VideoNotFound:
-            println("receivedError: VideoNotFound")
+            print("receivedError: VideoNotFound")
+        case YTPlayerError.Unknown:
+            print("receivedError: Unknown")
         default:
-            println("receivedError: \(error.rawValue)")
+            print("receivedError: \(error.rawValue)")
         }
     }
     

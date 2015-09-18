@@ -38,7 +38,7 @@ class ChannelModel : NSObject {
     var currentIndex: Int = 0
     
     func enqueue(){
-        var channels: [String] = channelList()
+        let channels: [String] = channelList()
         for channelID in channels {
             fetchActivities(channelID: channelID)
         }
@@ -59,8 +59,8 @@ class ChannelModel : NSObject {
     
     func getVideoByIndex(index: Int) -> Video? {
         if (queue.count > 0) {
-            var videoID: String = queue[index]
-            if var video: Video? = videoList[videoID] {
+            let videoID: String = queue[index]
+            if let video: Video? = videoList[videoID] {
                 return video
             } else {
                 return nil
@@ -77,7 +77,7 @@ class ChannelModel : NSObject {
         return channels;
     }
     
-    func fetchActivities(#channelID: String) {
+    func fetchActivities(channelID channelID: String) {
         let apiKey: String = Credential().apiKey
         let part = "snippet,contentDetails"
         let request = NSURLRequest(URL: NSURL(
@@ -87,15 +87,19 @@ class ChannelModel : NSObject {
             completionHandler: response)
     }
     
-    func response(_: NSURLResponse!, data: NSData!, error: NSError!) {
+    func response(_: NSURLResponse?, data: NSData?, error: NSError?) {
         if (error != nil) {
-            println("NSError in response: \(error)", __FUNCTION__, __LINE__)
+            print("NSError in response: \(error)", __FUNCTION__, __LINE__)
+            return
+        }
+        if (nil == data) {
+            print("NSData is nil", __FUNCTION__, __LINE__)
             return
         }
         
-        let json = JSON(data: data)
+        let json = JSON(data: data!)
         for (_,item):(String, JSON) in json["items"] {
-            if var video: Video = createVideo(item) {
+            if let video: Video = createVideo(item) {
                 queue.append(video.id)
                 videoList[video.id] = video
             } else {
@@ -127,7 +131,7 @@ class ChannelModel : NSObject {
                 description:    item["snippet", "description"].stringValue,
                 thumbnail:      thumbnail)
         } else {
-            println("Video ID not found")
+            print("Video ID not found")
             return nil
         }
     }

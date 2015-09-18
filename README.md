@@ -2,7 +2,7 @@ NewsPlayer
 ===
 
 ## Requirement
-- Xcode v6.4
+- Xcode v7.0
 - Ruby v2.1.x
 
 ## Setup

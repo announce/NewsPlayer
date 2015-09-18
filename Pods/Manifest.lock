@@ -20,17 +20,17 @@ PODS:
   - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - SwiftyJSON (2.2.1)
+  - SwiftyJSON (2.3.0)
   - youtube-ios-player-helper (0.1.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
-  - SwiftyJSON (~> 2.1)
+  - SwiftyJSON (~> 2.3)
   - youtube-ios-player-helper (~> 0.1.4)
 
 SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
-  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+  SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
   youtube-ios-player-helper: 84b1485ebb4b7c6b619c6e05edcb55186723a7c6
 
 COCOAPODS: 0.38.2
