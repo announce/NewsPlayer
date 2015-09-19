@@ -70,12 +70,38 @@ class ChannelModel : NSObject {
         }
     }
     
-    func removeVideoByIndex(index: Int) -> Bool {
+    func removeVideoByIndex(index: Int) -> Video? {
+        // Remove from queue first to avoid accessing nil videoList value by observed queue's index
         let videoID: String = queue.removeAtIndex(index)
         if let removedVideo: Video? = videoList.removeValueForKey(videoID) {
-            return removedVideo != nil
+            return removedVideo
         } else {
-            return false
+            return nil
+        }
+    }
+    
+    func insertVideo(newVideo: Video, index: Int) -> Video? {
+        if index <= queue.count {
+            // Insert video to videoList first
+            // to avoid accessing nil videoList value by observed queue's index
+            videoList[newVideo.id] = newVideo
+            queue.insert(newVideo.id, atIndex: index)
+            return newVideo
+        } else {
+            return nil
+        }
+    }
+    
+    func appendVideo(newVideo: Video) {
+        queue.append(newVideo.id)
+        videoList[newVideo.id] = newVideo
+    }
+    
+    func moveVideoByIndex(sourceIndex: Int, destinationIndex: Int) -> Video? {
+        if let removedVideo = removeVideoByIndex(sourceIndex) {
+            return insertVideo(removedVideo, index: destinationIndex)
+        } else {
+            return nil
         }
     }
     
@@ -109,8 +135,7 @@ class ChannelModel : NSObject {
         let json = JSON(data: data!)
         for (_,item):(String, JSON) in json["items"] {
             if let video: Video = createVideo(item) {
-                queue.append(video.id)
-                videoList[video.id] = video
+                appendVideo(video)
             } else {
                 continue
             }

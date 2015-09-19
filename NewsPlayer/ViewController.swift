@@ -87,12 +87,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if ChannelModel.sharedInstance.removeVideoByIndex(indexPath.row) {
+        if nil != ChannelModel.sharedInstance.removeVideoByIndex(indexPath.row) {
             tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)],
                 withRowAnimation: UITableViewRowAnimation.Fade)
         } else {
             print("Failed to remove video from list")
         }
+    }
+    
+    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        ChannelModel.sharedInstance.moveVideoByIndex(sourceIndexPath.row, destinationIndex: destinationIndexPath.row)
     }
     
     func initVideoTable() {
