@@ -29,6 +29,7 @@ class VideoTableViewCell: UITableViewCell {
         if let video = ChannelModel.sharedInstance.getVideoByIndex(index) {
             abstract.numberOfLines = 0
             abstract.text = "\(video.title)\n\(video.description)"
+            thumbnail.sd_setImageWithURL(NSURL(string: video.thumbnail.url))
         } else {
             abstract.text = "textLabel #\(index)"
         }

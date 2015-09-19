@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         "modestbranding":   1,
     ]
     var playerReady = false;
-    
+    let cellFixedHeight: CGFloat = 106
     let cellName = "VideoTableViewCell"
     
     @IBOutlet weak var videoPlayer: YTPlayerView!
@@ -76,6 +76,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         return initVideoCell(indexPath).render(indexPath.row)
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return cellFixedHeight
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

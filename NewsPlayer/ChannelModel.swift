@@ -131,9 +131,9 @@ class ChannelModel : NSObject {
     private func createVideo(item: JSON) -> Video? {
         if let videoID: String = item["contentDetails", "upload", "videoId"].string {
             let thumbnail = Thumbnail(
-                url:    item["thumbnails", quality, "url"].stringValue,
-                width:  item["thumbnails", quality, "width"].intValue,
-                height: item["thumbnails", quality, "height"].intValue)
+                url:    item["snippet", "thumbnails", quality, "url"].stringValue,
+                width:  item["snippet", "thumbnails", quality, "width"].intValue,
+                height: item["snippet", "thumbnails", quality, "height"].intValue)
             return Video(
                 id:             videoID,
                 title:          item["snippet", "title"].stringValue,
