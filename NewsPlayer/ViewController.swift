@@ -23,7 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let cellName = "VideoTableViewCell"
     
     @IBOutlet weak var videoPlayer: YTPlayerView!
-    @IBOutlet weak var videoTable: UITableView!
+    @IBOutlet weak var videoTable: LPRTableView!
     
     @IBAction func nextVideo(sender: UIBarButtonItem) {
         playNextVideo()
@@ -104,10 +104,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func initVideoTable() {
-//        videoTable.registerClass(VideoTableViewCell.self, forCellReuseIdentifier: cellName)
         videoTable.dataSource = self
         videoTable.delegate = self
-        videoTable.editing = true
+//        videoTable.editing = true
     }
     
     func initVideoCell(indexPath: NSIndexPath) -> VideoTableViewCell {
@@ -122,7 +121,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         print("playerViewDidBecomeReady")
         playerReady = true
         initVideoTable()
-        
         playNextVideo()
     }
     

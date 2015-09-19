@@ -18,6 +18,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="roi-6p-X07">
                         <rect key="frame" x="8" y="8" width="119.5" height="89.5"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="roi-6p-X07" secondAttribute="height" multiplier="120:90" id="NNs-tg-oeL"/>
                         </constraints>
