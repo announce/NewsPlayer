@@ -70,6 +70,15 @@ class ChannelModel : NSObject {
         }
     }
     
+    func removeVideoByIndex(index: Int) -> Bool {
+        let videoID: String = queue.removeAtIndex(index)
+        if let removedVideo: Video? = videoList.removeValueForKey(videoID) {
+            return removedVideo != nil
+        } else {
+            return false
+        }
+    }
+    
     func channelList() -> [String] {
         let plistPath = NSBundle.mainBundle().pathForResource("YouTube", ofType: "plist")
         let registry = NSDictionary(contentsOfFile: plistPath!)

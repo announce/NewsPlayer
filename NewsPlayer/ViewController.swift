@@ -20,6 +20,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     ]
     var playerReady = false;
     
+    let cellName = "VideoTableViewCell"
+    
     @IBOutlet weak var videoPlayer: YTPlayerView!
     @IBOutlet weak var videoTable: UITableView!
     
@@ -29,10 +31,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        videoTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "VideoTable")
-        videoTable.dataSource = self
-        videoTable.delegate = self
-        
         videoPlayer.delegate = self
         videoPlayer.loadWithVideoId("", playerVars: playerParams)
         ChannelModel.sharedInstance.addObserver(
@@ -46,6 +44,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidDisappear(animated: Bool){
         super.viewDidDisappear(animated)
+        playerReady = false
         ChannelModel.sharedInstance.removeObserver(self, forKeyPath: "queue")
     }
     
@@ -71,20 +70,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: -
     // MARK UITableViewDelegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int  {
-        let count = ChannelModel.sharedInstance.queue.count
-        return (count > 0) ? count : 10
+        return ChannelModel.sharedInstance.queue.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("VideoTable", forIndexPath: indexPath) 
-        
-        if let video = ChannelModel.sharedInstance.getVideoByIndex(indexPath.row) {
-            cell.textLabel!.text = video.title
+        return initVideoCell(indexPath).render(indexPath.row)
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if ChannelModel.sharedInstance.removeVideoByIndex(indexPath.row) {
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)],
+                withRowAnimation: UITableViewRowAnimation.Fade)
         } else {
-            cell.textLabel!.text = "textLabel #\(indexPath.row)"
+            print("Failed to remove video from list")
         }
-        return cell
+    }
+    
+    func initVideoTable() {
+//        videoTable.registerClass(VideoTableViewCell.self, forCellReuseIdentifier: cellName)
+        videoTable.dataSource = self
+        videoTable.delegate = self
+        videoTable.editing = true
+    }
+    
+    func initVideoCell(indexPath: NSIndexPath) -> VideoTableViewCell {
+        videoTable.registerNib(UINib(nibName: cellName, bundle:nil), forCellReuseIdentifier:cellName)
+        return videoTable.dequeueReusableCellWithIdentifier(
+            cellName, forIndexPath: indexPath) as! VideoTableViewCell
     }
     
     // MARK: -
@@ -92,6 +109,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func playerViewDidBecomeReady(playerView: YTPlayerView!) {
         print("playerViewDidBecomeReady")
         playerReady = true
+        initVideoTable()
+        
         playNextVideo()
     }
     

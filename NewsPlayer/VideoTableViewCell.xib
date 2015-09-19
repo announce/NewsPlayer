@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="VideoTableViewCell" customModule="NewsPlayer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="roi-6p-X07">
+                        <rect key="frame" x="8" y="8" width="98" height="73.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="roi-6p-X07" secondAttribute="height" multiplier="120:90" id="NNs-tg-oeL"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rA7-rE-xcb">
+                        <rect key="frame" x="116" y="8" width="176" height="73.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aKo-5j-a63">
+                        <rect key="frame" x="292" y="8" width="20" height="73.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="ikF-Qw-1Yf"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="aKo-5j-a63" secondAttribute="trailing" id="06x-hZ-WeO"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="aKo-5j-a63" secondAttribute="trailing" id="3NV-Uh-smK"/>
+                    <constraint firstItem="roi-6p-X07" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="7un-cU-54s"/>
+                    <constraint firstItem="aKo-5j-a63" firstAttribute="height" secondItem="rA7-rE-xcb" secondAttribute="height" id="AUS-Nk-aVw"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="aKo-5j-a63" secondAttribute="bottom" id="Alb-Ks-TQM"/>
+                    <constraint firstItem="aKo-5j-a63" firstAttribute="leading" secondItem="rA7-rE-xcb" secondAttribute="trailing" id="HGE-Ac-WZu"/>
+                    <constraint firstItem="aKo-5j-a63" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Htl-Qu-0Fw"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="roi-6p-X07" secondAttribute="trailing" id="IpS-Uz-OM7"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="roi-6p-X07" secondAttribute="bottom" id="UuH-J2-6CO"/>
+                    <constraint firstItem="roi-6p-X07" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="VGh-wv-U0U"/>
+                    <constraint firstItem="rA7-rE-xcb" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Wmu-Hm-Dtu"/>
+                    <constraint firstItem="aKo-5j-a63" firstAttribute="leading" secondItem="roi-6p-X07" secondAttribute="trailing" id="dyz-g7-Q5G"/>
+                    <constraint firstItem="rA7-rE-xcb" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="gHG-PD-rAc"/>
+                    <constraint firstItem="roi-6p-X07" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="hGI-bd-DBW"/>
+                    <constraint firstItem="rA7-rE-xcb" firstAttribute="leading" secondItem="roi-6p-X07" secondAttribute="trailing" constant="10" id="hLZ-75-VCW"/>
+                    <constraint firstItem="rA7-rE-xcb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="i5u-rQ-jsV"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="rA7-rE-xcb" secondAttribute="bottom" id="mOH-Tm-KVa"/>
+                    <constraint firstItem="roi-6p-X07" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="pem-3r-aAV"/>
+                    <constraint firstItem="rA7-rE-xcb" firstAttribute="leading" secondItem="roi-6p-X07" secondAttribute="trailing" id="sEQ-Ab-PgJ"/>
+                    <constraint firstItem="aKo-5j-a63" firstAttribute="leading" secondItem="roi-6p-X07" secondAttribute="trailing" id="vqV-ww-2R9"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="IpS-Uz-OM7"/>
+                        <exclude reference="VGh-wv-U0U"/>
+                        <exclude reference="hGI-bd-DBW"/>
+                        <exclude reference="Wmu-Hm-Dtu"/>
+                        <exclude reference="gHG-PD-rAc"/>
+                        <exclude reference="sEQ-Ab-PgJ"/>
+                        <exclude reference="06x-hZ-WeO"/>
+                        <exclude reference="dyz-g7-Q5G"/>
+                        <exclude reference="vqV-ww-2R9"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="abstract" destination="rA7-rE-xcb" id="CfO-wS-CbW"/>
+                <outlet property="thumbnail" destination="roi-6p-X07" id="mgw-w4-bz1"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>
