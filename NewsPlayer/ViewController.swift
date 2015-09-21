@@ -21,6 +21,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var playerReady = false;
     let cellFixedHeight: CGFloat = 106
     let cellName = "VideoTableViewCell"
+    let channelKey = "queue"
     
     @IBOutlet weak var videoPlayer: YTPlayerView!
     @IBOutlet weak var videoTable: LPRTableView!
@@ -33,9 +34,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         videoPlayer.delegate = self
         videoPlayer.loadWithVideoId("", playerVars: playerParams)
-        ChannelModel.sharedInstance.addObserver(
-            self, forKeyPath: "queue", options: .New, context: nil)
         ChannelModel.sharedInstance.enqueue()
+        ChannelModel.sharedInstance.addObserver(
+            self, forKeyPath: channelKey, options: .New, context: nil)
+        initVideoTable()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -45,7 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidDisappear(animated: Bool){
         super.viewDidDisappear(animated)
         playerReady = false
-        ChannelModel.sharedInstance.removeObserver(self, forKeyPath: "queue")
+        ChannelModel.sharedInstance.removeObserver(self, forKeyPath: channelKey)
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,7 +56,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if (keyPath == "queue" && playerReady) {
+        if (keyPath == channelKey && playerReady) {
+        }
+    }
+    
+    private func playCurrentVideo() {
+        if let video: ChannelModel.Video = ChannelModel.sharedInstance.currentVideo() {
+            videoPlayer.loadVideoById(
+                video.id, startSeconds: 0, suggestedQuality: YTPlaybackQuality.Default)
+        } else {
+            print("No VideoID yet")
         }
     }
     
@@ -106,7 +117,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func initVideoTable() {
         videoTable.dataSource = self
         videoTable.delegate = self
-//        videoTable.editing = true
     }
     
     func initVideoCell(indexPath: NSIndexPath) -> VideoTableViewCell {
@@ -120,8 +130,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func playerViewDidBecomeReady(playerView: YTPlayerView!) {
         print("playerViewDidBecomeReady")
         playerReady = true
-        initVideoTable()
-        playNextVideo()
+        playCurrentVideo()
+        // FIXME: Not proper timing
+        videoTable.reloadData()
     }
     
     func playerView(playerView: YTPlayerView!, didChangeToState state: YTPlayerState) {
