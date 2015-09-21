@@ -54,6 +54,7 @@ class ChannelModel : NSObject {
     }
     
     func currentVideo() -> Video? {
+        print("currentVideo[\(currentIndex)]")
         return getVideoByIndex(currentIndex)
     }
     
@@ -74,20 +75,30 @@ class ChannelModel : NSObject {
         // Remove from queue first to avoid accessing nil videoList value by observed queue's index
         let videoID: String = queue.removeAtIndex(index)
         if let removedVideo: Video? = videoList.removeValueForKey(videoID) {
+            // Adjust playing video
+            if index <= currentIndex {
+                currentIndex--
+            }
             return removedVideo
         } else {
+            print("\(__FUNCTION__) -> nil")
             return nil
         }
     }
     
     func insertVideo(newVideo: Video, index: Int) -> Video? {
         if index <= queue.count {
+            // Adjust playing video
+            if index <= currentIndex {
+                currentIndex++
+            }
             // Insert video to videoList first
             // to avoid accessing nil videoList value by observed queue's index
             videoList[newVideo.id] = newVideo
             queue.insert(newVideo.id, atIndex: index)
             return newVideo
         } else {
+            print("\(__FUNCTION__) -> nil")
             return nil
         }
     }
@@ -98,8 +109,12 @@ class ChannelModel : NSObject {
     }
     
     func moveVideoByIndex(sourceIndex: Int, destinationIndex: Int) -> Video? {
+        let originalIndex = currentIndex
         if let removedVideo = removeVideoByIndex(sourceIndex) {
-            return insertVideo(removedVideo, index: destinationIndex)
+            let video = insertVideo(removedVideo, index: destinationIndex)
+            // Adjust playing video
+            currentIndex = (originalIndex == sourceIndex) ? destinationIndex : currentIndex
+            return video
         } else {
             return nil
         }
