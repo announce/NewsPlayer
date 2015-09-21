@@ -22,6 +22,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let cellFixedHeight: CGFloat = 106
     let cellName = "VideoTableViewCell"
     let channelKey = "queue"
+    let detailSegueKey = "showVideoDetail"
+    var selectedVideo: ChannelModel.Video?
     
     @IBOutlet weak var videoPlayer: YTPlayerView!
     @IBOutlet weak var videoTable: LPRTableView!
@@ -35,13 +37,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         videoPlayer.delegate = self
         videoPlayer.loadWithVideoId("", playerVars: playerParams)
         ChannelModel.sharedInstance.enqueue()
-        ChannelModel.sharedInstance.addObserver(
-            self, forKeyPath: channelKey, options: .New, context: nil)
         initVideoTable()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        ChannelModel.sharedInstance.addObserver(
+            self, forKeyPath: channelKey, options: .New, context: nil)
     }
     
     override func viewDidDisappear(animated: Bool){
@@ -75,6 +77,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 video.id, startSeconds: 0, suggestedQuality: YTPlaybackQuality.Default)
         } else {
             print("No VideoID yet")
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == detailSegueKey) {
+            let nav = segue.destinationViewController as! UINavigationController
+            let detail: VideoDetailViewController = nav.topViewController as! VideoDetailViewController
+            detail.video = selectedVideo
         }
     }
     
@@ -123,6 +133,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         videoTable.registerNib(UINib(nibName: cellName, bundle:nil), forCellReuseIdentifier:cellName)
         return videoTable.dequeueReusableCellWithIdentifier(
             cellName, forIndexPath: indexPath) as! VideoTableViewCell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedVideo = ChannelModel.sharedInstance.getVideoByIndex(indexPath.row)
+        performSegueWithIdentifier(detailSegueKey, sender: nil)
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
     // MARK: -

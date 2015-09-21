@@ -70,11 +70,128 @@
                     <connections>
                         <outlet property="videoPlayer" destination="CxL-dh-SR4" id="Rh6-GF-iHI"/>
                         <outlet property="videoTable" destination="zys-df-zjP" id="KIW-sl-gaI"/>
+                        <segue destination="k6z-Gm-Xb7" kind="showDetail" identifier="showVideoDetail" id="E9E-b8-j8h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1059" y="-380"/>
+        </scene>
+        <!--Video Detail View Controller-->
+        <scene sceneID="ZT6-Th-7W9">
+            <objects>
+                <viewController id="zqZ-iB-oD6" customClass="VideoDetailViewController" customModule="NewsPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tbR-9Y-33z"/>
+                        <viewControllerLayoutGuide type="bottom" id="vnO-k4-enK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2cY-sQ-k6j">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cg7-gc-sIl">
+                                <rect key="frame" x="20" y="164" width="560" height="392"/>
+                                <mutableString key="text">PARIS -- France's data privacy regulator has rejected Google's appeal of an order to remove search results worldwide upon request.
+
+In a statement Monday, the agency known as CNIL denied that it was trying to apply French law globally, but rather to request that any companies that offer services in Europe conform to legislation.
+ 
+The latest order from CNIL came in response to the May 2014 ruling from Europe's highest court that people have the right to control what appears when their name is searched online. Google says it has received 318,269 requests for removal, and accepted delisting of about 40 percent of the URLs evaluated.
+ 
+Facebook links accounted for the most of any single website, Google said.
+ 
+CNIL said Google must comply with the order or face possible sanctions.
+
+http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-appeal/2972090.html</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6V-sQ-B80">
+                                <rect key="frame" x="20" y="556" width="560" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="dVG-bF-r6L"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="L7G-Xa-Roh"/>
+                                    <barButtonItem title="Play Next" id="Itj-XD-BAx">
+                                        <connections>
+                                            <action selector="playNext:" destination="zqZ-iB-oD6" id="o6A-yK-gJ8"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="12" style="plain" systemItem="fixedSpace" id="CXs-gt-vI8"/>
+                                    <barButtonItem title="Play Now" id="r56-gF-EB2">
+                                        <connections>
+                                            <action selector="playNow:" destination="zqZ-iB-oD6" id="kWs-lC-4G3"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H7X-Lz-yvw">
+                                <rect key="frame" x="30" y="66" width="120" height="90"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="KN1-CV-gnV"/>
+                                    <constraint firstAttribute="height" constant="90" id="WhT-KW-54j"/>
+                                    <constraint firstAttribute="width" secondItem="H7X-Lz-yvw" secondAttribute="height" multiplier="4:3" id="gcH-v8-ssU"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="WhT-KW-54j"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hfD-jq-G3n">
+                                <rect key="frame" x="150" y="66" width="430" height="90"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="H7X-Lz-yvw" firstAttribute="leading" secondItem="2cY-sQ-k6j" secondAttribute="leadingMargin" constant="10" id="2Bn-zA-M3f"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cg7-gc-sIl" secondAttribute="trailing" id="5OD-x5-XHw"/>
+                            <constraint firstItem="v6V-sQ-B80" firstAttribute="top" secondItem="cg7-gc-sIl" secondAttribute="bottom" id="5uF-tZ-kDU"/>
+                            <constraint firstItem="cg7-gc-sIl" firstAttribute="top" secondItem="hfD-jq-G3n" secondAttribute="bottom" constant="8" id="8BG-sY-ZQE"/>
+                            <constraint firstItem="hfD-jq-G3n" firstAttribute="leading" secondItem="H7X-Lz-yvw" secondAttribute="trailing" id="DRU-lO-5h2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="v6V-sQ-B80" secondAttribute="trailing" id="KLS-Q2-gZC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hfD-jq-G3n" secondAttribute="trailing" id="OLB-be-jbk"/>
+                            <constraint firstItem="hfD-jq-G3n" firstAttribute="top" secondItem="2cY-sQ-k6j" secondAttribute="topMargin" constant="8" id="ORW-z5-gr8"/>
+                            <constraint firstItem="vnO-k4-enK" firstAttribute="top" secondItem="v6V-sQ-B80" secondAttribute="bottom" id="WnL-bv-0XK"/>
+                            <constraint firstItem="cg7-gc-sIl" firstAttribute="leading" secondItem="2cY-sQ-k6j" secondAttribute="leadingMargin" id="c7O-Yo-bLA"/>
+                            <constraint firstItem="v6V-sQ-B80" firstAttribute="leading" secondItem="2cY-sQ-k6j" secondAttribute="leadingMargin" id="gLc-OM-D7Y"/>
+                            <constraint firstItem="v6V-sQ-B80" firstAttribute="top" secondItem="cg7-gc-sIl" secondAttribute="bottom" id="gsC-bK-IHU"/>
+                            <constraint firstItem="H7X-Lz-yvw" firstAttribute="top" secondItem="tbR-9Y-33z" secondAttribute="bottom" constant="2" id="gzG-M7-seX"/>
+                            <constraint firstItem="hfD-jq-G3n" firstAttribute="top" secondItem="tbR-9Y-33z" secondAttribute="bottom" constant="2" id="kkI-sR-CfY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hfD-jq-G3n" secondAttribute="trailing" constant="8" id="oSw-HY-wDk"/>
+                            <constraint firstItem="cg7-gc-sIl" firstAttribute="top" secondItem="H7X-Lz-yvw" secondAttribute="bottom" constant="8" id="zSZ-Uo-mQ2"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ORW-z5-gr8"/>
+                                <exclude reference="oSw-HY-wDk"/>
+                                <exclude reference="5uF-tZ-kDU"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="AEa-If-wkE">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="GGv-5y-dwQ">
+                            <connections>
+                                <action selector="dissmissButton:" destination="zqZ-iB-oD6" id="GlQ-vw-ooK"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="oGt-pU-gYj"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="abstract" destination="hfD-jq-G3n" id="hkv-6m-Zyz"/>
+                        <outlet property="detail" destination="cg7-gc-sIl" id="885-pc-HrG"/>
+                        <outlet property="thumbnail" destination="H7X-Lz-yvw" id="pEa-GZ-hf9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4lb-25-gw8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1871" y="359"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KTR-s4-JYB">
@@ -93,6 +210,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwj-Pg-u30" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="243" y="-369"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Nri-qA-Oxq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="k6z-Gm-Xb7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Evj-bK-3rI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zqZ-iB-oD6" kind="relationship" relationship="rootViewController" id="rqz-01-lvl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SKV-8e-kFJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1059" y="359"/>
         </scene>
     </scenes>
 </document>
