@@ -91,7 +91,7 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cg7-gc-sIl">
                                 <rect key="frame" x="20" y="164" width="560" height="392"/>
-                                <mutableString key="text">PARIS -- France's data privacy regulator has rejected Google's appeal of an order to remove search results worldwide upon request.
+                                <string key="text">PARIS -- France's data privacy regulator has rejected Google's appeal of an order to remove search results worldwide upon request.
 
 In a statement Monday, the agency known as CNIL denied that it was trying to apply French law globally, but rather to request that any companies that offer services in Europe conform to legislation.
  
@@ -101,7 +101,7 @@ Facebook links accounted for the most of any single website, Google said.
  
 CNIL said Google must comply with the order or face possible sanctions.
 
-http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-appeal/2972090.html</mutableString>
+http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-appeal/2972090.html</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -142,7 +142,7 @@ http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-a
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hfD-jq-G3n">
                                 <rect key="frame" x="150" y="66" width="430" height="90"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>

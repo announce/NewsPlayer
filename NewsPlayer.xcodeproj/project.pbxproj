@@ -16,6 +16,8 @@
 		C5C42CC11BA86F7D003D07A3 /* YouTube.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5C42CC01BA86F7D003D07A3 /* YouTube.plist */; };
 		C5C42CC31BA870BB003D07A3 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C42CC21BA870BB003D07A3 /* ChannelModel.swift */; };
 		C5C42CC51BA87B27003D07A3 /* Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C42CC41BA87B27003D07A3 /* Credential.swift */; };
+		C5C52B281BB0F48C002ED21C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C52B271BB0F48C002ED21C /* LoadingView.swift */; settings = {ASSET_TAGS = (); }; };
+		C5C52B2A1BB0F642002ED21C /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C52B291BB0F642002ED21C /* LoadingView.xib */; settings = {ASSET_TAGS = (); }; };
 		C5DE79491BA1D59A00E594EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DE79481BA1D59A00E594EE /* AppDelegate.swift */; };
 		C5DE794C1BA1D59A00E594EE /* NewsPlayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5DE794A1BA1D59A00E594EE /* NewsPlayer.xcdatamodeld */; };
 		C5DE794E1BA1D59A00E594EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DE794D1BA1D59A00E594EE /* ViewController.swift */; };
@@ -48,6 +50,8 @@
 		C5C42CC01BA86F7D003D07A3 /* YouTube.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YouTube.plist; sourceTree = "<group>"; };
 		C5C42CC21BA870BB003D07A3 /* ChannelModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 		C5C42CC41BA87B27003D07A3 /* Credential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credential.swift; sourceTree = "<group>"; };
+		C5C52B271BB0F48C002ED21C /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		C5C52B291BB0F642002ED21C /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		C5DE79431BA1D59A00E594EE /* NewsPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5DE79471BA1D59A00E594EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5DE79481BA1D59A00E594EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +116,9 @@
 				C5DE794D1BA1D59A00E594EE /* ViewController.swift */,
 				C5AFC3971BAD60D3001CCBD4 /* VideoTableViewCell.swift */,
 				C5AFC3981BAD60D3001CCBD4 /* VideoTableViewCell.xib */,
+				C5C52B271BB0F48C002ED21C /* LoadingView.swift */,
+				C5C52B291BB0F642002ED21C /* LoadingView.xib */,
+				C5DE79541BA1D59A00E594EE /* LaunchScreen.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -164,7 +171,6 @@
 				C508680E1BAFE30600EF0F01 /* Model */,
 				C52F65FF1BAAD43700202136 /* Config */,
 				C5DE79521BA1D59A00E594EE /* Images.xcassets */,
-				C5DE79541BA1D59A00E594EE /* LaunchScreen.xib */,
 				C5DE794A1BA1D59A00E594EE /* NewsPlayer.xcdatamodeld */,
 				C5DE79461BA1D59A00E594EE /* Supporting Files */,
 				C5C42CB91BA47704003D07A3 /* NewsPlayer-Bridging-Header.h */,
@@ -286,6 +292,7 @@
 				C5C42CC11BA86F7D003D07A3 /* YouTube.plist in Resources */,
 				C5C42CBB1BA48127003D07A3 /* Credentials.plist in Resources */,
 				C5DE79561BA1D59A00E594EE /* LaunchScreen.xib in Resources */,
+				C5C52B2A1BB0F642002ED21C /* LoadingView.xib in Resources */,
 				C5DE79531BA1D59A00E594EE /* Images.xcassets in Resources */,
 				C5AFC39A1BAD60D3001CCBD4 /* VideoTableViewCell.xib in Resources */,
 			);
@@ -361,6 +368,7 @@
 				C5C42CC51BA87B27003D07A3 /* Credential.swift in Sources */,
 				C5DE794C1BA1D59A00E594EE /* NewsPlayer.xcdatamodeld in Sources */,
 				C5C42CC31BA870BB003D07A3 /* ChannelModel.swift in Sources */,
+				C5C52B281BB0F48C002ED21C /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

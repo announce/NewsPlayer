@@ -18,12 +18,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         "showinfo":         0,
         "modestbranding":   1,
     ]
-    var playerReady = false;
     let cellFixedHeight: CGFloat = 106
     let cellName = "VideoTableViewCell"
     let channelKey = "queue"
     let detailSegueKey = "showVideoDetail"
     var selectedVideo: ChannelModel.Video?
+    
+    lazy private var loadingView:LoadingView = self.createLoadingView()
     
     @IBOutlet weak var videoPlayer: YTPlayerView!
     @IBOutlet weak var videoTable: LPRTableView!
@@ -32,8 +33,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         playNextVideo()
     }
     
+    private func createLoadingView() -> LoadingView {
+        let loadingView = LoadingView.instance().render() as LoadingView
+        loadingView.center = view.center
+        return loadingView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(loadingView)
         videoPlayer.delegate = self
         videoPlayer.loadWithVideoId("", playerVars: playerParams)
         ChannelModel.sharedInstance.enqueue()
@@ -48,7 +56,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidDisappear(animated: Bool){
         super.viewDidDisappear(animated)
-        playerReady = false
         ChannelModel.sharedInstance.removeObserver(self, forKeyPath: channelKey)
     }
     
@@ -58,7 +65,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if (keyPath == channelKey && playerReady) {
+        if (keyPath == channelKey) {
         }
     }
     
@@ -145,10 +152,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: YTPlayerViewDelegate
     func playerViewDidBecomeReady(playerView: YTPlayerView!) {
         print("playerViewDidBecomeReady")
-        playerReady = true
         playCurrentVideo()
         // FIXME: Not proper timing
         videoTable.reloadData()
+        UIView.animateWithDuration(0.8, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                self.loadingView.alpha = 0
+            }, completion: { _ in
+                self.loadingView.removeFromSuperview()
+        })
     }
     
     func playerView(playerView: YTPlayerView!, didChangeToState state: YTPlayerState) {
