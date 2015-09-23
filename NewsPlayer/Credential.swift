@@ -9,10 +9,13 @@
 import Foundation
 
 class Credential {
+    enum Provider: String {
+        case Google = "Google API Key"
+    }
     var apiKey: String
-    init(key: String) {
+    init(key: Provider) {
         let credentialsPath = NSBundle.mainBundle().pathForResource("Credentials", ofType: "plist")!
-        let credentials = NSDictionary(contentsOfFile: credentialsPath)
-        self.apiKey = credentials!.objectForKey(key) as! String
+        let credentials = NSDictionary(contentsOfFile: credentialsPath)!
+        self.apiKey = credentials.objectForKey(key.rawValue) as! String
     }
 }

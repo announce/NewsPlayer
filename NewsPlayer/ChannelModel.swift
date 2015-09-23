@@ -115,7 +115,7 @@ class ChannelModel : NSObject {
     }
     
     func fetchActivities(channelID channelID: String) {
-        let apiKey: String = Credential(key: "Google API Key").apiKey
+        let apiKey: String = Credential(key: Credential.Provider.Google).apiKey
         let part = "snippet,contentDetails"
         let request = NSURLRequest(URL: NSURL(
             string: "\(activityUrl)?part=\(part)&channelId=\(channelID)&key=\(apiKey)")!)
