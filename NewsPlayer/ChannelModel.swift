@@ -23,6 +23,7 @@ class ChannelModel : NSObject {
     dynamic var queue: [String] = []
     var videoList: [String: Video?] = ["": nil]
     var currentIndex: Int = 0
+    var latestEtags: [String: String] = ["": ""]
     
     func enqueue(){
         let channels: [String] = channelList()
@@ -135,6 +136,12 @@ class ChannelModel : NSObject {
         }
         
         let json = JSON(data: data!)
+        
+        if isLatast(json) {
+            // TODO Check all channels and notify to user
+            return
+        }
+        
         for (_,item):(String, JSON) in json["items"] {
             if let video: Video = createVideo(item) {
                 appendVideo(video)
@@ -144,6 +151,24 @@ class ChannelModel : NSObject {
         }
         
         // TODO Fetch other pages
+    }
+    
+    private func isLatast(json: JSON) -> Bool {
+        if nil == json["prevPageToken"].string {
+            // Means not first page
+            print("prevPageToken exists")
+            return false
+        }
+        
+        let channelID = json["items", 0, "snippet", "channelId"].stringValue
+        let etag = json["etag"].stringValue
+        if latestEtags[channelID] == etag {
+            print("No updates for channelID[\(channelID)]")
+            return true
+        } else {
+            latestEtags.updateValue(etag, forKey: channelID)
+            return false
+        }
     }
     
     enum Quality: String {
