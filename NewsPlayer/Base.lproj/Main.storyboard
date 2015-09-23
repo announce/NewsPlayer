@@ -65,12 +65,13 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Video Title" id="3hn-cY-XY1">
+                        <barButtonItem key="leftBarButtonItem" image="More" id="TPn-DU-zeb"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="eOT-QB-xpr"/>
                     </navigationItem>
                     <connections>
                         <outlet property="videoPlayer" destination="CxL-dh-SR4" id="Rh6-GF-iHI"/>
                         <outlet property="videoTable" destination="zys-df-zjP" id="KIW-sl-gaI"/>
-                        <segue destination="k6z-Gm-Xb7" kind="showDetail" identifier="showVideoDetail" id="E9E-b8-j8h"/>
+                        <segue destination="k6z-Gm-Xb7" kind="presentation" identifier="showVideoDetail" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="E9E-b8-j8h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -158,13 +159,13 @@ http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-a
                             <constraint firstAttribute="trailingMargin" secondItem="v6V-sQ-B80" secondAttribute="trailing" id="KLS-Q2-gZC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hfD-jq-G3n" secondAttribute="trailing" id="OLB-be-jbk"/>
                             <constraint firstItem="hfD-jq-G3n" firstAttribute="top" secondItem="2cY-sQ-k6j" secondAttribute="topMargin" constant="8" id="ORW-z5-gr8"/>
-                            <constraint firstItem="vnO-k4-enK" firstAttribute="top" secondItem="v6V-sQ-B80" secondAttribute="bottom" id="WnL-bv-0XK"/>
+                            <constraint firstItem="vnO-k4-enK" firstAttribute="top" secondItem="v6V-sQ-B80" secondAttribute="bottom" id="Swx-nc-ITN"/>
+                            <constraint firstItem="H7X-Lz-yvw" firstAttribute="top" secondItem="tbR-9Y-33z" secondAttribute="bottom" constant="2" id="bZc-2G-kpL"/>
                             <constraint firstItem="cg7-gc-sIl" firstAttribute="leading" secondItem="2cY-sQ-k6j" secondAttribute="leadingMargin" id="c7O-Yo-bLA"/>
                             <constraint firstItem="v6V-sQ-B80" firstAttribute="leading" secondItem="2cY-sQ-k6j" secondAttribute="leadingMargin" id="gLc-OM-D7Y"/>
                             <constraint firstItem="v6V-sQ-B80" firstAttribute="top" secondItem="cg7-gc-sIl" secondAttribute="bottom" id="gsC-bK-IHU"/>
-                            <constraint firstItem="H7X-Lz-yvw" firstAttribute="top" secondItem="tbR-9Y-33z" secondAttribute="bottom" constant="2" id="gzG-M7-seX"/>
-                            <constraint firstItem="hfD-jq-G3n" firstAttribute="top" secondItem="tbR-9Y-33z" secondAttribute="bottom" constant="2" id="kkI-sR-CfY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hfD-jq-G3n" secondAttribute="trailing" constant="8" id="oSw-HY-wDk"/>
+                            <constraint firstItem="hfD-jq-G3n" firstAttribute="top" secondItem="tbR-9Y-33z" secondAttribute="bottom" constant="2" id="tsz-Oy-jFc"/>
                             <constraint firstItem="cg7-gc-sIl" firstAttribute="top" secondItem="H7X-Lz-yvw" secondAttribute="bottom" constant="8" id="zSZ-Uo-mQ2"/>
                         </constraints>
                         <variation key="default">
@@ -230,4 +231,7 @@ http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-a
             <point key="canvasLocation" x="1059" y="359"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="More" width="25" height="25"/>
+    </resources>
 </document>

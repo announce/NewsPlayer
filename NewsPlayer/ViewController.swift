@@ -9,7 +9,7 @@
 import UIKit
 import youtube_ios_player_helper
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, YTPlayerViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, YTPlayerViewDelegate, VideoDetailControllerDelegate {
     
     let playerParams = [
         "playsinline":      1,  // TODO: Remember last settings
@@ -22,7 +22,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let cellName = "VideoTableViewCell"
     let channelKey = "queue"
     let detailSegueKey = "showVideoDetail"
-    var selectedVideo: ChannelModel.Video?
+    var selectedIndex: Int?
     
     lazy private var loadingView:LoadingView = self.createLoadingView()
     
@@ -88,11 +88,47 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if (segue.identifier == detailSegueKey) {
+        if (segue.identifier == detailSegueKey && selectedIndex != nil) {
             let nav = segue.destinationViewController as! UINavigationController
             let detail: VideoDetailViewController = nav.topViewController as! VideoDetailViewController
-            detail.video = selectedVideo
+            detail.delegate = self
+            detail.originalIndex = selectedIndex!
+            detail.video = ChannelModel.sharedInstance.getVideoByIndex(selectedIndex!)
         }
+    }
+    
+    // MARK: -
+    // MARK VideoDetailControllerDelegate
+    func execute(command: VideoDetailViewController.Command) {
+        switch command {
+        case VideoDetailViewController.Command.PlayNextVideo:
+            playNextVideo()
+        case VideoDetailViewController.Command.ReloadTable:
+            videoTable.reloadData()
+        default:
+            print("command[\(command)]")
+            break
+        }
+    }
+    
+    func execute(_: VideoDetailViewController.Command, targetCellIndex: Int) {
+        let path = NSIndexPath.init(forRow: targetCellIndex, inSection: 0)
+        if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
+            blinkCell(cell, targetColor: UIColor.lightGrayColor())
+        } else {
+            print("No cell found by index[\(targetCellIndex)]")
+        }
+    }
+    
+    private func blinkCell(cell: UITableViewCell, targetColor: UIColor, count: Int = 1) {
+        let color = count % 2 == 0 ? UIColor.whiteColor() : targetColor
+        UIView.animateWithDuration(0.6, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            cell.backgroundColor = color
+            }, completion: { _ in
+                if count > 0 {
+                    self.blinkCell(cell, targetColor: targetColor, count: count - 1)
+                }
+        })
     }
     
     // MARK: -
@@ -143,7 +179,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedVideo = ChannelModel.sharedInstance.getVideoByIndex(indexPath.row)
+        selectedIndex = indexPath.row
         performSegueWithIdentifier(detailSegueKey, sender: nil)
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
