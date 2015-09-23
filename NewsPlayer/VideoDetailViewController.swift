@@ -42,7 +42,7 @@ class VideoDetailViewController: UIViewController {
     }
     
     var delegate: VideoDetailControllerDelegate! = nil
-    var video: ChannelModel.Video?
+    var video: Video?
     var originalIndex: Int?
     
     override func viewDidLoad() {

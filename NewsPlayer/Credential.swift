@@ -10,9 +10,9 @@ import Foundation
 
 class Credential {
     var apiKey: String
-    init() {
-        let credentialsPath = NSBundle.mainBundle().pathForResource("Credentials", ofType: "plist")
-        let credentials = NSDictionary(contentsOfFile: credentialsPath!)
-        self.apiKey = credentials!.objectForKey("Google API Key") as! String
+    init(key: String) {
+        let credentialsPath = NSBundle.mainBundle().pathForResource("Credentials", ofType: "plist")!
+        let credentials = NSDictionary(contentsOfFile: credentialsPath)
+        self.apiKey = credentials!.objectForKey(key) as! String
     }
 }

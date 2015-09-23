@@ -70,7 +70,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     private func playCurrentVideo() {
-        if let video: ChannelModel.Video = ChannelModel.sharedInstance.currentVideo() {
+        if let video: Video = ChannelModel.sharedInstance.currentVideo() {
             videoPlayer.loadVideoById(
                 video.id, startSeconds: 0, suggestedQuality: YTPlaybackQuality.Default)
         } else {
@@ -79,7 +79,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     private func playNextVideo() {
-        if let video: ChannelModel.Video = ChannelModel.sharedInstance.nextVideo() {
+        if let video: Video = ChannelModel.sharedInstance.nextVideo() {
             videoPlayer.loadVideoById(
                 video.id, startSeconds: 0, suggestedQuality: YTPlaybackQuality.Default)
         } else {

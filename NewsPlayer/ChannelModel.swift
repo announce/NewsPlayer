@@ -18,19 +18,6 @@ class ChannelModel : NSObject {
         return Singleton.instance
     }
     
-    struct Thumbnail {
-        var url: String
-        var width: Int
-        var height: Int
-    }
-    
-    struct Video {
-        var id: String
-        var title: String
-        var description: String
-        var thumbnail: Thumbnail
-    }
-    
     let activityUrl = "https://www.googleapis.com/youtube/v3/activities"
     
     dynamic var queue: [String] = []
@@ -128,7 +115,7 @@ class ChannelModel : NSObject {
     }
     
     func fetchActivities(channelID channelID: String) {
-        let apiKey: String = Credential().apiKey
+        let apiKey: String = Credential(key: "Google API Key").apiKey
         let part = "snippet,contentDetails"
         let request = NSURLRequest(URL: NSURL(
             string: "\(activityUrl)?part=\(part)&channelId=\(channelID)&key=\(apiKey)")!)
@@ -170,7 +157,7 @@ class ChannelModel : NSObject {
     
     private func createVideo(item: JSON) -> Video? {
         if let videoID: String = item["contentDetails", "upload", "videoId"].string {
-            let thumbnail = Thumbnail(
+            let thumbnail = Video.Thumbnail(
                 url:    item["snippet", "thumbnails", quality, "url"].stringValue,
                 width:  item["snippet", "thumbnails", quality, "width"].intValue,
                 height: item["snippet", "thumbnails", quality, "height"].intValue)
