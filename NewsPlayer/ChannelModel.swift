@@ -18,6 +18,9 @@ class ChannelModel : NSObject {
         return Singleton.instance
     }
     
+    struct Const {
+        static let Max = 2000
+    }
     let activityUrl = "https://www.googleapis.com/youtube/v3/activities"
     
     dynamic var queue: [String] = []
@@ -115,11 +118,11 @@ class ChannelModel : NSObject {
         return channels;
     }
     
-    func fetchActivities(channelID channelID: String) {
+    func fetchActivities(channelID channelID: String, pageToken: String = "") {
         let apiKey: String = Credential(key: Credential.Provider.Google).apiKey
         let part = "snippet,contentDetails"
         let request = NSURLRequest(URL: NSURL(
-            string: "\(activityUrl)?part=\(part)&channelId=\(channelID)&key=\(apiKey)")!)
+            string: "\(activityUrl)?part=\(part)&channelId=\(channelID)&pageToken=\(pageToken)&key=\(apiKey)")!)
         NSURLConnection.sendAsynchronousRequest(request,
             queue: NSOperationQueue.mainQueue(),
             completionHandler: response)
@@ -150,18 +153,18 @@ class ChannelModel : NSObject {
             }
         }
         
-        // TODO Fetch other pages
+        fetchNextPage(json)
     }
     
     private func isLatast(json: JSON) -> Bool {
-        if nil == json["prevPageToken"].string {
+        let channelID = json["items", 0, "snippet", "channelId"].stringValue
+        let etag = json["etag"].stringValue
+        
+        if let _ = json["prevPageToken"].string {
             // Means not first page
-            print("prevPageToken exists")
             return false
         }
         
-        let channelID = json["items", 0, "snippet", "channelId"].stringValue
-        let etag = json["etag"].stringValue
         if latestEtags[channelID] == etag {
             print("No updates for channelID[\(channelID)]")
             return true
@@ -192,8 +195,21 @@ class ChannelModel : NSObject {
                 description:    item["snippet", "description"].stringValue,
                 thumbnail:      thumbnail)
         } else {
-            print("Video ID not found")
             return nil
+        }
+    }
+    
+    private func fetchNextPage(json: JSON) {
+        if Const.Max <= queue.count  {
+            print("Queue count reached Const.Max[\(Const.Max)]")
+            return
+        }
+        if let channelID = json["items", 0, "snippet", "channelId"].string,
+            nextPageToken: String = json["nextPageToken"].string {
+            fetchActivities(channelID: channelID, pageToken: nextPageToken)
+        } else {
+            let chennelID = json["items", 0, "snippet", "channelId"].stringValue
+            print("ChennelID[\(chennelID)]: Completed to fetch all pages")
         }
     }
 }

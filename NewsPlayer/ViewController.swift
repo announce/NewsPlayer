@@ -116,7 +116,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
             blinkCell(cell, targetColor: UIColor.lightGrayColor())
         } else {
-            print("No cell found by index[\(targetCellIndex)]")
+            print("Cell index[\(targetCellIndex)] is not visible")
         }
     }
     
