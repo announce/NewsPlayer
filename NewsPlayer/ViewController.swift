@@ -23,6 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let channelKey = "queue"
     let detailSegueKey = "showVideoDetail"
     var selectedIndex: Int?
+    var refreshControl = UIRefreshControl()
     
     lazy private var loadingView:LoadingView = self.createLoadingView()
     
@@ -46,6 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         videoPlayer.loadWithVideoId("", playerVars: playerParams)
         ChannelModel.sharedInstance.enqueue()
         initVideoTable()
+        initRefreshControl()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -68,6 +70,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if (keyPath == channelKey) {
+        }
+    }
+    
+    func initVideoTable() {
+        videoTable.dataSource = self
+        videoTable.delegate = self
+        videoTable.longPressReorderDelegate = self
+    }
+    
+    func initRefreshControl() {
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        videoTable?.addSubview(refreshControl)
+    }
+    
+    func refresh(sender:AnyObject)
+    {
+        print("refreshing")
+        if self.refreshControl.refreshing
+        {
+            self.refreshControl.endRefreshing()
+            print("refreshed")
         }
     }
     
@@ -198,12 +221,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.videoTable.reloadData()
             ChannelModel.sharedInstance.moveVideoByIndex(sourceIndexPath.row, destinationIndex: destinationIndexPath.row)
         })
-    }
-    
-    func initVideoTable() {
-        videoTable.dataSource = self
-        videoTable.delegate = self
-        videoTable.longPressReorderDelegate = self
     }
     
     func initVideoCell(indexPath: NSIndexPath) -> VideoTableViewCell {
