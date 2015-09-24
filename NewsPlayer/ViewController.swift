@@ -9,7 +9,7 @@
 import UIKit
 import youtube_ios_player_helper
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, YTPlayerViewDelegate, VideoDetailControllerDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, YTPlayerViewDelegate, VideoDetailControllerDelegate, LPRTableViewDelegate {
     
     let playerParams = [
         "playsinline":      1,  // TODO: Remember last settings
@@ -87,6 +87,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    private func reloadTable() {
+        ChannelModel.sharedInstance.updateCurrentNumberOfRows()
+        videoTable.reloadData()
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == detailSegueKey && selectedIndex != nil) {
             let nav = segue.destinationViewController as! UINavigationController
@@ -104,7 +109,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         case VideoDetailViewController.Command.PlayNextVideo:
             playNextVideo()
         case VideoDetailViewController.Command.ReloadTable:
-            videoTable.reloadData()
+            reloadTable()
         default:
             print("command[\(command)]")
             break
@@ -132,9 +137,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     // MARK: -
+    // MARK UIScrollViewDelegate
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if (videoTable.contentOffset.y >= (videoTable.contentSize.height - videoTable.bounds.size.height))
+        {
+            reloadTable()
+        }
+    }
+    
+    // MARK: -
+    // MARK LPRTableViewDelegate
+    // Called within an animation block when the dragging view is about to show.
+    func tableView(tableView: UITableView, showDraggingView view: UIView, atIndexPath indexPath: NSIndexPath) {
+        ChannelModel.sharedInstance.updatingAvailable = false
+    }
+    
+    // Called within an animation block when the dragging view is about to hide.
+    func tableView(tableView: UITableView, hideDraggingView view: UIView, atIndexPath indexPath: NSIndexPath) {
+        ChannelModel.sharedInstance.updatingAvailable = true
+    }
+    
+    // MARK: -
     // MARK UITableViewDelegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int  {
-        return ChannelModel.sharedInstance.queue.count
+        return ChannelModel.sharedInstance.currentNumberOfRows
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -151,12 +177,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if nil != ChannelModel.sharedInstance.removeVideoByIndex(indexPath.row) {
-            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)],
-                withRowAnimation: UITableViewRowAnimation.Fade)
-        } else {
-            print("Failed to remove video from list")
-        }
+        ChannelModel.sharedInstance.doDataSourceSafely({() -> Void in
+            if nil != ChannelModel.sharedInstance.removeVideoByIndex(indexPath.row) {
+                tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)],
+                    withRowAnimation: UITableViewRowAnimation.Fade)
+            } else {
+                print("Failed to remove video from list")
+            }
+        })
     }
     
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -164,12 +192,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        ChannelModel.sharedInstance.moveVideoByIndex(sourceIndexPath.row, destinationIndex: destinationIndexPath.row)
+        ChannelModel.sharedInstance.doDataSourceSafely({() -> Void in
+            self.videoTable.reloadData()
+            ChannelModel.sharedInstance.moveVideoByIndex(sourceIndexPath.row, destinationIndex: destinationIndexPath.row)
+        })
     }
     
     func initVideoTable() {
         videoTable.dataSource = self
         videoTable.delegate = self
+        videoTable.longPressReorderDelegate = self
     }
     
     func initVideoCell(indexPath: NSIndexPath) -> VideoTableViewCell {
@@ -188,9 +220,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: YTPlayerViewDelegate
     func playerViewDidBecomeReady(playerView: YTPlayerView!) {
         print("playerViewDidBecomeReady")
-        playCurrentVideo()
         // FIXME: Not proper timing
-        videoTable.reloadData()
+        reloadTable()
+        playCurrentVideo()
         UIView.animateWithDuration(0.8, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                 self.loadingView.alpha = 0
             }, completion: { _ in

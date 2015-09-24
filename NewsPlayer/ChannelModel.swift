@@ -27,8 +27,11 @@ class ChannelModel : NSObject {
     var videoList: [String: Video?] = ["": nil]
     var currentIndex: Int = 0
     var latestEtags: [String: String] = ["": ""]
+    var updatingAvailable: Bool = true
+    var waitingList: [Video] = []
+    var currentNumberOfRows: Int = 0
     
-    func enqueue(){
+    func enqueue() {
         let channels: [String] = channelList()
         for channelID in channels {
             fetchActivities(channelID: channelID)
@@ -47,6 +50,12 @@ class ChannelModel : NSObject {
     func currentVideo() -> Video? {
         print("currentVideo[\(currentIndex)]")
         return getVideoByIndex(currentIndex)
+    }
+    
+    func updateCurrentNumberOfRows() -> Int {
+        currentNumberOfRows = queue.count
+        print("currentNumberOfRows[\(currentNumberOfRows)]")
+        return currentNumberOfRows
     }
     
     func getVideoByIndex(index: Int) -> Video? {
@@ -70,6 +79,7 @@ class ChannelModel : NSObject {
             if index <= currentIndex {
                 currentIndex--
             }
+            --currentNumberOfRows
             return removedVideo
         } else {
             print("\(__FUNCTION__) -> nil")
@@ -83,6 +93,7 @@ class ChannelModel : NSObject {
             if index <= currentIndex {
                 currentIndex++
             }
+            ++currentNumberOfRows
             // Insert video to videoList first
             // to avoid accessing nil videoList value by observed queue's index
             videoList[newVideo.id] = newVideo
@@ -94,9 +105,23 @@ class ChannelModel : NSObject {
         }
     }
     
+    func doDataSourceSafely(closure: () -> Void) {
+        let originalState = updatingAvailable
+        updatingAvailable = false
+        closure()
+        updatingAvailable = originalState
+        for video in waitingList {
+            appendVideo(video)
+        }
+    }
+    
     func appendVideo(newVideo: Video) {
-        queue.append(newVideo.id)
-        videoList[newVideo.id] = newVideo
+        if updatingAvailable {
+            queue.append(newVideo.id)
+            videoList[newVideo.id] = newVideo
+        } else {
+            waitingList.append(newVideo)
+        }
     }
     
     func moveVideoByIndex(sourceIndex: Int, destinationIndex: Int) -> Video? {
@@ -119,6 +144,10 @@ class ChannelModel : NSObject {
     }
     
     func fetchActivities(channelID channelID: String, pageToken: String = "") {
+        if Const.Max <= queue.count || Const.Max <= waitingList.count {
+            print("Queue count reached Const.Max[\(Const.Max)]")
+            return
+        }
         let apiKey: String = Credential(key: Credential.Provider.Google).apiKey
         let part = "snippet,contentDetails"
         let request = NSURLRequest(URL: NSURL(
@@ -200,10 +229,6 @@ class ChannelModel : NSObject {
     }
     
     private func fetchNextPage(json: JSON) {
-        if Const.Max <= queue.count  {
-            print("Queue count reached Const.Max[\(Const.Max)]")
-            return
-        }
         if let channelID = json["items", 0, "snippet", "channelId"].string,
             nextPageToken: String = json["nextPageToken"].string {
             fetchActivities(channelID: channelID, pageToken: nextPageToken)
