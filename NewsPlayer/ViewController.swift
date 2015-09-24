@@ -49,6 +49,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     override func viewWillAppear(animated: Bool) {
+        videoTable.registerNib(
+            UINib(nibName: cellName, bundle:nil), forCellReuseIdentifier:cellName)
         super.viewWillAppear(animated)
         ChannelModel.sharedInstance.addObserver(
             self, forKeyPath: channelKey, options: .New, context: nil)
@@ -205,7 +207,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func initVideoCell(indexPath: NSIndexPath) -> VideoTableViewCell {
-        videoTable.registerNib(UINib(nibName: cellName, bundle:nil), forCellReuseIdentifier:cellName)
         return videoTable.dequeueReusableCellWithIdentifier(
             cellName, forIndexPath: indexPath) as! VideoTableViewCell
     }
