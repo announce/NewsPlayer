@@ -46,6 +46,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         videoPlayer.delegate = self
         videoPlayer.loadWithVideoId("", playerVars: playerParams)
         ChannelModel.sharedInstance.enqueue()
+        navigationController?.setNavigationBarHidden(true, animated: false)
         initVideoTable()
         initRefreshControl()
     }
@@ -261,6 +262,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         playCurrentVideo()
         UIView.animateWithDuration(0.8, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                 self.loadingView.alpha = 0
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
             }, completion: { _ in
                 self.loadingView.removeFromSuperview()
         })

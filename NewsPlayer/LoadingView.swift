@@ -12,7 +12,7 @@ class LoadingView: UIView {
     
     struct Const {
         static let xibName = "LoadingView"
-        // FIXME: Use https
+        // TODO Sideways
         static let cityUrl = "https://image.xn--nyqr7s4vc72p.com/ZapApp/city_500.gif"
     }
     

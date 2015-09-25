@@ -197,7 +197,7 @@ http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-a
         <!--Navigation Controller-->
         <scene sceneID="KTR-s4-JYB">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BLO-u9-TDP" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsWhenVerticallyCompact="YES" id="BLO-u9-TDP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZRX-cO-jom">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
