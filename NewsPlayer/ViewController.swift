@@ -98,6 +98,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let video: Video = ChannelModel.sharedInstance.currentVideo() {
             videoPlayer.loadVideoById(
                 video.id, startSeconds: 0, suggestedQuality: YTPlaybackQuality.Default)
+            navigationItem.titleView = createTitleLabel(video.title)
         } else {
             print("No VideoID yet")
         }
@@ -107,9 +108,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let video: Video = ChannelModel.sharedInstance.nextVideo() {
             videoPlayer.loadVideoById(
                 video.id, startSeconds: 0, suggestedQuality: YTPlaybackQuality.Default)
+            navigationItem.titleView = createTitleLabel(video.title)
         } else {
             print("No VideoID yet")
         }
+    }
+    
+    private func createTitleLabel(text: String) -> UILabel {
+        let label = UILabel.init()
+        label.font = UIFont.systemFontOfSize(10)
+        label.text = text
+        label.sizeToFit()
+        return label
     }
     
     private func reloadTable() {

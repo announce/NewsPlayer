@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Video Title-->
+        <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="NewsPlayer" customModuleProvider="target" sceneMemberID="viewController">
@@ -64,7 +64,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Video Title" id="3hn-cY-XY1">
+                    <navigationItem key="navigationItem" id="3hn-cY-XY1">
                         <barButtonItem key="leftBarButtonItem" image="More" id="TPn-DU-zeb"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="eOT-QB-xpr"/>
                     </navigationItem>

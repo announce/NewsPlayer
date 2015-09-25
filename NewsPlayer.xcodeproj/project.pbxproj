@@ -114,10 +114,10 @@
 		C508680D1BAFE2D200EF0F01 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C508680B1BAFE2BA00EF0F01 /* VideoDetailViewController.swift */,
 				C5DE794D1BA1D59A00E594EE /* ViewController.swift */,
 				C5AFC3971BAD60D3001CCBD4 /* VideoTableViewCell.swift */,
 				C5AFC3981BAD60D3001CCBD4 /* VideoTableViewCell.xib */,
+				C508680B1BAFE2BA00EF0F01 /* VideoDetailViewController.swift */,
 				C5C52B271BB0F48C002ED21C /* LoadingView.swift */,
 				C5C52B291BB0F642002ED21C /* LoadingView.xib */,
 				C5DE79541BA1D59A00E594EE /* LaunchScreen.xib */,
@@ -168,10 +168,10 @@
 		C5DE79451BA1D59A00E594EE /* NewsPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				C508680D1BAFE2D200EF0F01 /* View */,
 				C5DE79481BA1D59A00E594EE /* AppDelegate.swift */,
 				C5DE794F1BA1D59A00E594EE /* Main.storyboard */,
 				C508680E1BAFE30600EF0F01 /* Model */,
+				C508680D1BAFE2D200EF0F01 /* View */,
 				C52F65FF1BAAD43700202136 /* Config */,
 				C5DE79521BA1D59A00E594EE /* Images.xcassets */,
 				C5DE794A1BA1D59A00E594EE /* NewsPlayer.xcdatamodeld */,
