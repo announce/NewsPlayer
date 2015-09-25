@@ -119,7 +119,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         label.font = UIFont.systemFontOfSize(10)
         label.text = text
         label.sizeToFit()
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "titleTapped:"))
+        label.userInteractionEnabled = true
         return label
+    }
+    
+    func titleTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        let path = NSIndexPath.init(
+            forRow: ChannelModel.sharedInstance.currentIndex, inSection: 0)
+        videoTable?.scrollToRowAtIndexPath(path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
     }
     
     private func reloadTable() {
