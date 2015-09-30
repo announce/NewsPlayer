@@ -74,6 +74,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="abstract" destination="rA7-rE-xcb" id="CfO-wS-CbW"/>
+                <outlet property="indicator" destination="aKo-5j-a63" id="dfK-4Q-EJI"/>
                 <outlet property="thumbnail" destination="roi-6p-X07" id="mgw-w4-bz1"/>
             </connections>
         </tableViewCell>

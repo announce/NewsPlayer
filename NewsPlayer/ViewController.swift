@@ -100,6 +100,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             videoPlayer.loadVideoById(
                 video.id, startSeconds: 0, suggestedQuality: YTPlaybackQuality.Default)
             navigationItem.titleView = createTitleLabel(video.title)
+            showPlayingIndicator(ChannelModel.sharedInstance.currentIndex)
+            removeIndicator(ChannelModel.sharedInstance.currentIndex - 1)
         } else {
             print("No VideoID yet")
         }
@@ -110,8 +112,37 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             videoPlayer.loadVideoById(
                 video.id, startSeconds: 0, suggestedQuality: YTPlaybackQuality.Default)
             navigationItem.titleView = createTitleLabel(video.title)
+            showPlayingIndicator(ChannelModel.sharedInstance.currentIndex)
+            removeIndicator(ChannelModel.sharedInstance.currentIndex - 1)
         } else {
             print("No VideoID yet")
+        }
+    }
+    
+    private func showPlayingIndicator(targetIndex: Int) {
+        let path = NSIndexPath.init(forRow: targetIndex, inSection: 0)
+        if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
+            cell.addPlayingIndicator()
+        } else {
+            print("No cell index[\(targetIndex)]")
+        }
+    }
+    
+    private func removeIndicator(targetIndex: Int) {
+        let path = NSIndexPath.init(forRow: targetIndex, inSection: 0)
+        if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
+            cell.removeAllIndicator()
+        } else {
+            print("No cell index[\(targetIndex)]")
+        }
+    }
+    
+    private func changePlayingAnimation(targetIndex: Int, start: Bool) {
+        let path = NSIndexPath.init(forRow: targetIndex, inSection: 0)
+        if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
+            start ? cell.startPlayingAnimation() : cell.stopPlayingAnimation()
+        } else {
+            print("No cell index[\(targetIndex)]")
         }
     }
     
@@ -272,15 +303,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         switch state {
         case YTPlayerState.Unstarted:
             print("didChangeToState: Unstarted")
+            changePlayingAnimation(ChannelModel.sharedInstance.currentIndex, start: false)
         case YTPlayerState.Ended:
             print("didChangeToState: Ended")
+            changePlayingAnimation(ChannelModel.sharedInstance.currentIndex, start: false)
             playNextVideo()
         case YTPlayerState.Playing:
             print("didChangeToState: Playing")
+            changePlayingAnimation(ChannelModel.sharedInstance.currentIndex, start: true)
         case YTPlayerState.Paused:
             print("didChangeToState: Paused")
+            changePlayingAnimation(ChannelModel.sharedInstance.currentIndex, start: false)
         case YTPlayerState.Buffering:
             print("didChangeToState: Buffering")
+            // TODO Notify user if it keeps long time
+            changePlayingAnimation(ChannelModel.sharedInstance.currentIndex, start: false)
         case YTPlayerState.Queued:
             print("didChangeToState: Queued")
         default:

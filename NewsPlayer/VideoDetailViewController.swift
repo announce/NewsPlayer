@@ -28,16 +28,24 @@ class VideoDetailViewController: UIViewController {
         dismiss()
     }
     @IBAction func playNext(sender: UIBarButtonItem) {
-        moveUpToNext()
-        delegate.execute(Command.ReloadTable)
-        delegate.execute(Command.BlinkCell, targetCellIndex: ChannelModel.sharedInstance.currentIndex + 1)
+        if (originalIndex == ChannelModel.sharedInstance.currentIndex) {
+            delegate.execute(Command.BlinkCell, targetCellIndex: ChannelModel.sharedInstance.currentIndex)
+        } else {
+            moveUpToNext()
+            delegate.execute(Command.ReloadTable)
+            delegate.execute(Command.BlinkCell, targetCellIndex: ChannelModel.sharedInstance.currentIndex + 1)
+        }
         dismiss()
     }
     @IBAction func playNow(sender: UIBarButtonItem) {
-        moveUpToNext()
-        delegate.execute(Command.ReloadTable)
-        delegate.execute(Command.BlinkCell, targetCellIndex: ChannelModel.sharedInstance.currentIndex + 1)
-        delegate.execute(Command.PlayNextVideo)
+        if (originalIndex == ChannelModel.sharedInstance.currentIndex) {
+            delegate.execute(Command.BlinkCell, targetCellIndex: ChannelModel.sharedInstance.currentIndex)
+        } else {
+            moveUpToNext()
+            delegate.execute(Command.ReloadTable)
+            delegate.execute(Command.BlinkCell, targetCellIndex: ChannelModel.sharedInstance.currentIndex + 1)
+            delegate.execute(Command.PlayNextVideo)
+        }
         dismiss()
     }
     
