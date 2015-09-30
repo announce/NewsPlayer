@@ -29,9 +29,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var videoPlayer: YTPlayerView!
     @IBOutlet weak var videoTable: LPRTableView!
-    
-    @IBAction func nextVideo(sender: UIBarButtonItem) {
-        playNextVideo()
+    @IBAction func shareVideo(sender: UIBarButtonItem) {
+
     }
     
     private func createLoadingView() -> LoadingView {

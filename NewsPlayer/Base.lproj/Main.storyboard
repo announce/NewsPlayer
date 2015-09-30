@@ -64,10 +64,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="3hn-cY-XY1">
-                        <barButtonItem key="leftBarButtonItem" image="More" id="TPn-DU-zeb"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="eOT-QB-xpr"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="3hn-cY-XY1"/>
                     <connections>
                         <outlet property="videoPlayer" destination="CxL-dh-SR4" id="Rh6-GF-iHI"/>
                         <outlet property="videoTable" destination="zys-df-zjP" id="KIW-sl-gaI"/>
@@ -182,7 +179,11 @@ http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-a
                                 <action selector="dissmissButton:" destination="zqZ-iB-oD6" id="GlQ-vw-ooK"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="oGt-pU-gYj"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="oGt-pU-gYj">
+                            <connections>
+                                <action selector="shareVideo:" destination="zqZ-iB-oD6" id="Eba-Hc-GRK"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="abstract" destination="hfD-jq-G3n" id="hkv-6m-Zyz"/>
@@ -231,7 +232,4 @@ http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-a
             <point key="canvasLocation" x="1059" y="359"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="More" width="32" height="32"/>
-    </resources>
 </document>
