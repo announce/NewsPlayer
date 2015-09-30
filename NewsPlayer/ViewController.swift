@@ -124,16 +124,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
             cell.addPlayingIndicator()
         } else {
-            print("No cell index[\(targetIndex)]")
+            print("\(__FUNCTION__) No cell index[\(targetIndex)]")
         }
     }
     
     private func removeIndicator(targetIndex: Int) {
+        print("\(__FUNCTION__): targetIndex[\(targetIndex)]")
         let path = NSIndexPath.init(forRow: targetIndex, inSection: 0)
         if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
             cell.removeAllIndicator()
         } else {
-            print("No cell index[\(targetIndex)]")
+            print("\(__FUNCTION__) No cell index[\(targetIndex)]")
         }
     }
     
@@ -142,7 +143,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
             start ? cell.startPlayingAnimation() : cell.stopPlayingAnimation()
         } else {
-            print("No cell index[\(targetIndex)]")
+            print("\(__FUNCTION__) No cell index[\(targetIndex)]")
         }
     }
     
@@ -225,11 +226,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // Called within an animation block when the dragging view is about to show.
     func tableView(tableView: UITableView, showDraggingView view: UIView, atIndexPath indexPath: NSIndexPath) {
         ChannelModel.sharedInstance.updatingAvailable = false
+        showPlayingIndicator(indexPath.row)
     }
     
     // Called within an animation block when the dragging view is about to hide.
     func tableView(tableView: UITableView, hideDraggingView view: UIView, atIndexPath indexPath: NSIndexPath) {
         ChannelModel.sharedInstance.updatingAvailable = true
+        removeIndicator(indexPath.row)
     }
     
     // MARK: -
@@ -274,8 +277,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func initVideoCell(indexPath: NSIndexPath) -> VideoTableViewCell {
-        return videoTable.dequeueReusableCellWithIdentifier(
+        let cell = videoTable.dequeueReusableCellWithIdentifier(
             cellName, forIndexPath: indexPath) as! VideoTableViewCell
+        if indexPath.row != ChannelModel.sharedInstance.currentIndex {
+            cell.removeAllIndicator()
+        } else {
+            cell.addPlayingIndicator()
+            videoPlayer.playerState() == YTPlayerState.Playing ? cell.startPlayingAnimation() : cell.stopPlayingAnimation()
+        }
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
