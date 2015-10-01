@@ -376,7 +376,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         case YTPlayerState.Buffering:
             print("didChangeToState: Buffering")
             // TODO Notify user if it keeps long time
-            changePlayingAnimation(ChannelModel.sharedInstance.currentIndex, start: false)
         case YTPlayerState.Queued:
             print("didChangeToState: Queued")
         default:
