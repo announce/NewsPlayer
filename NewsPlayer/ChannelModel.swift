@@ -9,6 +9,11 @@
 import Foundation
 import SwiftyJSON
 
+
+protocol ChannelResponseDelegate {
+    func endRefreshing()
+}
+
 class ChannelModel : NSObject {
     
     class var sharedInstance: ChannelModel {
@@ -24,17 +29,28 @@ class ChannelModel : NSObject {
     let activityUrl = "https://www.googleapis.com/youtube/v3/activities"
     
     dynamic var queue: [String] = []
-    var videoList: [String: Video?] = ["": nil]
+    var videoList: [String: Video] = [:]
     var currentIndex: Int = 0
-    var latestEtags: [String: String] = ["": ""]
+    var latestEtags: [String: String] = [:]
     var updatingAvailable: Bool = true
     var waitingList: [Video] = []
     var currentNumberOfRows: Int = 0
     
+    var delegate: ChannelResponseDelegate? = nil
+    var finishedCount: Int = 0
+    
     func enqueue() {
         let channels: [String] = channelList()
         for channelID in channels {
-            fetchActivities(channelID: channelID)
+            fetchActivities(channelID)
+        }
+    }
+    
+    func refrashChannels() {
+        let channels: [String] = channelList()
+        finishedCount = channels.count
+        for channelID in channels {
+            refreshActivities(channelID)
         }
     }
     
@@ -116,11 +132,32 @@ class ChannelModel : NSObject {
     }
     
     func appendVideo(newVideo: Video) {
+        if (videoList[newVideo.id] == newVideo) {
+            // newVideo is already in videoList
+            return
+        }
         if updatingAvailable {
             queue.append(newVideo.id)
             videoList[newVideo.id] = newVideo
         } else {
             waitingList.append(newVideo)
+        }
+    }
+    
+    func insertVideo(newVideo: Video, atIndex: Int) {
+        if atIndex >= queue.count {
+            print("\(__FUNCTION__) Invalid index \(queue.count) is smaller than \(atIndex)")
+            return
+        }
+        if (videoList[newVideo.id] == newVideo) {
+            // newVideo is already in videoList
+            return
+        }
+        if updatingAvailable {
+            queue.insert(newVideo.id, atIndex: atIndex)
+            videoList[newVideo.id] = newVideo
+        } else {
+            print("\(__FUNCTION__) Ignored newVideo[\(newVideo.id)] while table manupulating")
         }
     }
     
@@ -143,32 +180,86 @@ class ChannelModel : NSObject {
         return channels;
     }
     
-    func fetchActivities(channelID channelID: String, pageToken: String = "") {
+    func fetchActivities(channelID: String, pageToken: String = "") {
         if Const.Max <= queue.count || Const.Max <= waitingList.count {
             print("Queue count reached Const.Max[\(Const.Max)]")
             return
         }
-        let apiKey: String = Credential(key: Credential.Provider.Google).apiKey
-        let part = "snippet,contentDetails"
-        let request = NSURLRequest(URL: NSURL(
-            string: "\(activityUrl)?part=\(part)&channelId=\(channelID)&pageToken=\(pageToken)&key=\(apiKey)")!)
-        NSURLConnection.sendAsynchronousRequest(request,
+        
+        NSURLConnection.sendAsynchronousRequest(
+            createActivityRequest(channelID, pageToken: pageToken),
             queue: NSOperationQueue.mainQueue(),
-            completionHandler: response)
+            completionHandler: appendVideos)
     }
     
-    func response(_: NSURLResponse?, data: NSData?, error: NSError?) {
+    func refreshActivities(channelID: String, pageToken: String = "") {
+        NSURLConnection.sendAsynchronousRequest(
+            createActivityRequest(channelID, pageToken: pageToken),
+            queue: NSOperationQueue.mainQueue(),
+            completionHandler: insertVideos)
+    }
+    
+    func createActivityRequest(channelID: String, pageToken: String) -> NSURLRequest {
+        let apiKey: String = Credential(key: Credential.Provider.Google).apiKey
+        let part = "snippet,contentDetails"
+        return NSURLRequest(URL: NSURL(
+            string: "\(activityUrl)?part=\(part)&channelId=\(channelID)&pageToken=\(pageToken)&key=\(apiKey)")!)
+    }
+    
+    func finish() {
+        --finishedCount
+        if finishedCount <= 0 {
+            delegate?.endRefreshing()
+        }
+    }
+    
+    func insertVideos(_: NSURLResponse?, data: NSData?, error: NSError?) {
         if (error != nil) {
-            print("NSError in response: \(error)", __FUNCTION__, __LINE__)
+            print("\(__FUNCTION__) NSError in response: \(error)")
             return
         }
         if (nil == data) {
-            print("NSData is nil", __FUNCTION__, __LINE__)
+            print("\(__FUNCTION__) NSData is nil")
             return
         }
         
         let json = JSON(data: data!)
         
+        if json.isEmpty || !json["error"].isEmpty {
+            print("Unxecpected data. Check Credentials.plist's `Google API Key` is valid.")
+            return
+        }
+        
+        if isLatast(json) {
+            finish()
+            return
+        }
+        
+        for (_,item):(String, JSON) in json["items"] {
+            if let video: Video = createVideo(item) {
+                insertVideo(video, atIndex: currentIndex + 1)
+            } else {
+                continue
+            }
+        }
+        finish()
+    }
+    
+    func appendVideos(_: NSURLResponse?, data: NSData?, error: NSError?) {
+        if (error != nil) {
+            print("\(__FUNCTION__) NSError in response: \(error)")
+            return
+        }
+        if (nil == data) {
+            print("\(__FUNCTION__) NSData is nil")
+            return
+        }
+        
+        let json = JSON(data: data!)
+        if json.isEmpty || !json["error"].isEmpty {
+            print("Empty data. Check Credentials.plist's `Google API Key` is valid.")
+            return
+        }
         if isLatast(json) {
             // TODO Check all channels and notify to user
             return
@@ -186,8 +277,10 @@ class ChannelModel : NSObject {
     }
     
     private func isLatast(json: JSON) -> Bool {
-        let channelID = json["items", 0, "snippet", "channelId"].stringValue
-        let etag = json["etag"].stringValue
+        guard let channelID = json["items", 0, "snippet", "channelId"].string,
+            let etag = json["etag"].string else {
+                return false
+        }
         
         if let _ = json["prevPageToken"].string {
             // Means not first page
@@ -231,7 +324,7 @@ class ChannelModel : NSObject {
     private func fetchNextPage(json: JSON) {
         if let channelID = json["items", 0, "snippet", "channelId"].string,
             nextPageToken: String = json["nextPageToken"].string {
-            fetchActivities(channelID: channelID, pageToken: nextPageToken)
+                fetchActivities(channelID, pageToken: nextPageToken)
         } else {
             let chennelID = json["items", 0, "snippet", "channelId"].stringValue
             print("ChennelID[\(chennelID)]: Completed to fetch all pages")

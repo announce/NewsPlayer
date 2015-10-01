@@ -9,7 +9,7 @@
 import UIKit
 import youtube_ios_player_helper
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, YTPlayerViewDelegate, VideoDetailControllerDelegate, LPRTableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, YTPlayerViewDelegate, LPRTableViewDelegate, VideoDetailControllerDelegate, ChannelResponseDelegate {
     
     let playerParams = [
         "playsinline":      1,  // TODO: Remember last settings
@@ -45,6 +45,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         videoPlayer.delegate = self
         videoPlayer.loadWithVideoId("", playerVars: playerParams)
         ChannelModel.sharedInstance.enqueue()
+        ChannelModel.sharedInstance.delegate = self
         navigationController?.setNavigationBarHidden(true, animated: false)
         initVideoTable()
         initRefreshControl()
@@ -84,16 +85,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         videoTable?.addSubview(refreshControl)
     }
     
-    func refresh(sender:AnyObject)
+    func refresh(sender: AnyObject)
     {
-        print("refreshing")
-        if self.refreshControl.refreshing
+        ChannelModel.sharedInstance.refrashChannels()
+    }
+    
+    // MARK: -
+    // MARK ChannelResponseDelegate
+    func endRefreshing() {
+        if refreshControl.refreshing
         {
-            self.refreshControl.endRefreshing()
-            print("refreshed")
+            refreshControl.endRefreshing()
+            reloadTable()
         }
     }
     
+    // MARK: -
     private func playCurrentVideo() {
         if let video: Video = ChannelModel.sharedInstance.currentVideo() {
             videoPlayer.loadVideoById(
