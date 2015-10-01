@@ -10,7 +10,6 @@ import UIKit
 import SDWebImage
 
 protocol VideoDetailControllerDelegate {
-    func execute(command: VideoDetailViewController.Command)
     func execute(command: VideoDetailViewController.Command, targetCellIndex: Int)
 }
 
@@ -18,9 +17,8 @@ class VideoDetailViewController: UIViewController {
     
     enum Command {
         case DoNothing
-        case PlayNextVideo
-        case ReloadTable
-        case BlinkCell
+        case PlayNext
+        case PlayNow
     }
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var abstract: UITextView!
@@ -41,24 +39,19 @@ class VideoDetailViewController: UIViewController {
         dismiss()
     }
     @IBAction func playNext(sender: UIBarButtonItem) {
-        if (originalIndex == ChannelModel.sharedInstance.currentIndex) {
-            delegate.execute(Command.BlinkCell, targetCellIndex: ChannelModel.sharedInstance.currentIndex)
-        } else {
-            moveUpToNext()
-            delegate.execute(Command.ReloadTable)
-            delegate.execute(Command.BlinkCell, targetCellIndex: ChannelModel.sharedInstance.currentIndex + 1)
+        guard let targetIndex = originalIndex else {
+            dismiss()
+            return
         }
+        delegate.execute(Command.PlayNext, targetCellIndex: targetIndex)
         dismiss()
     }
     @IBAction func playNow(sender: UIBarButtonItem) {
-        if (originalIndex == ChannelModel.sharedInstance.currentIndex) {
-            delegate.execute(Command.BlinkCell, targetCellIndex: ChannelModel.sharedInstance.currentIndex)
-        } else {
-            moveUpToNext()
-            delegate.execute(Command.ReloadTable)
-            delegate.execute(Command.BlinkCell, targetCellIndex: ChannelModel.sharedInstance.currentIndex + 1)
-            delegate.execute(Command.PlayNextVideo)
+        guard let targetIndex = originalIndex else {
+            dismiss()
+            return
         }
+        delegate.execute(Command.PlayNow, targetCellIndex: targetIndex)
         dismiss()
     }
     
@@ -82,16 +75,6 @@ class VideoDetailViewController: UIViewController {
     
     func dismiss() {
         dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func moveUpToNext() {
-        if video != nil && originalIndex != nil {
-            let targetIndex = ChannelModel.sharedInstance.currentIndex + 1
-            ChannelModel.sharedInstance.moveVideoByIndex(
-                originalIndex!, destinationIndex: targetIndex)
-        } else {
-            print("moveUpToNext nil")
-        }
     }
 
     func shareViaActivity(items: [AnyObject]) {

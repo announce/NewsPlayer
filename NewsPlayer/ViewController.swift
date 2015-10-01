@@ -128,7 +128,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     private func removeIndicator(targetIndex: Int) {
-        print("\(__FUNCTION__): targetIndex[\(targetIndex)]")
+        if targetIndex < 0 {
+            return
+        }
         let path = NSIndexPath.init(forRow: targetIndex, inSection: 0)
         if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
             cell.removeAllIndicator()
@@ -167,6 +169,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         videoTable.reloadData()
     }
     
+    private func deleteRow(indexPath: NSIndexPath, tableView: UITableView) {
+        ChannelModel.sharedInstance.doDataSourceSafely({() -> Void in
+            if nil != ChannelModel.sharedInstance.removeVideoByIndex(indexPath.row) {
+                tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)],
+                    withRowAnimation: UITableViewRowAnimation.Fade)
+            } else {
+                print("Failed to remove video from list")
+            }
+        })
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == detailSegueKey && selectedIndex != nil) {
             let nav = segue.destinationViewController as! UINavigationController
@@ -179,34 +192,52 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: -
     // MARK VideoDetailControllerDelegate
-    func execute(command: VideoDetailViewController.Command) {
+    func execute(command: VideoDetailViewController.Command, targetCellIndex: Int) {
+        let path = NSIndexPath.init(forRow: targetCellIndex, inSection: 0)
         switch command {
-        case VideoDetailViewController.Command.PlayNextVideo:
-            playNextVideo()
-        case VideoDetailViewController.Command.ReloadTable:
-            reloadTable()
+        case VideoDetailViewController.Command.PlayNext:
+            playNext(path)
+        case VideoDetailViewController.Command.PlayNow:
+            playNow(path)
         default:
-            print("command[\(command)]")
+            print("Ignoring command[\(command)]")
             break
         }
     }
     
-    func execute(_: VideoDetailViewController.Command, targetCellIndex: Int) {
-        let path = NSIndexPath.init(forRow: targetCellIndex, inSection: 0)
-        if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
-            blinkCell(cell, targetColor: UIColor.lightGrayColor())
-        } else {
-            print("Cell index[\(targetCellIndex)] is not visible")
+    func playNext(path: NSIndexPath) -> Bool {
+        if (path.row != ChannelModel.sharedInstance.currentIndex) {
+            moveUpToNext(path)
+            reloadTable()
+        }
+        let blinkPath = NSIndexPath.init(forRow: ChannelModel.sharedInstance.currentIndex + 1 , inSection: 0)
+        guard let cell = videoTable.cellForRowAtIndexPath(blinkPath) as? VideoTableViewCell else {
+            print("\(__FUNCTION__) No Cell index[\(blinkPath.row)]")
+            return false
+        }
+        blinkCell(cell, originalColor: cell.backgroundColor, targetColor: UIColor.lightGrayColor())
+        return true
+    }
+    
+    func playNow(path: NSIndexPath) {
+        if playNext(path) {
+            playNextVideo()
         }
     }
     
-    private func blinkCell(cell: UITableViewCell, targetColor: UIColor, count: Int = 1) {
-        let color = count % 2 == 0 ? UIColor.whiteColor() : targetColor
+    func moveUpToNext(originalPath: NSIndexPath) {
+        let targetIndex = ChannelModel.sharedInstance.currentIndex + 1
+        ChannelModel.sharedInstance.moveVideoByIndex(
+            originalPath.row, destinationIndex: targetIndex)
+    }
+    
+    private func blinkCell(cell: UITableViewCell, originalColor: UIColor?, targetColor: UIColor, count: Int = 1) {
+        let color = count % 2 == 0 ? originalColor : targetColor
         UIView.animateWithDuration(0.6, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             cell.backgroundColor = color
             }, completion: { _ in
                 if count > 0 {
-                    self.blinkCell(cell, targetColor: targetColor, count: count - 1)
+                    self.blinkCell(cell, originalColor: originalColor, targetColor: targetColor, count: count - 1)
                 }
         })
     }
@@ -254,14 +285,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        ChannelModel.sharedInstance.doDataSourceSafely({() -> Void in
-            if nil != ChannelModel.sharedInstance.removeVideoByIndex(indexPath.row) {
-                tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)],
-                    withRowAnimation: UITableViewRowAnimation.Fade)
-            } else {
-                print("Failed to remove video from list")
-            }
-        })
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            deleteRow(indexPath, tableView: tableView)
+        }
     }
     
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -291,6 +317,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         selectedIndex = indexPath.row
         performSegueWithIdentifier(detailSegueKey, sender: nil)
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let playNextAction = UITableViewRowAction(style: .Normal, title: "Cue") {
+            (action, indexPath) in self.playNext(indexPath)}
+        playNextAction.backgroundColor = UIColor.grayColor()
+        
+        let playNowAction = UITableViewRowAction(style: .Normal, title: "Play") {
+            (action, indexPath) in self.playNow(indexPath)}
+        playNowAction.backgroundColor = UIColor.lightGrayColor()
+        
+        let deleteAction = UITableViewRowAction(style: .Destructive, title: "Delete") {
+            (action, indexPath) in
+            self.deleteRow(indexPath, tableView: self.videoTable)
+        }
+
+        return [playNextAction, playNowAction, deleteAction]
     }
     
     // MARK: -
