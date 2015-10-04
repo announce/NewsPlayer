@@ -52,6 +52,8 @@
 		C570DC671BB5975C0027232E /* eq_16.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = eq_16.gif; sourceTree = "<group>"; };
 		C570DC681BB5975C0027232E /* eq_16x16.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = eq_16x16.gif; sourceTree = "<group>"; };
 		C570DC6B1BB598450027232E /* equalizer.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = equalizer.gif; sourceTree = "<group>"; };
+		C5720E111BC16815006090B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		C5720E121BC16815006090B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C59F51D11BB289EF001DA5AB /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		C5AFC3971BAD60D3001CCBD4 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		C5AFC3981BAD60D3001CCBD4 /* VideoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoTableViewCell.xib; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				TargetAttributes = {
 					C5DE79421BA1D59A00E594EE = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = LEFQRVUX73;
 					};
 					C5DE795A1BA1D59A00E594EE = {
 						CreatedOnToolsVersion = 6.4;
@@ -425,6 +428,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				C5DE79501BA1D59A00E594EE /* Base */,
+				C5720E111BC16815006090B3 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -433,6 +437,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				C5DE79551BA1D59A00E594EE /* Base */,
+				C5720E121BC16815006090B3 /* ja */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -531,7 +536,7 @@
 				INFOPLIST_FILE = NewsPlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.xn--nyqr7s4vc72p.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = top.announce.NewsPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "NewsPlayer/NewsPlayer-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -547,7 +552,7 @@
 				INFOPLIST_FILE = NewsPlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.xn--nyqr7s4vc72p.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = top.announce.NewsPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "NewsPlayer/NewsPlayer-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;

@@ -111,13 +111,13 @@ http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-a
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="L7G-Xa-Roh"/>
-                                    <barButtonItem title="Play Next" id="Itj-XD-BAx">
+                                    <barButtonItem title="Cue" id="Itj-XD-BAx">
                                         <connections>
                                             <action selector="playNext:" destination="zqZ-iB-oD6" id="o6A-yK-gJ8"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="12" style="plain" systemItem="fixedSpace" id="CXs-gt-vI8"/>
-                                    <barButtonItem title="Play Now" id="r56-gF-EB2">
+                                    <barButtonItem width="28" style="plain" systemItem="fixedSpace" id="CXs-gt-vI8"/>
+                                    <barButtonItem title="Play" id="r56-gF-EB2">
                                         <connections>
                                             <action selector="playNow:" destination="zqZ-iB-oD6" id="kWs-lC-4G3"/>
                                         </connections>
@@ -126,7 +126,7 @@ http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-a
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H7X-Lz-yvw">
                                 <rect key="frame" x="20" y="72" width="120" height="90"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="KN1-CV-gnV"/>
                                     <constraint firstAttribute="height" constant="90" id="WhT-KW-54j"/>
