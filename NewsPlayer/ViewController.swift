@@ -214,11 +214,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func playNext(path: NSIndexPath) {
-        if (path.row != ChannelModel.sharedInstance.currentIndex) {
+        var currentIndex = ChannelModel.sharedInstance.currentIndex
+        if path.row != currentIndex {
             moveUpToNext(path)
             reloadTable()
+            ++currentIndex
         }
-        let blinkPath = NSIndexPath.init(forRow: ChannelModel.sharedInstance.currentIndex + 1 , inSection: 0)
+        let blinkPath = NSIndexPath.init(forRow: currentIndex , inSection: 0)
         guard let cell = videoTable.cellForRowAtIndexPath(blinkPath) as? VideoTableViewCell else {
             print("\(__FUNCTION__) No Cell index[\(blinkPath.row)]")
             return
@@ -228,7 +230,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func playNow(path: NSIndexPath) {
         playNext(path)
-        playNextVideo()
+        if path.row != ChannelModel.sharedInstance.currentIndex {
+            playNextVideo()
+        }
     }
     
     func moveUpToNext(originalPath: NSIndexPath) {
