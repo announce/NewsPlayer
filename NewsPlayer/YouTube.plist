@@ -2,7 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Channels</key>
+	<key>Channels en</key>
+	<array>
+		<string>UCBi2mrWuNuyYy4gbM6fU18Q</string>
+		<string>UCupvZG-5ko_eiXAupbDfxWw</string>
+		<string>UCckz6n8QccTd6K_xdwKqa0A</string>
+		<string>UCZaT_X_mc0BI-djXOlfhqWQ</string>
+		<string>UCNye-wNBqNL5ZzHSJj3l8Bg</string>
+		<string>UCpwvZwUam-URkxB7g4USKpg</string>
+		<string>UCoMdktPbSTixAyNGwb-UYkQ</string>
+		<string>UC-TDTcXU6FkEhJpH9il5ZqA</string>
+		<string>UC16niRr50-MSBwiO3YDb3RA</string>
+	</array>
+	<key>Channels ja</key>
 	<array>
 		<string>UCGCZAYq5Xxojl_tSXcVJhiQ</string>
 		<string>UC6AG81pAkf6Lbi_1VC5NmPA</string>

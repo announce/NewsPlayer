@@ -176,7 +176,13 @@ class ChannelModel : NSObject {
     func channelList() -> [String] {
         let plistPath = NSBundle.mainBundle().pathForResource("YouTube", ofType: "plist")
         let registry = NSDictionary(contentsOfFile: plistPath!)
-        let channels:Array = registry!.objectForKey("Channels") as! [String]
+        var key = ""
+        if let languageCode = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as? String {
+            key = languageCode == "ja" ? "ja" : "en"
+        } else {
+            key = "en"
+        }
+        let channels:Array = registry!.objectForKey("Channels \(key)") as! [String]
         return channels;
     }
     
