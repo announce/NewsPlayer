@@ -89,7 +89,7 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cg7-gc-sIl">
                                 <rect key="frame" x="20" y="170" width="560" height="386"/>
-                                <string key="text">PARIS -- France's data privacy regulator has rejected Google's appeal of an order to remove search results worldwide upon request.
+                                <mutableString key="text">PARIS -- France's data privacy regulator has rejected Google's appeal of an order to remove search results worldwide upon request.
 
 In a statement Monday, the agency known as CNIL denied that it was trying to apply French law globally, but rather to request that any companies that offer services in Europe conform to legislation.
  
@@ -99,7 +99,7 @@ Facebook links accounted for the most of any single website, Google said.
  
 CNIL said Google must comply with the order or face possible sanctions.
 
-http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-appeal/2972090.html</string>
+http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-appeal/2972090.html</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>

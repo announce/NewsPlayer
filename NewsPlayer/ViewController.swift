@@ -29,9 +29,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var videoPlayer: YTPlayerView!
     @IBOutlet weak var videoTable: LPRTableView!
-    @IBAction func shareVideo(sender: UIBarButtonItem) {
-
-    }
     
     private func createLoadingView() -> LoadingView {
         let loadingView = LoadingView.instance().render() as LoadingView
@@ -97,6 +94,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         {
             refreshControl.endRefreshing()
             reloadTable()
+            let path = NSIndexPath.init(
+                forRow: ChannelModel.sharedInstance.currentIndex, inSection: 0)
+            videoTable?.scrollToRowAtIndexPath(path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            // TODO Blink
         }
     }
     
@@ -212,7 +213,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func playNext(path: NSIndexPath) -> Bool {
+    func playNext(path: NSIndexPath) {
         if (path.row != ChannelModel.sharedInstance.currentIndex) {
             moveUpToNext(path)
             reloadTable()
@@ -220,16 +221,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let blinkPath = NSIndexPath.init(forRow: ChannelModel.sharedInstance.currentIndex + 1 , inSection: 0)
         guard let cell = videoTable.cellForRowAtIndexPath(blinkPath) as? VideoTableViewCell else {
             print("\(__FUNCTION__) No Cell index[\(blinkPath.row)]")
-            return false
+            return
         }
         blinkCell(cell, originalColor: cell.backgroundColor, targetColor: UIColor.lightGrayColor())
-        return true
     }
     
     func playNow(path: NSIndexPath) {
-        if playNext(path) {
-            playNextVideo()
-        }
+        playNext(path)
+        playNextVideo()
     }
     
     func moveUpToNext(originalPath: NSIndexPath) {
