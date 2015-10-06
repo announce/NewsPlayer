@@ -29,6 +29,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var videoPlayer: YTPlayerView!
     @IBOutlet weak var videoTable: LPRTableView!
+    @IBOutlet weak var videoToolBar: UIToolbar!
     
     private func createLoadingView() -> LoadingView {
         let loadingView = LoadingView.instance().render() as LoadingView
@@ -85,6 +86,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func refresh(sender: AnyObject)
     {
         ChannelModel.sharedInstance.refrashChannels()
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        let isPortrait: Bool  = UIDevice.currentDevice().orientation.isPortrait
+        videoTable?.hidden = !isPortrait
+        videoToolBar?.hidden = !isPortrait
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
     }
     
     // MARK: -

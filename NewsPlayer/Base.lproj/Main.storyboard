@@ -33,34 +33,39 @@
                                 <rect key="frame" x="0.0" y="450" width="600" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qyw-eA-pzN">
+                                <rect key="frame" x="20" y="556" width="560" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="NDI-dX-KNy"/>
+                                    <barButtonItem title="x2" id="ArZ-9Z-Zx3"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="y2T-oL-Xzs"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8ck-mG-fen"/>
+                                    <barButtonItem title="+10" id="ZaB-wC-pii"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="oCo-Pz-Vqc"/>
+                                    <barButtonItem title="-10" id="he2-33-c2q"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="AbX-rQ-B1G"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="p15-ra-oiz"/>
+                                    <barButtonItem image="End" id="jaj-8f-Ly2"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Ovq-A5-f0q"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="zys-df-zjP" secondAttribute="trailing" id="5sg-BO-7S4"/>
+                            <constraint firstItem="qyw-eA-pzN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="6zf-83-ky0"/>
                             <constraint firstItem="CxL-dh-SR4" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="7rA-C2-gZw"/>
-                            <constraint firstItem="jyV-Pf-zRb" firstAttribute="top" secondItem="CxL-dh-SR4" secondAttribute="bottom" constant="22" id="8ug-dr-9Ik"/>
-                            <constraint firstAttribute="bottom" secondItem="zys-df-zjP" secondAttribute="bottom" id="AVx-rA-2wb"/>
                             <constraint firstItem="zys-df-zjP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Dd7-pA-fB1"/>
+                            <constraint firstItem="zys-df-zjP" firstAttribute="top" secondItem="CxL-dh-SR4" secondAttribute="bottom" id="FwF-S8-Yh2"/>
                             <constraint firstItem="CxL-dh-SR4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="G2X-BU-BSR"/>
-                            <constraint firstItem="zys-df-zjP" firstAttribute="top" secondItem="CxL-dh-SR4" secondAttribute="bottom" id="RIA-CS-xre"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qyw-eA-pzN" secondAttribute="trailing" id="OSG-OR-eHX"/>
                             <constraint firstAttribute="trailing" secondItem="CxL-dh-SR4" secondAttribute="trailing" id="Sph-pi-jaP"/>
-                            <constraint firstItem="zys-df-zjP" firstAttribute="top" secondItem="CxL-dh-SR4" secondAttribute="bottom" id="Srm-g5-enY"/>
-                            <constraint firstItem="CxL-dh-SR4" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="VKn-24-yp4"/>
-                            <constraint firstItem="CxL-dh-SR4" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="Xgf-k6-Oe4"/>
-                            <constraint firstItem="CxL-dh-SR4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-20" id="bIg-lB-eyk"/>
-                            <constraint firstItem="zys-df-zjP" firstAttribute="top" secondItem="CxL-dh-SR4" secondAttribute="bottom" id="doc-b4-qJa"/>
-                            <constraint firstItem="CxL-dh-SR4" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="fl6-lh-HUN"/>
-                            <constraint firstAttribute="trailing" secondItem="CxL-dh-SR4" secondAttribute="trailing" constant="557" id="uQ6-3w-nV0"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="qyw-eA-pzN" secondAttribute="bottom" id="cDo-9S-JHg"/>
+                            <constraint firstItem="qyw-eA-pzN" firstAttribute="top" secondItem="zys-df-zjP" secondAttribute="bottom" priority="250" constant="-44" id="nPB-Ky-QSg"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="zys-df-zjP" secondAttribute="bottom" id="w9e-gE-PSb"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="VKn-24-yp4"/>
-                                <exclude reference="Xgf-k6-Oe4"/>
-                                <exclude reference="bIg-lB-eyk"/>
-                                <exclude reference="fl6-lh-HUN"/>
-                                <exclude reference="uQ6-3w-nV0"/>
-                                <exclude reference="8ug-dr-9Ik"/>
-                                <exclude reference="RIA-CS-xre"/>
-                                <exclude reference="doc-b4-qJa"/>
+                                <exclude reference="nPB-Ky-QSg"/>
                             </mask>
                         </variation>
                     </view>
@@ -68,6 +73,7 @@
                     <connections>
                         <outlet property="videoPlayer" destination="CxL-dh-SR4" id="Rh6-GF-iHI"/>
                         <outlet property="videoTable" destination="zys-df-zjP" id="KIW-sl-gaI"/>
+                        <outlet property="videoToolBar" destination="qyw-eA-pzN" id="lu0-Ju-YO3"/>
                         <segue destination="k6z-Gm-Xb7" kind="presentation" identifier="showVideoDetail" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="E9E-b8-j8h"/>
                     </connections>
                 </viewController>
@@ -89,7 +95,7 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cg7-gc-sIl">
                                 <rect key="frame" x="20" y="170" width="560" height="386"/>
-                                <mutableString key="text">PARIS -- France's data privacy regulator has rejected Google's appeal of an order to remove search results worldwide upon request.
+                                <string key="text">PARIS -- France's data privacy regulator has rejected Google's appeal of an order to remove search results worldwide upon request.
 
 In a statement Monday, the agency known as CNIL denied that it was trying to apply French law globally, but rather to request that any companies that offer services in Europe conform to legislation.
  
@@ -99,7 +105,7 @@ Facebook links accounted for the most of any single website, Google said.
  
 CNIL said Google must comply with the order or face possible sanctions.
 
-http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-appeal/2972090.html</mutableString>
+http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-appeal/2972090.html</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -232,4 +238,7 @@ http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-a
             <point key="canvasLocation" x="1059" y="359"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="End" width="25" height="25"/>
+    </resources>
 </document>
