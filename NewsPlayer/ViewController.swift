@@ -30,6 +30,31 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var videoPlayer: YTPlayerView!
     @IBOutlet weak var videoTable: LPRTableView!
     @IBOutlet weak var videoToolBar: UIToolbar!
+
+    @IBAction func playOrPause(sender: UIBarButtonItem) {
+        guard (videoPlayer != nil) else {
+            return
+        }
+        switch videoPlayer.playerState() {
+        case .Playing:
+            videoPlayer.pauseVideo()
+        case .Paused:
+            videoPlayer.playVideo()
+        default:
+            break
+        }
+    }
+    @IBAction func rewindVideo(sender: UIBarButtonItem) {
+        let currentTime = videoPlayer?.currentTime() ?? 0
+        videoPlayer?.seekToSeconds(currentTime + 10, allowSeekAhead: true)
+    }
+    @IBAction func forwardVideo(sender: UIBarButtonItem) {
+        let currentTime = videoPlayer?.currentTime() ?? 0
+        videoPlayer?.seekToSeconds(currentTime - 10, allowSeekAhead: true)
+    }
+    @IBAction func playNextVideo(sender: UIBarButtonItem) {
+        playNextVideo()
+    }
     
     private func createLoadingView() -> LoadingView {
         let loadingView = LoadingView.instance().render() as LoadingView
@@ -110,10 +135,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     // MARK: -
-    private func playCurrentVideo() {
+    private func playCurrentVideo(startAt: Float = 0) {
         if let video: Video = ChannelModel.sharedInstance.currentVideo() {
             videoPlayer.loadVideoById(
-                video.id, startSeconds: 0, suggestedQuality: YTPlaybackQuality.Default)
+                video.id, startSeconds: startAt, suggestedQuality: YTPlaybackQuality.Default)
             navigationItem.titleView = createTitleLabel(video.title)
             showPlayingIndicator(ChannelModel.sharedInstance.currentIndex)
             removeIndicator(ChannelModel.sharedInstance.currentIndex - 1)
@@ -159,8 +184,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let path = NSIndexPath.init(forRow: targetIndex, inSection: 0)
         if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
             start ? cell.startPlayingAnimation() : cell.stopPlayingAnimation()
-        } else {
-            print("\(__FUNCTION__) No cell index[\(targetIndex)]")
         }
     }
     
@@ -211,9 +234,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func execute(command: VideoDetailViewController.Command, targetCellIndex: Int) {
         let path = NSIndexPath.init(forRow: targetCellIndex, inSection: 0)
         switch command {
-        case VideoDetailViewController.Command.PlayNext:
+        case .PlayNext:
             playNext(path)
-        case VideoDetailViewController.Command.PlayNow:
+        case .PlayNow:
             playNow(path)
         default:
             print("Ignoring command[\(command)]")

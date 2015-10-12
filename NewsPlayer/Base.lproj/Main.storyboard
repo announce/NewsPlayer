@@ -37,15 +37,34 @@
                                 <rect key="frame" x="20" y="556" width="560" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="NDI-dX-KNy"/>
-                                    <barButtonItem title="x2" id="ArZ-9Z-Zx3"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="y2T-oL-Xzs"/>
+                                    <barButtonItem systemItem="pause" id="ArZ-9Z-Zx3">
+                                        <connections>
+                                            <action selector="playOrPause:" destination="vXZ-lx-hvc" id="Iwj-QK-hRa"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="play" id="5Te-X8-KYm">
+                                        <connections>
+                                            <action selector="playOrPause:" destination="vXZ-lx-hvc" id="dB0-2h-yJT"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="8ck-mG-fen"/>
-                                    <barButtonItem title="+10" id="ZaB-wC-pii"/>
+                                    <barButtonItem image="Rewind" id="ZaB-wC-pii">
+                                        <connections>
+                                            <action selector="forwardVideo:" destination="vXZ-lx-hvc" id="R8V-wc-zL8"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="oCo-Pz-Vqc"/>
-                                    <barButtonItem title="-10" id="he2-33-c2q"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="AbX-rQ-B1G"/>
+                                    <barButtonItem image="Forward" id="he2-33-c2q">
+                                        <connections>
+                                            <action selector="rewindVideo:" destination="vXZ-lx-hvc" id="TlM-5Z-hRf"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="p15-ra-oiz"/>
-                                    <barButtonItem image="End" id="jaj-8f-Ly2"/>
+                                    <barButtonItem image="End" id="jaj-8f-Ly2">
+                                        <connections>
+                                            <action selector="playNextVideo:" destination="vXZ-lx-hvc" id="Z6s-NC-slt"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Ovq-A5-f0q"/>
                                 </items>
                             </toolbar>
@@ -240,5 +259,7 @@ http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-a
     </scenes>
     <resources>
         <image name="End" width="25" height="25"/>
+        <image name="Forward" width="22" height="22"/>
+        <image name="Rewind" width="22" height="22"/>
     </resources>
 </document>
