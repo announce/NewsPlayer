@@ -59,6 +59,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private func createLoadingView() -> LoadingView {
         let loadingView = LoadingView.instance().render() as LoadingView
         loadingView.center = view.center
+        loadingView.frame = view.bounds
         return loadingView
     }
     

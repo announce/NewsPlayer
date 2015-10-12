@@ -12,8 +12,7 @@ class LoadingView: UIView {
     
     struct Const {
         static let xibName = "LoadingView"
-        // TODO Sideways
-        static let cityUrl = "https://image.xn--nyqr7s4vc72p.com/ZapApp/city_500.gif"
+        static let agifUrl = "https://image.xn--nyqr7s4vc72p.com/ZapApp/giraffe.gif"
     }
     
     @IBOutlet weak var loadingImage: UIImageView!
@@ -23,9 +22,8 @@ class LoadingView: UIView {
     }
  
     func render() -> LoadingView {
-        if let localImage = UIImage(named: "City") {
-            loadingImage.sd_setImageWithURL(
-                NSURL(string: Const.cityUrl), placeholderImage: localImage)
+        if let localImage = UIImage(named: "Giraffe") {
+            loadingImage.sd_setImageWithURL(NSURL(string: Const.agifUrl), placeholderImage: localImage)
         }
         
         return self
