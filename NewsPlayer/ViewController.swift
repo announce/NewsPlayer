@@ -235,7 +235,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let path = NSIndexPath.init(forRow: targetCellIndex, inSection: 0)
         switch command {
         case .PlayNext:
-            playNext(path)
+            cueToNext(path)
         case .PlayNow:
             playNow(path)
         default:
@@ -244,12 +244,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func playNext(path: NSIndexPath) {
-        var currentIndex = ChannelModel.sharedInstance.currentIndex
+    func cueToNext(path: NSIndexPath) {
+        let currentIndex = ChannelModel.sharedInstance.currentIndex
         if path.row != currentIndex {
             moveUpToNext(path)
             reloadTable()
-            ++currentIndex
         }
         let blinkPath = NSIndexPath.init(forRow: currentIndex , inSection: 0)
         guard let cell = videoTable.cellForRowAtIndexPath(blinkPath) as? VideoTableViewCell else {
@@ -260,14 +259,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func playNow(path: NSIndexPath) {
-        playNext(path)
-        if path.row != ChannelModel.sharedInstance.currentIndex {
+        let isPlayingCell = path.row == ChannelModel.sharedInstance.currentIndex
+        cueToNext(path)
+        if !isPlayingCell {
             playNextVideo()
         }
     }
     
     func moveUpToNext(originalPath: NSIndexPath) {
-        let targetIndex = ChannelModel.sharedInstance.currentIndex + 1
+        var targetIndex = ChannelModel.sharedInstance.currentIndex
+        if targetIndex < originalPath.row {
+            ++targetIndex
+        }
         ChannelModel.sharedInstance.moveVideoByIndex(
             originalPath.row, destinationIndex: targetIndex)
     }
@@ -362,7 +365,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let playNextAction = UITableViewRowAction(style: .Normal, title: "Cue") {
-            (action, indexPath) in self.playNext(indexPath)}
+            (action, indexPath) in self.cueToNext(indexPath)}
         playNextAction.backgroundColor = UIColor.grayColor()
         
         let playNowAction = UITableViewRowAction(style: .Normal, title: "Play") {
