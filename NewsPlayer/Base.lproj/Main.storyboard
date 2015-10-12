@@ -34,7 +34,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qyw-eA-pzN">
-                                <rect key="frame" x="20" y="556" width="560" height="44"/>
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="NDI-dX-KNy"/>
                                     <barButtonItem systemItem="pause" id="ArZ-9Z-Zx3">
@@ -71,12 +71,12 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="zys-df-zjP" secondAttribute="trailing" id="5sg-BO-7S4"/>
-                            <constraint firstItem="qyw-eA-pzN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="6zf-83-ky0"/>
+                            <constraint firstItem="qyw-eA-pzN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-20" id="6zf-83-ky0"/>
                             <constraint firstItem="CxL-dh-SR4" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="7rA-C2-gZw"/>
                             <constraint firstItem="zys-df-zjP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Dd7-pA-fB1"/>
                             <constraint firstItem="zys-df-zjP" firstAttribute="top" secondItem="CxL-dh-SR4" secondAttribute="bottom" id="FwF-S8-Yh2"/>
                             <constraint firstItem="CxL-dh-SR4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="G2X-BU-BSR"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qyw-eA-pzN" secondAttribute="trailing" id="OSG-OR-eHX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qyw-eA-pzN" secondAttribute="trailing" constant="-20" id="OSG-OR-eHX"/>
                             <constraint firstAttribute="trailing" secondItem="CxL-dh-SR4" secondAttribute="trailing" id="Sph-pi-jaP"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="qyw-eA-pzN" secondAttribute="bottom" id="cDo-9S-JHg"/>
                             <constraint firstItem="qyw-eA-pzN" firstAttribute="top" secondItem="zys-df-zjP" secondAttribute="bottom" priority="250" constant="-44" id="nPB-Ky-QSg"/>
