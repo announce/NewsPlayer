@@ -1,5 +1,6 @@
 PODS:
   - FLAnimatedImage (1.0.8)
+  - ReachabilitySwift (2.0)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -8,12 +9,25 @@ PODS:
 
 DEPENDENCIES:
   - FLAnimatedImage (~> 1.0)
+  - ReachabilitySwift (from `https://github.com/ashleymills/Reachability.swift`, tag
+    `v2.0`)
   - SDWebImage (~> 3.7)
   - SwiftyJSON (~> 2.3)
   - youtube-ios-player-helper (~> 0.1.4)
 
+EXTERNAL SOURCES:
+  ReachabilitySwift:
+    :git: https://github.com/ashleymills/Reachability.swift
+    :tag: v2.0
+
+CHECKOUT OPTIONS:
+  ReachabilitySwift:
+    :git: https://github.com/ashleymills/Reachability.swift
+    :tag: v2.0
+
 SPEC CHECKSUMS:
   FLAnimatedImage: f9422f796135aff80d8c00b2afc48015bb746e24
+  ReachabilitySwift: 227b98ae7ec99e1c01148b17fb22357aa91a5675
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
   youtube-ios-player-helper: 84b1485ebb4b7c6b619c6e05edcb55186723a7c6
