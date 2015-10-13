@@ -8,6 +8,7 @@
 
 import UIKit
 import youtube_ios_player_helper
+import ReachabilitySwift
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, YTPlayerViewDelegate, LPRTableViewDelegate, VideoDetailControllerDelegate, ChannelResponseDelegate {
     
@@ -22,6 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let cellName = "VideoTableViewCell"
     let channelKey = "queue"
     let detailSegueKey = "showVideoDetail"
+    let reachability = Reachability.reachabilityForInternetConnection()
     var selectedIndex: Int?
     var refreshControl = UIRefreshControl()
     
@@ -73,6 +75,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         navigationController?.setNavigationBarHidden(true, animated: false)
         initVideoTable()
         initRefreshControl()
+        reachability?.whenReachable = { reachability in
+            self.updateLabelColourWhenReachable(reachability)
+        }
+        reachability?.whenUnreachable = { reachability in
+            self.updateLabelColourWhenNotReachable(reachability)
+        }
+        reachability?.startNotifier()
+        checkNetwork()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -86,6 +96,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidDisappear(animated: Bool){
         super.viewDidDisappear(animated)
         ChannelModel.sharedInstance.removeObserver(self, forKeyPath: channelKey)
+        reachability?.stopNotifier()
     }
     
     override func didReceiveMemoryWarning() {
@@ -102,6 +113,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         videoTable.dataSource = self
         videoTable.delegate = self
         videoTable.longPressReorderDelegate = self
+    }
+    
+    func checkNetwork() {
+        guard let networkState = reachability else {
+            return
+        }
+        if networkState.isReachable() {
+            updateLabelColourWhenReachable(networkState)
+        } else {
+            updateLabelColourWhenNotReachable(networkState)
+        }
     }
     
     func initRefreshControl() {
@@ -133,6 +155,44 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             videoTable?.scrollToRowAtIndexPath(path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
             // TODO Blink
         }
+    }
+    
+    // MARK: -
+    // MARK Reachability
+    func updateLabelColourWhenReachable(reachability: Reachability) {
+    }
+    
+    func updateLabelColourWhenNotReachable(reachability: Reachability) {
+        alertNoNetworkConnection()
+    }
+    
+    func reachabilityChanged(note: NSNotification) {
+        guard let reachability = note.object as? Reachability else {
+            print(__FUNCTION__)
+            return
+        }
+        if reachability.isReachable() {
+            print("\(__FUNCTION__)[\(videoPlayer.playerState())]")
+            if ChannelModel.sharedInstance.queue.count <= 0 {
+                ChannelModel.sharedInstance.enqueue()
+            }
+            if videoPlayer.playerState() != YTPlayerState.Playing {
+                playerViewDidBecomeReady(videoPlayer)
+            }
+            updateLabelColourWhenReachable(reachability)
+        } else {
+            updateLabelColourWhenNotReachable(reachability)
+        }
+    }
+    
+    private func alertNoNetworkConnection()
+    {
+        let alertController = UIAlertController(title: "Network not found", message: "Is this device connected to Internet?", preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: "Check it again", style: .Default, handler: {(_: UIAlertAction) in self.checkNetwork()})
+        alertController.addAction(defaultAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     // MARK: -
@@ -450,6 +510,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             print("receivedError: InvalidParam")
         case YTPlayerError.HTML5Error:
             print("receivedError: HTML5Error")
+            checkNetwork()
         case YTPlayerError.VideoNotFound:
             print("receivedError: VideoNotFound")
         case YTPlayerError.Unknown:
