@@ -251,7 +251,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             moveUpToNext(path)
             reloadTable()
         }
-        let blinkPath = NSIndexPath.init(forRow: currentIndex , inSection: 0)
+        let blinkPath = NSIndexPath.init(forRow: ChannelModel.sharedInstance.currentIndex + 1, inSection: 0)
         guard let cell = videoTable.cellForRowAtIndexPath(blinkPath) as? VideoTableViewCell else {
             print("\(__FUNCTION__) No Cell index[\(blinkPath.row)]")
             return
