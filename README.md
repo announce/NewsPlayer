@@ -1,6 +1,11 @@
 NewsPlayer
 ===
 
+## What's this?
+This is a source code for iOS App to play news videos.
+
+![iPhone4 Screenshot #1](https://dl.dropboxusercontent.com/u/6998388/NewsPlayer/3.5-inch%20%28iPhone%204%29%20-%20Screenshot%201.jpg)
+
 ## Requirement
 - Xcode v7.0
 - Ruby v2.1.x
@@ -18,3 +23,17 @@ $ bundle exec rake app:setup GOOGLE_API_KEY="__YOUR_AUTH_KEY__"
 $ # Congrats. Now you are ready to run app!
 $ open NewsPlayer.xcworkspace
 ```
+
+## About the Rights of Another Party
+Any of video contents in this app are played by YouTube's official iOS helper library which internally uses "Embeddable Player".
+YouTube allows third parties to distribute their videos through functionality offered by their Service ("Embeddable Player" is one of those).
+
+On this point, refer to "4. General Use of the Service" in YouTube's Terms of Service.
+https://www.youtube.com/static?template=terms&gl=US
+
+As regards news and media outlets' rights, copyright owners grant each user of YouTube a non-exclusive license to access their Content, and to use, reproduce, distribute, display and perform such Content.
+
+For more details, refer to "6. Your Content and Conduct" in same document below.
+https://www.youtube.com/static?template=terms&gl=US
+
+Please let [@i05](https://twitter.com/intent/tweet?text=%40i05%20%0A&hashtags=ZapApp) know if there are any unclear points.
