@@ -12,11 +12,17 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Giraffe" translatesAutoresizingMaskIntoConstraints="NO" id="FWD-MH-LV5">
-                    <rect key="frame" x="86" y="0.0" width="428" height="600"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Loading" translatesAutoresizingMaskIntoConstraints="NO" id="FWD-MH-LV5">
+                    <rect key="frame" x="-233.5" y="0.0" width="1067" height="600"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="FWD-MH-LV5" secondAttribute="height" multiplier="5:7" id="Gpi-1N-W0H"/>
+                        <constraint firstAttribute="width" secondItem="FWD-MH-LV5" secondAttribute="height" multiplier="900:506" id="Gpi-1N-W0H"/>
+                        <constraint firstAttribute="width" secondItem="FWD-MH-LV5" secondAttribute="height" multiplier="900:506" id="QBo-MK-qQM"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Gpi-1N-W0H"/>
+                        </mask>
+                    </variation>
                 </imageView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4cx-XD-l6o">
                     <rect key="frame" x="290" y="290" width="20" height="20"/>
@@ -25,10 +31,10 @@
             <color key="backgroundColor" red="0.80000000000000004" green="1" blue="1" alpha="0.76000000000000001" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="FWD-MH-LV5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="03I-7I-t3p"/>
-                <constraint firstAttribute="bottom" secondItem="FWD-MH-LV5" secondAttribute="bottom" id="8hm-M3-AWD"/>
+                <constraint firstItem="FWD-MH-LV5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GJL-BF-tyI"/>
                 <constraint firstItem="4cx-XD-l6o" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Kux-hS-fp7"/>
                 <constraint firstItem="4cx-XD-l6o" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bWf-Ac-60n"/>
-                <constraint firstItem="FWD-MH-LV5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="swX-h7-le2"/>
+                <constraint firstAttribute="bottom" secondItem="FWD-MH-LV5" secondAttribute="bottom" id="pgr-V4-v75"/>
                 <constraint firstItem="FWD-MH-LV5" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="v0J-Qc-JuG"/>
             </constraints>
             <connections>
@@ -37,6 +43,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Giraffe" width="500" height="700"/>
+        <image name="Loading" width="900" height="506"/>
     </resources>
 </document>

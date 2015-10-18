@@ -12,14 +12,20 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Giraffe" translatesAutoresizingMaskIntoConstraints="NO" id="eJI-mc-OzO">
-                    <rect key="frame" x="69" y="0.0" width="342" height="480"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Loading" translatesAutoresizingMaskIntoConstraints="NO" id="eJI-mc-OzO">
+                    <rect key="frame" x="-187" y="0.0" width="854" height="480"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="eJI-mc-OzO" secondAttribute="height" multiplier="5:7" id="MHv-2v-z9o"/>
+                        <constraint firstAttribute="width" secondItem="eJI-mc-OzO" secondAttribute="height" multiplier="900:506" id="MHv-2v-z9o"/>
+                        <constraint firstAttribute="width" secondItem="eJI-mc-OzO" secondAttribute="height" multiplier="900:506" id="vB3-Cq-vUQ"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="MHv-2v-z9o"/>
+                        </mask>
+                    </variation>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 ymkjp. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
-                    <rect key="frame" x="20" y="439" width="441" height="21"/>
+                    <rect key="frame" x="20" y="439" width="441" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -27,32 +33,20 @@
             </subviews>
             <color key="backgroundColor" red="0.80000000000000004" green="1" blue="1" alpha="0.75" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="eJI-mc-OzO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="BnQ-6O-e09"/>
-                <constraint firstAttribute="bottom" secondItem="eJI-mc-OzO" secondAttribute="bottom" id="Eux-KG-ftO"/>
+                <constraint firstItem="eJI-mc-OzO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="BHk-ep-9tp"/>
+                <constraint firstAttribute="bottom" secondItem="eJI-mc-OzO" secondAttribute="bottom" id="KD5-KJ-RvL"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
-                <constraint firstItem="eJI-mc-OzO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="PIb-rH-OMy"/>
                 <constraint firstItem="eJI-mc-OzO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="VpD-Xs-vRf"/>
                 <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
-                <constraint firstItem="eJI-mc-OzO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bP1-bZ-KGg"/>
-                <constraint firstAttribute="bottom" secondItem="eJI-mc-OzO" secondAttribute="bottom" id="bcL-mm-es5"/>
-                <constraint firstAttribute="trailing" secondItem="eJI-mc-OzO" secondAttribute="trailing" id="ncK-ck-E57"/>
                 <constraint firstItem="eJI-mc-OzO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="rqA-7n-bdv"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="BnQ-6O-e09"/>
-                    <exclude reference="Eux-KG-ftO"/>
-                    <exclude reference="bP1-bZ-KGg"/>
-                    <exclude reference="ncK-ck-E57"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
     <resources>
-        <image name="Giraffe" width="500" height="700"/>
+        <image name="Loading" width="900" height="506"/>
     </resources>
 </document>
