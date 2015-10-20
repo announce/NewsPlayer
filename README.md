@@ -7,8 +7,8 @@ This is a source code for iOS App to play news videos.
 ![iPhone4 Screenshot #1](https://dl.dropboxusercontent.com/u/6998388/NewsPlayer/3.5-inch%20%28iPhone%204%29%20-%20Screenshot%201.jpg)
 
 ## Requirement
-- Xcode v7.0
-- Ruby v2.1.x
+- Xcode v7.0.x
+- Ruby v2.x.x
 
 ## Setup
 1. Get Google's API key
@@ -17,7 +17,7 @@ This is a source code for iOS App to play news videos.
 1. Run commands below
 
 ```bash
-$ ruby --version  # ruby 2.1.5 is preferred
+$ ruby --version  # e.g., ruby 2.1.5
 $ gem install bundler && bundle install
 $ bundle exec rake app:setup GOOGLE_API_KEY="__YOUR_AUTH_KEY__"
 $ # Congrats. Now you are ready to run app!
