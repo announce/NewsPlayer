@@ -7,7 +7,7 @@ This is a source code for iOS App to play news videos.
 ![iPhone4 Screenshot #1](https://dl.dropboxusercontent.com/u/6998388/NewsPlayer/3.5-inch%20%28iPhone%204%29%20-%20Screenshot%201.jpg)
 
 ## Requirement
-- Xcode v7.0.x
+- Xcode v7.1.x
 - Ruby v2.x.x
 
 ## Setup
