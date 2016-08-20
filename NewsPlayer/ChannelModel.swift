@@ -236,7 +236,7 @@ class ChannelModel : NSObject {
             return
         }
         
-        if isLatast(json) {
+        if isLatest(json) {
             finish()
             return
         }
@@ -266,7 +266,7 @@ class ChannelModel : NSObject {
             print("Empty data. Check Credentials.plist's `Google API Key` is valid.")
             return
         }
-        if isLatast(json) {
+        if isLatest(json) {
             // TODO Check all channels and notify to user
             return
         }
@@ -282,7 +282,7 @@ class ChannelModel : NSObject {
         fetchNextPage(json)
     }
     
-    private func isLatast(json: JSON) -> Bool {
+    private func isLatest(json: JSON) -> Bool {
         guard let channelID = json["items", 0, "snippet", "channelId"].string,
             let etag = json["etag"].string else {
                 return false
