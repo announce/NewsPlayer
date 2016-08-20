@@ -27,6 +27,7 @@ class ChannelModel : NSObject {
         static let Max = 2000
     }
     let activityUrl = "https://www.googleapis.com/youtube/v3/activities"
+    let session: NSURLSession
     
     dynamic var queue: [String] = []
     var videoList: [String: Video] = [:]
@@ -39,6 +40,11 @@ class ChannelModel : NSObject {
     var delegate: ChannelResponseDelegate? = nil
     var finishedCount: Int = 0
     
+    init(session: NSURLSession = NSURLSession.sharedSession()) {
+        self.session = session
+        super.init()
+    }
+
     func enqueue() {
         let channels: [String] = channelList()
         for channelID in channels {
@@ -192,24 +198,21 @@ class ChannelModel : NSObject {
             return
         }
         
-        NSURLConnection.sendAsynchronousRequest(
+        session.dataTaskWithURL(
             createActivityRequest(channelID, pageToken: pageToken),
-            queue: NSOperationQueue.mainQueue(),
-            completionHandler: appendVideos)
+            completionHandler: appendVideos).resume()
     }
     
     func refreshActivities(channelID: String, pageToken: String = "") {
-        NSURLConnection.sendAsynchronousRequest(
+        session.dataTaskWithURL(
             createActivityRequest(channelID, pageToken: pageToken),
-            queue: NSOperationQueue.mainQueue(),
-            completionHandler: insertVideos)
+            completionHandler: insertVideos).resume()
     }
     
-    func createActivityRequest(channelID: String, pageToken: String) -> NSURLRequest {
+    func createActivityRequest(channelID: String, pageToken: String) -> NSURL {
         let apiKey: String = Credential(key: Credential.Provider.Google).apiKey
         let part = "snippet,contentDetails"
-        return NSURLRequest(URL: NSURL(
-            string: "\(activityUrl)?part=\(part)&channelId=\(channelID)&pageToken=\(pageToken)&key=\(apiKey)")!)
+        return NSURL(string: "\(activityUrl)?part=\(part)&channelId=\(channelID)&pageToken=\(pageToken)&key=\(apiKey)")!
     }
     
     func finish() {
@@ -219,7 +222,7 @@ class ChannelModel : NSObject {
         }
     }
     
-    func insertVideos(_: NSURLResponse?, data: NSData?, error: NSError?) {
+    func insertVideos(data: NSData?, _: NSURLResponse?, error: NSError?) {
         if (error != nil) {
             print("\(#function) NSError in response: \(error)")
             return
@@ -251,7 +254,7 @@ class ChannelModel : NSObject {
         finish()
     }
     
-    func appendVideos(_: NSURLResponse?, data: NSData?, error: NSError?) {
+    func appendVideos(data: NSData?, _: NSURLResponse?, error: NSError?) {
         if (error != nil) {
             print("\(#function) NSError in response: \(error)")
             return
