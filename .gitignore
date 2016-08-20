@@ -1,6 +1,3 @@
-# NewsPlayer
-NewsPlayer/Credentials.plist
-
 # Xcode
 # https://github.com/github/gitignore/blob/4323f1e2c8faa792dac2619a1983fc9ffa4fffc1/Swift.gitignore
 
@@ -43,3 +40,9 @@ xcuserdata
 # Carthage/Checkouts
 
 Carthage/Build
+
+# NewsPlayer project files
+NewsPlayer/Credentials.plist
+!/.github/
+!/.gitignore
+!/.travis.yml

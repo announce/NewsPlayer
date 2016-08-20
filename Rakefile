@@ -1,3 +1,4 @@
+task default: 'app:setup'
 namespace :app do
   desc 'Setup Project'
   task :setup => [:init, :credentials]
