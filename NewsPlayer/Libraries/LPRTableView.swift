@@ -69,7 +69,7 @@ public class LPRTableView: UITableView {
     }
     
     private func initialize() {
-        longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "_longPress:")
+        longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(LPRTableView._longPress(_:)))
         addGestureRecognizer(longPressGestureRecognizer)
     }
     
@@ -78,7 +78,7 @@ public class LPRTableView: UITableView {
 extension LPRTableView {
     
     private func canMoveRowAt(indexPath indexPath: NSIndexPath) -> Bool {
-        return (dataSource?.respondsToSelector("tableView:canMoveRowAtIndexPath:") == false) || (dataSource?.tableView?(self, canMoveRowAtIndexPath: indexPath) == true)
+        return (dataSource?.respondsToSelector(#selector(UITableViewDataSource.tableView(_:canMoveRowAtIndexPath:))) == false) || (dataSource?.tableView?(self, canMoveRowAtIndexPath: indexPath) == true)
     }
     
     private func cancelGesture() {
@@ -103,8 +103,8 @@ extension LPRTableView {
             ((gesture.state == UIGestureRecognizerState.Began) && (indexPath == nil)) ||
             ((gesture.state == UIGestureRecognizerState.Ended) && (currentLocationIndexPath == nil)) ||
             ((gesture.state == UIGestureRecognizerState.Began) && !canMoveRowAt(indexPath: indexPath!)) {
-                cancelGesture()
-                return
+            cancelGesture()
+            return
         }
         
         // Started.
@@ -159,7 +159,7 @@ extension LPRTableView {
                     initialIndexPath = indexPath
                     
                     // Enable scrolling for cell.
-                    scrollDisplayLink = CADisplayLink(target: self, selector: "_scrollTableWithCell:")
+                    scrollDisplayLink = CADisplayLink(target: self, selector: #selector(LPRTableView._scrollTableWithCell(_:)))
                     scrollDisplayLink?.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
                 }
             }
@@ -208,30 +208,30 @@ extension LPRTableView {
             
             // Animate the drag view to the newly hovered cell.
             UIView.animateWithDuration(0.3,
-                animations: { [unowned self] in
-                    if let draggingView = self.draggingView {
-                        if let currentLocationIndexPath = self.currentLocationIndexPath {
-                            UIView.beginAnimations("LongPressReorder-HideDraggingView", context: nil)
-                            self.longPressReorderDelegate?.tableView?(self, hideDraggingView: draggingView, atIndexPath: currentLocationIndexPath)
-                            UIView.commitAnimations()
-                            let rect = self.rectForRowAtIndexPath(currentLocationIndexPath)
-                            draggingView.transform = CGAffineTransformIdentity
-                            draggingView.frame = CGRectOffset(draggingView.bounds, rect.origin.x, rect.origin.y)
-                        }
-                    }
+                                       animations: { [unowned self] in
+                                        if let draggingView = self.draggingView {
+                                            if let currentLocationIndexPath = self.currentLocationIndexPath {
+                                                UIView.beginAnimations("LongPressReorder-HideDraggingView", context: nil)
+                                                self.longPressReorderDelegate?.tableView?(self, hideDraggingView: draggingView, atIndexPath: currentLocationIndexPath)
+                                                UIView.commitAnimations()
+                                                let rect = self.rectForRowAtIndexPath(currentLocationIndexPath)
+                                                draggingView.transform = CGAffineTransformIdentity
+                                                draggingView.frame = CGRectOffset(draggingView.bounds, rect.origin.x, rect.origin.y)
+                                            }
+                                        }
                 },
-                completion: { [unowned self] (finished: Bool) in
-                    if let draggingView = self.draggingView {
-                        draggingView.removeFromSuperview()
-                    }
-                    
-                    // Reload the rows that were affected just to be safe.
-                    if let visibleRows = self.indexPathsForVisibleRows {
-                        self.reloadRowsAtIndexPaths(visibleRows, withRowAnimation: .None)
-                    }
-                    
-                    self.currentLocationIndexPath = nil
-                    self.draggingView = nil
+                                       completion: { [unowned self] (finished: Bool) in
+                                        if let draggingView = self.draggingView {
+                                            draggingView.removeFromSuperview()
+                                        }
+                                        
+                                        // Reload the rows that were affected just to be safe.
+                                        if let visibleRows = self.indexPathsForVisibleRows {
+                                            self.reloadRowsAtIndexPaths(visibleRows, withRowAnimation: .None)
+                                        }
+                                        
+                                        self.currentLocationIndexPath = nil
+                                        self.draggingView = nil
                 })
         }
     }
@@ -253,11 +253,11 @@ extension LPRTableView {
                 if ((indexPath != clIndexPath) &&
                     (gesture.locationInView(cellForRowAtIndexPath(indexPath)).y > (newHeight - oldHeight))) &&
                     canMoveRowAt(indexPath: indexPath) {
-                        beginUpdates()
-                        moveRowAtIndexPath(clIndexPath, toIndexPath: indexPath)
-                        dataSource?.tableView?(self, moveRowAtIndexPath: clIndexPath, toIndexPath: indexPath)
-                        currentLocationIndexPath = indexPath
-                        endUpdates()
+                    beginUpdates()
+                    moveRowAtIndexPath(clIndexPath, toIndexPath: indexPath)
+                    dataSource?.tableView?(self, moveRowAtIndexPath: clIndexPath, toIndexPath: indexPath)
+                    currentLocationIndexPath = indexPath
+                    endUpdates()
                 }
             }
         }
@@ -301,7 +301,7 @@ public class LPRTableViewController: UITableViewController, LPRTableViewDelegate
     /** Returns the long press to reorder table view managed by the controller object. */
     public var lprTableView: LPRTableView! { return tableView as! LPRTableView }
     
-    public override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         initialize()
     }
