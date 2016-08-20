@@ -56,7 +56,7 @@ class ChannelModel : NSObject {
     
     func nextVideo() -> Video? {
         if (queue.count > 0) {
-            currentIndex++
+            currentIndex += 1
             return currentVideo()
         } else {
             return nil
@@ -93,12 +93,12 @@ class ChannelModel : NSObject {
         if let removedVideo: Video? = videoList.removeValueForKey(videoID) {
             // Adjust playing video
             if index <= currentIndex {
-                currentIndex--
+                currentIndex -= 1
             }
-            --currentNumberOfRows
+            currentNumberOfRows -= 1
             return removedVideo
         } else {
-            print("\(__FUNCTION__) -> nil")
+            print("\(#function) -> nil")
             return nil
         }
     }
@@ -107,16 +107,16 @@ class ChannelModel : NSObject {
         if index <= queue.count {
             // Adjust playing video
             if index <= currentIndex {
-                currentIndex++
+                currentIndex += 1
             }
-            ++currentNumberOfRows
+            currentNumberOfRows += 1
             // Insert video to videoList first
             // to avoid accessing nil videoList value by observed queue's index
             videoList[newVideo.id] = newVideo
             queue.insert(newVideo.id, atIndex: index)
             return newVideo
         } else {
-            print("\(__FUNCTION__) -> nil")
+            print("\(#function) -> nil")
             return nil
         }
     }
@@ -146,7 +146,7 @@ class ChannelModel : NSObject {
     
     func insertVideo(newVideo: Video, atIndex: Int) {
         if atIndex >= queue.count {
-            print("\(__FUNCTION__) Invalid index \(queue.count) is smaller than \(atIndex)")
+            print("\(#function) Invalid index \(queue.count) is smaller than \(atIndex)")
             return
         }
         if (videoList[newVideo.id] == newVideo) {
@@ -157,7 +157,7 @@ class ChannelModel : NSObject {
             queue.insert(newVideo.id, atIndex: atIndex)
             videoList[newVideo.id] = newVideo
         } else {
-            print("\(__FUNCTION__) Ignored newVideo[\(newVideo.id)] while table manupulating")
+            print("\(#function) Ignored newVideo[\(newVideo.id)] while table manupulating")
         }
     }
     
@@ -213,7 +213,7 @@ class ChannelModel : NSObject {
     }
     
     func finish() {
-        --finishedCount
+        finishedCount -= 1
         if finishedCount <= 0 {
             delegate?.endRefreshing()
         }
@@ -221,11 +221,11 @@ class ChannelModel : NSObject {
     
     func insertVideos(_: NSURLResponse?, data: NSData?, error: NSError?) {
         if (error != nil) {
-            print("\(__FUNCTION__) NSError in response: \(error)")
+            print("\(#function) NSError in response: \(error)")
             return
         }
         if (nil == data) {
-            print("\(__FUNCTION__) NSData is nil")
+            print("\(#function) NSData is nil")
             return
         }
         
@@ -253,11 +253,11 @@ class ChannelModel : NSObject {
     
     func appendVideos(_: NSURLResponse?, data: NSData?, error: NSError?) {
         if (error != nil) {
-            print("\(__FUNCTION__) NSError in response: \(error)")
+            print("\(#function) NSError in response: \(error)")
             return
         }
         if (nil == data) {
-            print("\(__FUNCTION__) NSData is nil")
+            print("\(#function) NSData is nil")
             return
         }
         
