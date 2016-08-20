@@ -1,7 +1,7 @@
 NewsPlayer
 ===
 
-[![Build Status](https://travis-ci.org/announce//NewsPlayer.svg?branch=master)](https://travis-ci.org/ymkjp/NewsPlayer)
+[![Build Status](https://travis-ci.org/announce/NewsPlayer.svg?branch=master)](https://travis-ci.org/announce/NewsPlayer)
 
 ## What's this?
 This is a news player iOS App source code.
