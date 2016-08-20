@@ -38,33 +38,18 @@
 				</array>
 			</dict>
 		</dict>
-		<key>025301D8C617C7611871719E689F3548</key>
+		<key>01CC74F313697C072D4FA9E3B72A3C35</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>CoreGraphics.framework</string>
 			<key>path</key>
-			<string>FLAnimatedImage-dummy.m</string>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreGraphics.framework</string>
 			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>0287FA89A822F01BDC7CCA9C888E997B</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>10B962026162377306B9865435E87B70</string>
-				<string>7DDB881EBE98A64F7E5194FE133DE8E4</string>
-				<string>A8D007AA5E112F42D31F9A5A25B59529</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
+			<string>DEVELOPER_DIR</string>
 		</dict>
 		<key>03B4E571A83C7139215C766DF64FCFC5</key>
 		<dict>
@@ -92,19 +77,6 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>051204BB2188AAAEDCEB9FBC5D8C84C1</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>0C66C30381F86C3D642FC983CCADEBB6</string>
-			<key>remoteInfo</key>
-			<string>ReachabilitySwift</string>
-		</dict>
 		<key>05FA59343AF516049FC8D127EAB723CB</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -130,17 +102,6 @@
 			<string>SDWebImage/SDWebImageManager.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>0A6ACC955EF4B5780C6AE885F2747504</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>youtube-ios-player-helper-Assets</string>
-			<key>target</key>
-			<string>8A1599E2467E3C0FE576A8C4624C54A6</string>
-			<key>targetProxy</key>
-			<string>EA86F27A4762261E9AF56794BD0A4013</string>
 		</dict>
 		<key>0C193D07699EFEBD3090D958441FC9CC</key>
 		<dict>
@@ -257,19 +218,12 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>10B962026162377306B9865435E87B70</key>
+		<key>10F141CDB3BE665FE5A3961072926065</key>
 		<dict>
 			<key>fileRef</key>
-			<string>A9935140F90F00F5BAF7057CA34FEDA9</string>
+			<string>FA6F7CB0FFF1000F52921569D0551354</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>1170B545EE8D9756F543BB57F463CEBF</key>
 		<dict>
@@ -414,17 +368,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>188342E35538A33F74F974C104374F03</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>SwiftyJSON</string>
-			<key>target</key>
-			<string>B9A04D3C9B208813656510FDA8ADAE02</string>
-			<key>targetProxy</key>
-			<string>D47D6BEC2F5FA9291DA30A4005FB8321</string>
-		</dict>
 		<key>18E797FCFFABD27FAEE40931505CD427</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -459,6 +402,13 @@
 		<dict>
 			<key>fileRef</key>
 			<string>FA6F7CB0FFF1000F52921569D0551354</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>1AD3AA7F2F5DB5ADBF21CD783210C22C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E0D800F22CA0E020B76C9FA413D0F081</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -545,6 +495,21 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>1FFB64BD618B3CCBBF38D5C242A1577E</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>FLAnimatedImage.framework</string>
+			<key>path</key>
+			<string>FLAnimatedImage.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
 		<key>22F5654F6455A2E9699AB741AA6120D3</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -593,19 +558,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>241FB5602C3A4638EF77968E19E7874E</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>9666688CB41B38A9914616144C9C7A3E</string>
-			<key>remoteInfo</key>
-			<string>SDWebImage</string>
-		</dict>
 		<key>25876C3D66B9B57A5A28C6F737E03E8C</key>
 		<dict>
 			<key>fileRef</key>
@@ -635,19 +587,6 @@
 			<string>SDWebImage</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>25E2E80DF0A21CF56AA9FBC9E5BBB1FB</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>51692AB418FC6AB80172D93973CC6BB4</string>
-			<key>remoteInfo</key>
-			<string>FLAnimatedImage</string>
 		</dict>
 		<key>27501010323D44134110117667A58821</key>
 		<dict>
@@ -685,13 +624,6 @@
 				<key>COMPILER_FLAGS</key>
 				<string>-DOS_OBJECT_USE_OBJC=0</string>
 			</dict>
-		</dict>
-		<key>2888B8A2F8F6E9001E06D289B2FB4C4A</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5ED6CA66745F1BFF8F342AD2C4639BC6</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>29AA3F07863B7D9B2ED9F785D727C071</key>
 		<dict>
@@ -763,6 +695,17 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
+		<key>2EC19C3BF616F4D5E11390326D3D5EC9</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>youtube-ios-player-helper-Assets</string>
+			<key>target</key>
+			<string>8A1599E2467E3C0FE576A8C4624C54A6</string>
+			<key>targetProxy</key>
+			<string>317100339EA966080BB8D6EF616C116A</string>
+		</dict>
 		<key>2F8827310B2FE42170810CE4AFF9D473</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -777,6 +720,17 @@
 			<string>SDWebImage/UIView+WebCacheOperation.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30A8265E7BBD6E09D25581101F9A3FC6</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>FLAnimatedImage</string>
+			<key>target</key>
+			<string>B1AE1BD35FFAE34E428CF550F64C3BB1</string>
+			<key>targetProxy</key>
+			<string>6750707A5B126F13060F9CE528CC0F52</string>
 		</dict>
 		<key>31585A9399288301ACA227290D428045</key>
 		<dict>
@@ -793,6 +747,19 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>317100339EA966080BB8D6EF616C116A</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>8A1599E2467E3C0FE576A8C4624C54A6</string>
+			<key>remoteInfo</key>
+			<string>youtube-ios-player-helper-Assets</string>
+		</dict>
 		<key>31F861572AEF58AF8E8738463397C601</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -808,6 +775,19 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>34169A11D07325AD00F41B60F1B70205</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>B9A04D3C9B208813656510FDA8ADAE02</string>
+			<key>remoteInfo</key>
+			<string>SwiftyJSON</string>
+		</dict>
 		<key>35B078AE5EC4F5270B4A374144E32639</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -822,6 +802,19 @@
 			<string>SDWebImage/UIImageView+HighlightedWebCache.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>35EE2BD4EA7E5F6C1698A8D325D45D08</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>715B78028FBCE102D3A2E08950FF2021</string>
+			<key>remoteInfo</key>
+			<string>youtube-ios-player-helper</string>
 		</dict>
 		<key>36A3561BFAF840764C05F9500D87323F</key>
 		<dict>
@@ -959,10 +952,10 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>7772D5EB44F2C1C6AB8A8BB16ED2D5FC</string>
-				<string>AE9974B83459EB505A7C438BF2059161</string>
-				<string>9B9032C87E9233FD4DC68BE33B40CB03</string>
-				<string>CE59D97BD6EDD4B3A2629C99FCC775B7</string>
+				<string>D5E18EC62EDA1781AF142E17812B3B57</string>
+				<string>A271793E97EE625C94210D63A8D0C96E</string>
+				<string>FCE7BAA87FD5E81D28E2448FA99F1EB3</string>
+				<string>D860735FAB3784B01D895B40B6B7FD8C</string>
 				<string>44D3290FAA188DBAE395DF3B19A8AD5F</string>
 			</array>
 			<key>isa</key>
@@ -987,18 +980,16 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>40BC0060977B4070912639A07F2D8195</key>
+		<key>415502D6C50EA1B67F1D4DDA8EC15BB5</key>
 		<dict>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
+			<string>PBXTargetDependency</string>
 			<key>name</key>
-			<string>CoreGraphics.framework</string>
-			<key>path</key>
-			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreGraphics.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
+			<string>SDWebImage</string>
+			<key>target</key>
+			<string>9666688CB41B38A9914616144C9C7A3E</string>
+			<key>targetProxy</key>
+			<string>D702A354FB0E173F60D95D2AA09789FA</string>
 		</dict>
 		<key>42443BE4CFDB3686DCE7BD49A7251FBD</key>
 		<dict>
@@ -1020,23 +1011,16 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>44A60FA4AA23F5157EA98A64F4AE41D9</key>
-		<dict>
-			<key>fileRef</key>
-			<string>40BC0060977B4070912639A07F2D8195</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>44D3290FAA188DBAE395DF3B19A8AD5F</key>
 		<dict>
 			<key>children</key>
 			<array>
 				<string>E8DE7B74B4312C2AF9ECD3DB5FEF7BF5</string>
 				<string>A4687EB8C474AF7DD6B70CD589837081</string>
-				<string>B21BBD216E2157837142825FAC8955C5</string>
-				<string>025301D8C617C7611871719E689F3548</string>
+				<string>EA22DDE2BE7993F2B4FBCD623D35419A</string>
+				<string>58B5BBCD8FCF0683CAF9059A4472D6FC</string>
 				<string>29AA3F07863B7D9B2ED9F785D727C071</string>
-				<string>A9935140F90F00F5BAF7057CA34FEDA9</string>
+				<string>4B8EE2E6DD484ACE22571EEDF26984DF</string>
 				<string>E2197775BCB4BAC5548BB0DDBA9E5389</string>
 			</array>
 			<key>isa</key>
@@ -1047,6 +1031,62 @@
 			<string>../Target Support Files/FLAnimatedImage</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>44ED3C34A4FF51304EE88D5C22BA4280</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>EA22DDE2BE7993F2B4FBCD623D35419A</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1.0.8</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>$(CURRENT_PROJECT_VERSION)</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/FLAnimatedImage/FLAnimatedImage-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/FLAnimatedImage/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/FLAnimatedImage/FLAnimatedImage.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>PRODUCT_NAME</key>
+				<string>FLAnimatedImage</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
 		</dict>
 		<key>46DEB249B06F2F0345641C020D7A652A</key>
 		<dict>
@@ -1104,34 +1144,6 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>47326644CDA8FB2AE2D6BB0801975324</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>715B78028FBCE102D3A2E08950FF2021</string>
-			<key>remoteInfo</key>
-			<string>youtube-ios-player-helper</string>
-		</dict>
-		<key>483B0E6208457589D9A798756F943674</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>FLAnimatedImage.framework</string>
-			<key>path</key>
-			<string>FLAnimatedImage.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
 		<key>49789BF3B150C0B6CD182D910DC5F9D0</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1145,16 +1157,18 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>4AFA1222310B9BD76E962A64C0F19CAE</key>
+		<key>4B8EE2E6DD484ACE22571EEDF26984DF</key>
 		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>FLAnimatedImage</string>
-			<key>target</key>
-			<string>51692AB418FC6AB80172D93973CC6BB4</string>
-			<key>targetProxy</key>
-			<string>25E2E80DF0A21CF56AA9FBC9E5BBB1FB</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>FLAnimatedImage-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>4C1C786CCECAB03DBBA6174C79837A10</key>
 		<dict>
@@ -1168,6 +1182,13 @@
 			<string>Reachability.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4D120E4439A3807F70E526A98688FEEF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A271793E97EE625C94210D63A8D0C96E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>4D3EBFDA2C5DD64ABCDB04F9B7FF12A4</key>
 		<dict>
@@ -1273,31 +1294,6 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>51692AB418FC6AB80172D93973CC6BB4</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>635F007E1DB4AEF16D8CF7D28BE2AACD</string>
-			<key>buildPhases</key>
-			<array>
-				<string>8F9EF42806F5B62A914EB52E93358F10</string>
-				<string>9B72AB72EC0D5360CAFDF88B5D09944E</string>
-				<string>0287FA89A822F01BDC7CCA9C888E997B</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>FLAnimatedImage</string>
-			<key>productName</key>
-			<string>FLAnimatedImage</string>
-			<key>productReference</key>
-			<string>483B0E6208457589D9A798756F943674</string>
-			<key>productType</key>
-			<string>com.apple.product-type.framework</string>
-		</dict>
 		<key>534E7776B3E4DDECB788A6479A1FB26C</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -1312,68 +1308,40 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>542D9CA509942DCE29DEB2707D440F47</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>B21BBD216E2157837142825FAC8955C5</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1.0.8</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>$(CURRENT_PROJECT_VERSION)</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/FLAnimatedImage/FLAnimatedImage-prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/FLAnimatedImage/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/FLAnimatedImage/FLAnimatedImage.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>PRODUCT_NAME</key>
-				<string>FLAnimatedImage</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
 		<key>5654AEE6228ED8E59D716B59A086B638</key>
 		<dict>
 			<key>fileRef</key>
 			<string>E0D800F22CA0E020B76C9FA413D0F081</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>56865A35F78354CFB03BEB2C0B8ABC32</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FCE7BAA87FD5E81D28E2448FA99F1EB3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>56CD1E20E445CCBE0F27CE4CB0846120</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>90CF900853AB562DD30902163C0E7B92</string>
+				<string>44ED3C34A4FF51304EE88D5C22BA4280</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
 		</dict>
 		<key>570D3257F33FDBA71077E3890D879EE0</key>
 		<dict>
@@ -1396,6 +1364,19 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Debug</string>
+		</dict>
+		<key>58B5BBCD8FCF0683CAF9059A4472D6FC</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>FLAnimatedImage-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>5B8CD78F638E9059A153FB5B85987DD2</key>
 		<dict>
@@ -1453,19 +1434,6 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>5ED6CA66745F1BFF8F342AD2C4639BC6</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>QuartzCore.framework</string>
-			<key>path</key>
-			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/QuartzCore.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
-		</dict>
 		<key>5ED9E4D7280AD4122656B1508BC28D54</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1480,6 +1448,17 @@
 			<string>SDWebImage/SDWebImageDownloaderOperation.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>612B01DAE43CEAA5187EFB597AF5FC2A</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>youtube-ios-player-helper</string>
+			<key>target</key>
+			<string>715B78028FBCE102D3A2E08950FF2021</string>
+			<key>targetProxy</key>
+			<string>35EE2BD4EA7E5F6C1698A8D325D45D08</string>
 		</dict>
 		<key>62384151EBD793096A1AAF3E92D94B8D</key>
 		<dict>
@@ -1510,20 +1489,6 @@
 			<string>SDWebImage/SDWebImageCompat.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>635F007E1DB4AEF16D8CF7D28BE2AACD</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>877EA103CF156DFF1FF3810E3C882053</string>
-				<string>542D9CA509942DCE29DEB2707D440F47</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
 		</dict>
 		<key>64F88A15A5FCFFF5585A7A3329101897</key>
 		<dict>
@@ -1566,17 +1531,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>66BBDD60024B986CC83B03894F2FBA63</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>youtube-ios-player-helper</string>
-			<key>target</key>
-			<string>715B78028FBCE102D3A2E08950FF2021</string>
-			<key>targetProxy</key>
-			<string>47326644CDA8FB2AE2D6BB0801975324</string>
-		</dict>
 		<key>67266B31FF6088E00ABD04BD2EA82A13</key>
 		<dict>
 			<key>fileRef</key>
@@ -1588,6 +1542,19 @@
 				<key>COMPILER_FLAGS</key>
 				<string>-DOS_OBJECT_USE_OBJC=0</string>
 			</dict>
+		</dict>
+		<key>6750707A5B126F13060F9CE528CC0F52</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>B1AE1BD35FFAE34E428CF550F64C3BB1</string>
+			<key>remoteInfo</key>
+			<string>FLAnimatedImage</string>
 		</dict>
 		<key>68079D97DA03D23B0A4B243D11F0C669</key>
 		<dict>
@@ -1700,6 +1667,13 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
+		<key>6C2B2D4D345C49817019B4A5F4AD76C7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D860735FAB3784B01D895B40B6B7FD8C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>6D3FD739C631602F64E8CEE91CF41B6F</key>
 		<dict>
 			<key>children</key>
@@ -1731,6 +1705,13 @@
 				</array>
 			</dict>
 		</dict>
+		<key>709405FDD3D0F1517DBCA82022A6AC02</key>
+		<dict>
+			<key>fileRef</key>
+			<string>58B5BBCD8FCF0683CAF9059A4472D6FC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>715B78028FBCE102D3A2E08950FF2021</key>
 		<dict>
 			<key>buildConfigurationList</key>
@@ -1746,7 +1727,7 @@
 			<array/>
 			<key>dependencies</key>
 			<array>
-				<string>0A6ACC955EF4B5780C6AE885F2747504</string>
+				<string>2EC19C3BF616F4D5E11390326D3D5EC9</string>
 			</array>
 			<key>isa</key>
 			<string>PBXNativeTarget</string>
@@ -1817,28 +1798,6 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>7758F58A4E481D3613BBD51F75CE2D24</key>
-		<dict>
-			<key>fileRef</key>
-			<string>D13C5C85F13886BC4654A3E20BD23E9C</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>7772D5EB44F2C1C6AB8A8BB16ED2D5FC</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>FLAnimatedImage.h</string>
-			<key>path</key>
-			<string>FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImage.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>7A5E11473DD802A45E5F8554929B8738</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1895,19 +1854,20 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>7DDB881EBE98A64F7E5194FE133DE8E4</key>
+		<key>8017F8E3EA353CE69CB4783828E4A4B3</key>
 		<dict>
-			<key>fileRef</key>
-			<string>7772D5EB44F2C1C6AB8A8BB16ED2D5FC</string>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D34FF17F0F995FEF5D1CA1F482E6FB40</string>
+				<string>96048A2DF72D20BAC1519DA9D058D9B8</string>
+				<string>56865A35F78354CFB03BEB2C0B8ABC32</string>
+			</array>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
 		</dict>
 		<key>810B49EBEA3D16B97A7AB7A958779D1D</key>
 		<dict>
@@ -1932,6 +1892,21 @@
 			</array>
 			<key>isa</key>
 			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>815E2BC5E3B8D2EDB5754BB30BEC9E9D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>709405FDD3D0F1517DBCA82022A6AC02</string>
+				<string>4D120E4439A3807F70E526A98688FEEF</string>
+				<string>6C2B2D4D345C49817019B4A5F4AD76C7</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
@@ -2028,62 +2003,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>877EA103CF156DFF1FF3810E3C882053</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>B21BBD216E2157837142825FAC8955C5</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1.0.8</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>$(CURRENT_PROJECT_VERSION)</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/FLAnimatedImage/FLAnimatedImage-prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/FLAnimatedImage/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/FLAnimatedImage/FLAnimatedImage.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>PRODUCT_NAME</key>
-				<string>FLAnimatedImage</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
 		<key>882C86C75819C78E7E8EB42E9274C2D2</key>
 		<dict>
 			<key>buildConfigurations</key>
@@ -2151,20 +2070,61 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>8F9EF42806F5B62A914EB52E93358F10</key>
+		<key>90CF900853AB562DD30902163C0E7B92</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>FD62559C16F84B003255AB957401D365</string>
-				<string>A40BB444173D5A16702B4DEE1CF848CA</string>
-				<string>BEF319F40FA2477E0122BFCCF5A45241</string>
-			</array>
+			<key>baseConfigurationReference</key>
+			<string>EA22DDE2BE7993F2B4FBCD623D35419A</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1.0.8</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>$(CURRENT_PROJECT_VERSION)</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/FLAnimatedImage/FLAnimatedImage-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/FLAnimatedImage/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/FLAnimatedImage/FLAnimatedImage.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>PRODUCT_NAME</key>
+				<string>FLAnimatedImage</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
 			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
 		</dict>
 		<key>90EF20BB8DC0A183A97CEE5D4BE375EE</key>
 		<dict>
@@ -2287,15 +2247,22 @@
 				<string>-DOS_OBJECT_USE_OBJC=0</string>
 			</dict>
 		</dict>
+		<key>9558AF4394B3AE558D7F4284FD608FC7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>01CC74F313697C072D4FA9E3B72A3C35</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>9568C2DDAD3B68BC1310C7948E365D3F</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>40BC0060977B4070912639A07F2D8195</string>
+				<string>01CC74F313697C072D4FA9E3B72A3C35</string>
 				<string>FA6F7CB0FFF1000F52921569D0551354</string>
 				<string>E0D800F22CA0E020B76C9FA413D0F081</string>
-				<string>D13C5C85F13886BC4654A3E20BD23E9C</string>
-				<string>5ED6CA66745F1BFF8F342AD2C4639BC6</string>
+				<string>FE04DD2DA73A22A23C4B9F86D9F3783E</string>
+				<string>DE84B3BA9F8D1BC38ADDCD1C652CFB7B</string>
 				<string>CD57B2EC67C756B7EB4D09F0340DC538</string>
 			</array>
 			<key>isa</key>
@@ -2304,17 +2271,6 @@
 			<string>iOS</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>95A5B3D136881480DBD7243B5FB9A6A3</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>SDWebImage</string>
-			<key>target</key>
-			<string>9666688CB41B38A9914616144C9C7A3E</string>
-			<key>targetProxy</key>
-			<string>241FB5602C3A4638EF77968E19E7874E</string>
 		</dict>
 		<key>95B066C3073F61164D226DF56C7D705D</key>
 		<dict>
@@ -2328,6 +2284,20 @@
 			<string>SDWebImage-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>96048A2DF72D20BAC1519DA9D058D9B8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D5E18EC62EDA1781AF142E17812B3B57</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>9666688CB41B38A9914616144C9C7A3E</key>
 		<dict>
@@ -2380,13 +2350,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>98B211FA3EAA51ADDA0F03E9B6804C2A</key>
-		<dict>
-			<key>fileRef</key>
-			<string>E0D800F22CA0E020B76C9FA413D0F081</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>992625925D1C9BA1A0BA2261E561937B</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2415,38 +2378,6 @@
 			<string>Release</string>
 			<key>isa</key>
 			<string>XCConfigurationList</string>
-		</dict>
-		<key>9B72AB72EC0D5360CAFDF88B5D09944E</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>44A60FA4AA23F5157EA98A64F4AE41D9</string>
-				<string>BFCD45E8B0199DA45FA727C4C4935DD7</string>
-				<string>98B211FA3EAA51ADDA0F03E9B6804C2A</string>
-				<string>7758F58A4E481D3613BBD51F75CE2D24</string>
-				<string>2888B8A2F8F6E9001E06D289B2FB4C4A</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>9B9032C87E9233FD4DC68BE33B40CB03</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>FLAnimatedImageView.h</string>
-			<key>path</key>
-			<string>FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImageView.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>9C856884A3254C1AE168F65FFCDDA7A6</key>
 		<dict>
@@ -2495,11 +2426,11 @@
 			<array/>
 			<key>dependencies</key>
 			<array>
-				<string>4AFA1222310B9BD76E962A64C0F19CAE</string>
-				<string>CFACCA0BDCC2FFF4CAB4AA8210F9D76E</string>
-				<string>95A5B3D136881480DBD7243B5FB9A6A3</string>
-				<string>188342E35538A33F74F974C104374F03</string>
-				<string>66BBDD60024B986CC83B03894F2FBA63</string>
+				<string>30A8265E7BBD6E09D25581101F9A3FC6</string>
+				<string>EC07C2F69F5B4CB69FE4B94484ECFB42</string>
+				<string>415502D6C50EA1B67F1D4DDA8EC15BB5</string>
+				<string>A84CD348EF482AA23FAC726AE1F339AE</string>
+				<string>612B01DAE43CEAA5187EFB597AF5FC2A</string>
 			</array>
 			<key>isa</key>
 			<string>PBXNativeTarget</string>
@@ -2567,6 +2498,23 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>A1C57405812C96E04238B0816D6DB9DA</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>9558AF4394B3AE558D7F4284FD608FC7</string>
+				<string>10F141CDB3BE665FE5A3961072926065</string>
+				<string>1AD3AA7F2F5DB5ADBF21CD783210C22C</string>
+				<string>E9C88F3622D706D665567FBF9189589B</string>
+				<string>F89F2293B2579788D55D54FC5BBBB2C9</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
 		<key>A233317F8104BC27DD073EBFB8C57EEC</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2582,12 +2530,20 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A40BB444173D5A16702B4DEE1CF848CA</key>
+		<key>A271793E97EE625C94210D63A8D0C96E</key>
 		<dict>
-			<key>fileRef</key>
-			<string>AE9974B83459EB505A7C438BF2059161</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>FLAnimatedImage.m</string>
+			<key>path</key>
+			<string>FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImage.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>A463A2685FC6236490265DDF52718D5C</key>
 		<dict>
@@ -2717,6 +2673,17 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
+		<key>A84CD348EF482AA23FAC726AE1F339AE</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>SwiftyJSON</string>
+			<key>target</key>
+			<string>B9A04D3C9B208813656510FDA8ADAE02</string>
+			<key>targetProxy</key>
+			<string>34169A11D07325AD00F41B60F1B70205</string>
+		</dict>
 		<key>A8B51193A65BBB20DB654B42E8779368</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2729,20 +2696,6 @@
 			<string>Pods-NewsPlayer.release.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>A8D007AA5E112F42D31F9A5A25B59529</key>
-		<dict>
-			<key>fileRef</key>
-			<string>9B9032C87E9233FD4DC68BE33B40CB03</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>A911D66CF6E80A517A1EE92B1BCD220A</key>
 		<dict>
@@ -2771,19 +2724,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A9935140F90F00F5BAF7057CA34FEDA9</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>FLAnimatedImage-umbrella.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>AAA138F0836AAFE699EDD6B15E439F74</key>
 		<dict>
 			<key>fileRef</key>
@@ -2797,6 +2737,19 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>AADFEF1DFB5106A5CB9E3919241387C5</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>0C66C30381F86C3D642FC983CCADEBB6</string>
+			<key>remoteInfo</key>
+			<string>ReachabilitySwift</string>
 		</dict>
 		<key>AC9C3498B40210B7AD11A75EB9870604</key>
 		<dict>
@@ -2863,21 +2816,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>AE9974B83459EB505A7C438BF2059161</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>FLAnimatedImage.m</string>
-			<key>path</key>
-			<string>FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImage.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>AF4AC8FE21C01A522E6081F787113829</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2906,6 +2844,31 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>B1AE1BD35FFAE34E428CF550F64C3BB1</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>56CD1E20E445CCBE0F27CE4CB0846120</string>
+			<key>buildPhases</key>
+			<array>
+				<string>815E2BC5E3B8D2EDB5754BB30BEC9E9D</string>
+				<string>A1C57405812C96E04238B0816D6DB9DA</string>
+				<string>8017F8E3EA353CE69CB4783828E4A4B3</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>FLAnimatedImage</string>
+			<key>productName</key>
+			<string>FLAnimatedImage</string>
+			<key>productReference</key>
+			<string>1FFB64BD618B3CCBBF38D5C242A1577E</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
+		</dict>
 		<key>B2155AC66FA388F27F5672DAE08DCB90</key>
 		<dict>
 			<key>children</key>
@@ -2924,19 +2887,6 @@
 			<string>Support Files</string>
 			<key>path</key>
 			<string>../Target Support Files/youtube-ios-player-helper</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B21BBD216E2157837142825FAC8955C5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>FLAnimatedImage-Private.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -3173,20 +3123,6 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>BEF319F40FA2477E0122BFCCF5A45241</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CE59D97BD6EDD4B3A2629C99FCC775B7</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>BFCD45E8B0199DA45FA727C4C4935DD7</key>
-		<dict>
-			<key>fileRef</key>
-			<string>FA6F7CB0FFF1000F52921569D0551354</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>C152E70597FCC18648B12985450B1A35</key>
 		<dict>
 			<key>children</key>
@@ -3253,7 +3189,7 @@
 			<key>children</key>
 			<array>
 				<string>2A002882957B8BCD59F352C5AF6565B5</string>
-				<string>483B0E6208457589D9A798756F943674</string>
+				<string>1FFB64BD618B3CCBBF38D5C242A1577E</string>
 				<string>A463A2685FC6236490265DDF52718D5C</string>
 				<string>62384151EBD793096A1AAF3E92D94B8D</string>
 				<string>2E55A4429F063A37A9B01D65C08EDB37</string>
@@ -3280,21 +3216,6 @@
 			<key>sourceTree</key>
 			<string>DEVELOPER_DIR</string>
 		</dict>
-		<key>CE59D97BD6EDD4B3A2629C99FCC775B7</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>FLAnimatedImageView.m</string>
-			<key>path</key>
-			<string>FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImageView.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>CE98531C3FDA7BC0174717BAFC9A642C</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3305,17 +3226,6 @@
 			<string>ReachabilitySwift.modulemap</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CFACCA0BDCC2FFF4CAB4AA8210F9D76E</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>ReachabilitySwift</string>
-			<key>target</key>
-			<string>0C66C30381F86C3D642FC983CCADEBB6</string>
-			<key>targetProxy</key>
-			<string>051204BB2188AAAEDCEB9FBC5D8C84C1</string>
 		</dict>
 		<key>CFB1C0C6C893364C22468AD5FDC0B6DC</key>
 		<dict>
@@ -3342,19 +3252,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>D13C5C85F13886BC4654A3E20BD23E9C</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>MobileCoreServices.framework</string>
-			<key>path</key>
-			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/MobileCoreServices.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
-		</dict>
 		<key>D330BE5ED2C117C3AC793BC848889EC7</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3369,6 +3266,20 @@
 			<string>SDWebImage/UIImage+GIF.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D34FF17F0F995FEF5D1CA1F482E6FB40</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4B8EE2E6DD484ACE22571EEDF26984DF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>D41D8CD98F00B204E9800998ECF8427E</key>
 		<dict>
@@ -3405,7 +3316,7 @@
 			<string></string>
 			<key>targets</key>
 			<array>
-				<string>51692AB418FC6AB80172D93973CC6BB4</string>
+				<string>B1AE1BD35FFAE34E428CF550F64C3BB1</string>
 				<string>9E29C223AFC50DA0F995E57A26921B37</string>
 				<string>0C66C30381F86C3D642FC983CCADEBB6</string>
 				<string>9666688CB41B38A9914616144C9C7A3E</string>
@@ -3427,18 +3338,20 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>D47D6BEC2F5FA9291DA30A4005FB8321</key>
+		<key>D5E18EC62EDA1781AF142E17812B3B57</key>
 		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
+			<key>includeInIndex</key>
 			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>B9A04D3C9B208813656510FDA8ADAE02</string>
-			<key>remoteInfo</key>
-			<string>SwiftyJSON</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>FLAnimatedImage.h</string>
+			<key>path</key>
+			<string>FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImage.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>D6D8CB456E549CFA4BF4B84869A6884E</key>
 		<dict>
@@ -3467,6 +3380,34 @@
 			<string>PBXHeadersBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>D702A354FB0E173F60D95D2AA09789FA</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>9666688CB41B38A9914616144C9C7A3E</string>
+			<key>remoteInfo</key>
+			<string>SDWebImage</string>
+		</dict>
+		<key>D860735FAB3784B01D895B40B6B7FD8C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>FLAnimatedImageView.m</string>
+			<key>path</key>
+			<string>FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImageView.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>DA5A7C5CBF621224316C2F9EC7108BDA</key>
 		<dict>
@@ -3647,6 +3588,19 @@
 				</array>
 			</dict>
 		</dict>
+		<key>DE84B3BA9F8D1BC38ADDCD1C652CFB7B</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>QuartzCore.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/QuartzCore.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
 		<key>DEFF865B36632B0869C126B057703031</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3769,18 +3723,25 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>EA86F27A4762261E9AF56794BD0A4013</key>
+		<key>E9C88F3622D706D665567FBF9189589B</key>
 		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>fileRef</key>
+			<string>FE04DD2DA73A22A23C4B9F86D9F3783E</string>
 			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>EA22DDE2BE7993F2B4FBCD623D35419A</key>
+		<dict>
+			<key>includeInIndex</key>
 			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>8A1599E2467E3C0FE576A8C4624C54A6</string>
-			<key>remoteInfo</key>
-			<string>youtube-ios-player-helper-Assets</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>FLAnimatedImage-Private.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>EB4CB50B42FA0112BD3CB968CB68AC93</key>
 		<dict>
@@ -3865,6 +3826,17 @@
 			<string>FA6F7CB0FFF1000F52921569D0551354</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>EC07C2F69F5B4CB69FE4B94484ECFB42</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>ReachabilitySwift</string>
+			<key>target</key>
+			<string>0C66C30381F86C3D642FC983CCADEBB6</string>
+			<key>targetProxy</key>
+			<string>AADFEF1DFB5106A5CB9E3919241387C5</string>
 		</dict>
 		<key>EC945F5BF9040A6635A6CBAC726A6096</key>
 		<dict>
@@ -3981,6 +3953,13 @@
 				</array>
 			</dict>
 		</dict>
+		<key>F89F2293B2579788D55D54FC5BBBB2C9</key>
+		<dict>
+			<key>fileRef</key>
+			<string>DE84B3BA9F8D1BC38ADDCD1C652CFB7B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>FA6F7CB0FFF1000F52921569D0551354</key>
 		<dict>
 			<key>isa</key>
@@ -4062,12 +4041,33 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>FD62559C16F84B003255AB957401D365</key>
+		<key>FCE7BAA87FD5E81D28E2448FA99F1EB3</key>
 		<dict>
-			<key>fileRef</key>
-			<string>025301D8C617C7611871719E689F3548</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>FLAnimatedImageView.h</string>
+			<key>path</key>
+			<string>FLAnimatedImageDemo/FLAnimatedImage/FLAnimatedImageView.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FE04DD2DA73A22A23C4B9F86D9F3783E</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>MobileCoreServices.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/MobileCoreServices.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
 		</dict>
 	</dict>
 	<key>rootObject</key>

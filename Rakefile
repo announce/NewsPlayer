@@ -1,7 +1,11 @@
-task default: 'app:setup'
+task default: 'app:run_test'
 namespace :app do
+
   desc 'Setup Project'
   task :setup => [:init, :credentials]
+
+  desc 'Setup and build test'
+  task run_test: [:setup, :build_test]
 
   desc 'Setup Gems and Pods'
   task :init do
@@ -18,6 +22,17 @@ namespace :app do
     error "#{tpl_file} does not exist." unless File.exist?(tpl_file)
     error "Specify GOOGLE_API_KEY, like `rake app:credentials GOOGLE_API_KEY=\"AIzaSyB_OrxR6ZYxAr\"`" unless google_api_key
     File.write target_file, File.read(tpl_file).gsub("__YOUR_AUTH_KEY__", google_api_key)
+  end
+
+  desc 'Build test'
+  task :build_test do
+    error "No xcodebuild" unless system('which xcodebuild')
+    sh %q(
+      xcodebuild test \
+        -workspace NewsPlayer.xcworkspace \
+        -scheme NewsPlayer \
+        -sdk iphonesimulator
+    )
   end
 
   def error(message = "Something went wrong.")
