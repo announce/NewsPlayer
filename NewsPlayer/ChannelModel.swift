@@ -27,6 +27,7 @@ class ChannelModel : NSObject {
         static let Max = 2000
     }
     let activityUrl = "https://www.googleapis.com/youtube/v3/activities"
+    let session: NSURLSession
     
     dynamic var queue: [String] = []
     var videoList: [String: Video] = [:]
@@ -39,6 +40,11 @@ class ChannelModel : NSObject {
     var delegate: ChannelResponseDelegate? = nil
     var finishedCount: Int = 0
     
+    init(session: NSURLSession = NSURLSession.sharedSession()) {
+        self.session = session
+        super.init()
+    }
+
     func enqueue() {
         let channels: [String] = channelList()
         for channelID in channels {
@@ -56,7 +62,7 @@ class ChannelModel : NSObject {
     
     func nextVideo() -> Video? {
         if (queue.count > 0) {
-            currentIndex++
+            currentIndex += 1
             return currentVideo()
         } else {
             return nil
@@ -89,16 +95,19 @@ class ChannelModel : NSObject {
     
     func removeVideoByIndex(index: Int) -> Video? {
         // Remove from queue first to avoid accessing nil videoList value by observed queue's index
+        if (queue.count <= index) {
+            return nil
+        }
         let videoID: String = queue.removeAtIndex(index)
         if let removedVideo: Video? = videoList.removeValueForKey(videoID) {
             // Adjust playing video
             if index <= currentIndex {
-                currentIndex--
+                currentIndex -= 1
             }
-            --currentNumberOfRows
+            currentNumberOfRows -= 1
             return removedVideo
         } else {
-            print("\(__FUNCTION__) -> nil")
+            print("\(#function) -> nil")
             return nil
         }
     }
@@ -107,16 +116,16 @@ class ChannelModel : NSObject {
         if index <= queue.count {
             // Adjust playing video
             if index <= currentIndex {
-                currentIndex++
+                currentIndex += 1
             }
-            ++currentNumberOfRows
+            currentNumberOfRows += 1
             // Insert video to videoList first
             // to avoid accessing nil videoList value by observed queue's index
             videoList[newVideo.id] = newVideo
             queue.insert(newVideo.id, atIndex: index)
             return newVideo
         } else {
-            print("\(__FUNCTION__) -> nil")
+            print("\(#function) -> nil")
             return nil
         }
     }
@@ -146,7 +155,7 @@ class ChannelModel : NSObject {
     
     func insertVideo(newVideo: Video, atIndex: Int) {
         if atIndex >= queue.count {
-            print("\(__FUNCTION__) Invalid index \(queue.count) is smaller than \(atIndex)")
+            print("\(#function) Invalid index \(queue.count) is smaller than \(atIndex)")
             return
         }
         if (videoList[newVideo.id] == newVideo) {
@@ -157,7 +166,7 @@ class ChannelModel : NSObject {
             queue.insert(newVideo.id, atIndex: atIndex)
             videoList[newVideo.id] = newVideo
         } else {
-            print("\(__FUNCTION__) Ignored newVideo[\(newVideo.id)] while table manupulating")
+            print("\(#function) Ignored newVideo[\(newVideo.id)] while table manupulating")
         }
     }
     
@@ -192,40 +201,37 @@ class ChannelModel : NSObject {
             return
         }
         
-        NSURLConnection.sendAsynchronousRequest(
+        session.dataTaskWithURL(
             createActivityRequest(channelID, pageToken: pageToken),
-            queue: NSOperationQueue.mainQueue(),
-            completionHandler: appendVideos)
+            completionHandler: appendVideos).resume()
     }
     
     func refreshActivities(channelID: String, pageToken: String = "") {
-        NSURLConnection.sendAsynchronousRequest(
+        session.dataTaskWithURL(
             createActivityRequest(channelID, pageToken: pageToken),
-            queue: NSOperationQueue.mainQueue(),
-            completionHandler: insertVideos)
+            completionHandler: insertVideos).resume()
     }
     
-    func createActivityRequest(channelID: String, pageToken: String) -> NSURLRequest {
+    func createActivityRequest(channelID: String, pageToken: String) -> NSURL {
         let apiKey: String = Credential(key: Credential.Provider.Google).apiKey
         let part = "snippet,contentDetails"
-        return NSURLRequest(URL: NSURL(
-            string: "\(activityUrl)?part=\(part)&channelId=\(channelID)&pageToken=\(pageToken)&key=\(apiKey)")!)
+        return NSURL(string: "\(activityUrl)?part=\(part)&channelId=\(channelID)&pageToken=\(pageToken)&key=\(apiKey)")!
     }
     
     func finish() {
-        --finishedCount
+        finishedCount -= 1
         if finishedCount <= 0 {
             delegate?.endRefreshing()
         }
     }
     
-    func insertVideos(_: NSURLResponse?, data: NSData?, error: NSError?) {
+    func insertVideos(data: NSData?, _: NSURLResponse?, error: NSError?) {
         if (error != nil) {
-            print("\(__FUNCTION__) NSError in response: \(error)")
+            print("\(#function) NSError in response: \(error)")
             return
         }
         if (nil == data) {
-            print("\(__FUNCTION__) NSData is nil")
+            print("\(#function) NSData is nil")
             return
         }
         
@@ -236,7 +242,7 @@ class ChannelModel : NSObject {
             return
         }
         
-        if isLatast(json) {
+        if isLatest(json) {
             finish()
             return
         }
@@ -251,13 +257,13 @@ class ChannelModel : NSObject {
         finish()
     }
     
-    func appendVideos(_: NSURLResponse?, data: NSData?, error: NSError?) {
+    func appendVideos(data: NSData?, _: NSURLResponse?, error: NSError?) {
         if (error != nil) {
-            print("\(__FUNCTION__) NSError in response: \(error)")
+            print("\(#function) NSError in response: \(error)")
             return
         }
         if (nil == data) {
-            print("\(__FUNCTION__) NSData is nil")
+            print("\(#function) NSData is nil")
             return
         }
         
@@ -266,7 +272,7 @@ class ChannelModel : NSObject {
             print("Empty data. Check Credentials.plist's `Google API Key` is valid.")
             return
         }
-        if isLatast(json) {
+        if isLatest(json) {
             // TODO Check all channels and notify to user
             return
         }
@@ -282,7 +288,7 @@ class ChannelModel : NSObject {
         fetchNextPage(json)
     }
     
-    private func isLatast(json: JSON) -> Bool {
+    private func isLatest(json: JSON) -> Bool {
         guard let channelID = json["items", 0, "snippet", "channelId"].string,
             let etag = json["etag"].string else {
                 return false

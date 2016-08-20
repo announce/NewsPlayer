@@ -2,3 +2,14 @@ os: osx
 osx_image: xcode7.3
 env:
   - GOOGLE_API_KEY="AIzaSyB_OrxR6ZYxAr"
+language: objective-c
+xcode_workspace: NewsPlayer.xcworkspace
+xcode_scheme: NewsPlayer
+xcode_sdk: iphonesimulator
+before_install: bundle install
+script:
+  - set -o pipefail
+  - rake | xcpretty
+cache:
+  - bundler
+  - cocoapods

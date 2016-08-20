@@ -127,7 +127,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func initRefreshControl() {
-        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(refresh), forControlEvents: UIControlEvents.ValueChanged)
         videoTable?.addSubview(refreshControl)
     }
     
@@ -168,11 +168,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func reachabilityChanged(note: NSNotification) {
         guard let reachability = note.object as? Reachability else {
-            print(__FUNCTION__)
+            print(#function)
             return
         }
         if reachability.isReachable() {
-            print("\(__FUNCTION__)[\(videoPlayer.playerState())]")
+            print("\(#function)[\(videoPlayer.playerState())]")
             if ChannelModel.sharedInstance.queue.count <= 0 {
                 ChannelModel.sharedInstance.enqueue()
             }
@@ -225,7 +225,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
             cell.addPlayingIndicator()
         } else {
-            print("\(__FUNCTION__) No cell index[\(targetIndex)]")
+            print("\(#function) No cell index[\(targetIndex)]")
         }
     }
     
@@ -237,7 +237,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
             cell.removeAllIndicator()
         } else {
-            print("\(__FUNCTION__) No cell index[\(targetIndex)]")
+            print("\(#function) No cell index[\(targetIndex)]")
         }
     }
     
@@ -253,7 +253,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         label.font = UIFont.systemFontOfSize(10)
         label.text = text
         label.sizeToFit()
-        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "titleTapped:"))
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(titleTapped)))
         label.userInteractionEnabled = true
         return label
     }
@@ -313,7 +313,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         let blinkPath = NSIndexPath.init(forRow: ChannelModel.sharedInstance.currentIndex + 1, inSection: 0)
         guard let cell = videoTable.cellForRowAtIndexPath(blinkPath) as? VideoTableViewCell else {
-            print("\(__FUNCTION__) No Cell index[\(blinkPath.row)]")
+            print("\(#function) No Cell index[\(blinkPath.row)]")
             return
         }
         blinkCell(cell, originalColor: cell.backgroundColor, targetColor: UIColor.lightGrayColor())
@@ -330,7 +330,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func moveUpToNext(originalPath: NSIndexPath) {
         var targetIndex = ChannelModel.sharedInstance.currentIndex
         if targetIndex < originalPath.row {
-            ++targetIndex
+            targetIndex += 1
         }
         ChannelModel.sharedInstance.moveVideoByIndex(
             originalPath.row, destinationIndex: targetIndex)
