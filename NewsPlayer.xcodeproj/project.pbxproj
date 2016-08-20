@@ -30,6 +30,10 @@
 		C5DE79531BA1D59A00E594EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5DE79521BA1D59A00E594EE /* Images.xcassets */; };
 		C5DE79561BA1D59A00E594EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DE79541BA1D59A00E594EE /* LaunchScreen.xib */; };
 		C5DE79621BA1D59A00E594EE /* NewsPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DE79611BA1D59A00E594EE /* NewsPlayerTests.swift */; };
+		C5F0DBE01D68579C00185017 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C42CC21BA870BB003D07A3 /* ChannelModel.swift */; };
+		C5F0DBE21D68586900185017 /* ChannelModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F0DBE11D68586900185017 /* ChannelModelTest.swift */; };
+		C5F0DBE31D68598400185017 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F51D11BB289EF001DA5AB /* Video.swift */; };
+		C5F0DBE41D68598800185017 /* Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C42CC41BA87B27003D07A3 /* Credential.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +79,7 @@
 		C5DE795B1BA1D59A00E594EE /* NewsPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5DE79601BA1D59A00E594EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5DE79611BA1D59A00E594EE /* NewsPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPlayerTests.swift; sourceTree = "<group>"; };
+		C5F0DBE11D68586900185017 /* ChannelModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelModelTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				C5DE79611BA1D59A00E594EE /* NewsPlayerTests.swift */,
+				C5F0DBE11D68586900185017 /* ChannelModelTest.swift */,
 				C5DE795F1BA1D59A00E594EE /* Supporting Files */,
 			);
 			path = NewsPlayerTests;
@@ -410,6 +416,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5DE79621BA1D59A00E594EE /* NewsPlayerTests.swift in Sources */,
+				C5F0DBE31D68598400185017 /* Video.swift in Sources */,
+				C5F0DBE41D68598800185017 /* Credential.swift in Sources */,
+				C5F0DBE21D68586900185017 /* ChannelModelTest.swift in Sources */,
+				C5F0DBE01D68579C00185017 /* ChannelModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
