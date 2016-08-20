@@ -1,0 +1,236 @@
+{
+    "kind": "youtube#activityListResponse",
+    "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/-S8wdCQmuv6nIghkXEkn2RABVq8\"",
+    "nextPageToken": "CAUQAA",
+    "pageInfo": {
+        "totalResults": 20,
+        "resultsPerPage": 5
+    },
+    "items": [
+              {
+              "kind": "youtube#activity",
+              "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/QqpU8x7uScvyf_TWB7PclpUgx7s\"",
+              "id": "VTE0NzE3MDY0NzMxMzk3MDU3MDcwMTQ5OTI=",
+              "snippet": {
+              "publishedAt": "2016-08-20T15:21:13.000Z",
+              "channelId": "UC52X5wxOL_s5yw0dQk7NtgA",
+              "title": "Aussie Athletes Held, Fined over Credential Flap",
+              "description": "Nine Australian athletes were detained by Rio de Janeiro police in a flap over credentials at an Olympic basketball game. The athletes were released after apologizing to authorities and agreeing to pay a fine, a team official said Saturday. (Aug. 20)\n\nSubscribe for more Breaking News: http://smarturl.it/AssociatedPress\r\nGet updates and more Breaking News here: http://smarturl.it/APBreakingNews\r\n\r\nThe Associated Press is the essential global news network, delivering fast, unbiased news from every corner of the world to all media platforms and formats.\r\nAP’s commitment to independent, comprehensive journalism has deep roots. Founded in 1846, AP has covered all the major news events of the past 165 years, providing high-quality, informed reporting of everything from wars and elections to championship games and royal weddings. AP is the largest and most trusted source of independent news and information.\r\nToday, AP employs the latest technology to collect and distribute content - we have daily uploads covering the latest and breaking news in the world of politics, sport and entertainment. Join us in a conversation about world events, the newsgathering process or whatever aspect of the news universe you find interesting or important. Subscribe: http://smarturl.it/AssociatedPress\r\n\r\nhttp://www.ap.org/\r\nhttps://plus.google.com/+AP/\r\nhttps://www.facebook.com/APNews\r\nhttps://twitter.com/AP",
+              "thumbnails": {
+              "default": {
+              "url": "https://i.ytimg.com/vi/0twL_KP-aro/default.jpg",
+              "width": 120,
+              "height": 90
+              },
+              "medium": {
+              "url": "https://i.ytimg.com/vi/0twL_KP-aro/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+              },
+              "high": {
+              "url": "https://i.ytimg.com/vi/0twL_KP-aro/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+              },
+              "standard": {
+              "url": "https://i.ytimg.com/vi/0twL_KP-aro/sddefault.jpg",
+              "width": 640,
+              "height": 480
+              },
+              "maxres": {
+              "url": "https://i.ytimg.com/vi/0twL_KP-aro/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+              }
+              },
+              "channelTitle": "Associated Press",
+              "type": "upload"
+              },
+              "contentDetails": {
+              "upload": {
+              "videoId": "0twL_KP-aro"
+              }
+              }
+              },
+              {
+              "kind": "youtube#activity",
+              "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/ACfOUsFZ5qXQxskjtGg295Q-iEU\"",
+              "id": "VTE0NzE3MDU0MTUxMzk3MDU3MDcwMTQ3MzY=",
+              "snippet": {
+              "publishedAt": "2016-08-20T15:03:35.000Z",
+              "channelId": "UC52X5wxOL_s5yw0dQk7NtgA",
+              "title": "Glover's 'Atlanta' is a slice of American life",
+              "description": "Donald Glover talks about letting the \"Internet\" name is latest show 'Atlanta,' and says that he thinks the city the show is named after is the most representative of America. (Aug. 20)\n\nSubscribe for more Breaking News: http://smarturl.it/AssociatedPress\r\nGet updates and more Breaking News here: http://smarturl.it/APBreakingNews\r\n\r\nThe Associated Press is the essential global news network, delivering fast, unbiased news from every corner of the world to all media platforms and formats.\r\nAP’s commitment to independent, comprehensive journalism has deep roots. Founded in 1846, AP has covered all the major news events of the past 165 years, providing high-quality, informed reporting of everything from wars and elections to championship games and royal weddings. AP is the largest and most trusted source of independent news and information.\r\nToday, AP employs the latest technology to collect and distribute content - we have daily uploads covering the latest and breaking news in the world of politics, sport and entertainment. Join us in a conversation about world events, the newsgathering process or whatever aspect of the news universe you find interesting or important. Subscribe: http://smarturl.it/AssociatedPress\r\n\r\nhttp://www.ap.org/\r\nhttps://plus.google.com/+AP/\r\nhttps://www.facebook.com/APNews\r\nhttps://twitter.com/AP",
+              "thumbnails": {
+              "default": {
+              "url": "https://i.ytimg.com/vi/PzIjgAZcQ7M/default.jpg",
+              "width": 120,
+              "height": 90
+              },
+              "medium": {
+              "url": "https://i.ytimg.com/vi/PzIjgAZcQ7M/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+              },
+              "high": {
+              "url": "https://i.ytimg.com/vi/PzIjgAZcQ7M/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+              },
+              "standard": {
+              "url": "https://i.ytimg.com/vi/PzIjgAZcQ7M/sddefault.jpg",
+              "width": 640,
+              "height": 480
+              },
+              "maxres": {
+              "url": "https://i.ytimg.com/vi/PzIjgAZcQ7M/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+              }
+              },
+              "channelTitle": "Associated Press",
+              "type": "upload"
+              },
+              "contentDetails": {
+              "upload": {
+              "videoId": "PzIjgAZcQ7M"
+              }
+              }
+              },
+              {
+              "kind": "youtube#activity",
+              "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/4mNVDNRXUTyw07pX_EVV5s1Yt4A\"",
+              "id": "VTE0NzE3MDM3NTMxMzk3MDU2ODM3NTE0NDA=",
+              "snippet": {
+              "publishedAt": "2016-08-20T14:35:53.000Z",
+              "channelId": "UC52X5wxOL_s5yw0dQk7NtgA",
+              "title": "Raw: Largest-Ever Artillery Drills in SKorea",
+              "description": "South Korea's army conducted its largest-ever artillery drills this week near the tense border with North Korea. (Aug. 20)\n\nSubscribe for more Breaking News: http://smarturl.it/AssociatedPress\r\nGet updates and more Breaking News here: http://smarturl.it/APBreakingNews\r\n\r\nThe Associated Press is the essential global news network, delivering fast, unbiased news from every corner of the world to all media platforms and formats.\r\nAP’s commitment to independent, comprehensive journalism has deep roots. Founded in 1846, AP has covered all the major news events of the past 165 years, providing high-quality, informed reporting of everything from wars and elections to championship games and royal weddings. AP is the largest and most trusted source of independent news and information.\r\nToday, AP employs the latest technology to collect and distribute content - we have daily uploads covering the latest and breaking news in the world of politics, sport and entertainment. Join us in a conversation about world events, the newsgathering process or whatever aspect of the news universe you find interesting or important. Subscribe: http://smarturl.it/AssociatedPress\r\n\r\nhttp://www.ap.org/\r\nhttps://plus.google.com/+AP/\r\nhttps://www.facebook.com/APNews\r\nhttps://twitter.com/AP",
+              "thumbnails": {
+              "default": {
+              "url": "https://i.ytimg.com/vi/eMcTfYb8P7U/default.jpg",
+              "width": 120,
+              "height": 90
+              },
+              "medium": {
+              "url": "https://i.ytimg.com/vi/eMcTfYb8P7U/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+              },
+              "high": {
+              "url": "https://i.ytimg.com/vi/eMcTfYb8P7U/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+              },
+              "standard": {
+              "url": "https://i.ytimg.com/vi/eMcTfYb8P7U/sddefault.jpg",
+              "width": 640,
+              "height": 480
+              },
+              "maxres": {
+              "url": "https://i.ytimg.com/vi/eMcTfYb8P7U/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+              }
+              },
+              "channelTitle": "Associated Press",
+              "type": "upload"
+              },
+              "contentDetails": {
+              "upload": {
+              "videoId": "eMcTfYb8P7U"
+              }
+              }
+              },
+              {
+              "kind": "youtube#activity",
+              "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/9fjvwwO0k70gYwEE-CPpuiVe2Yo\"",
+              "id": "VTE0NzE2NjExMTQxMzk3MDU2ODM3NTQxMjg=",
+              "snippet": {
+              "publishedAt": "2016-08-20T02:45:14.000Z",
+              "channelId": "UC52X5wxOL_s5yw0dQk7NtgA",
+              "title": "Today in History for August 20th",
+              "description": "Subscribe for more Breaking News: http://smarturl.it/AssociatedPress\n\nHighlights of this day in history: U.S. cruise missiles hit Afghanistan and Sudan after American embassies bombed in Africa; The Soviet Union invades Czechoslovakia; NASA's Voyager 2 launched; Singers Issac Hayes and Robert Plant born. (Aug. 20)\n\nHighlights of the day in history - a retrospective view on political events, historic battles, and life changing decisions. More: http://smarturl.it/TodayInHistory\r\n\r\nThe Associated Press is the essential global news network, delivering fast, unbiased news from every corner of the world to all media platforms and formats.\r\nAP’s commitment to independent, comprehensive journalism has deep roots. Founded in 1846, AP has covered all the major news events of the past 165 years, providing high-quality, informed reporting of everything from wars and elections to championship games and royal weddings. AP is the largest and most trusted source of independent news and information.\r\nToday, AP employs the latest technology to collect and distribute content - we have daily uploads covering the latest and breaking news in the world of politics, sport and entertainment. Join us in a conversation about world events, the newsgathering process or whatever aspect of the news universe you find interesting or important. Subscribe: http://smarturl.it/AssociatedPress\r\n\r\nhttp://www.ap.org/\r\nhttps://plus.google.com/+AP/\r\nhttps://www.facebook.com/APNews\r\nhttps://twitter.com/AP",
+              "thumbnails": {
+              "default": {
+              "url": "https://i.ytimg.com/vi/K3aytSbtarY/default.jpg",
+              "width": 120,
+              "height": 90
+              },
+              "medium": {
+              "url": "https://i.ytimg.com/vi/K3aytSbtarY/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+              },
+              "high": {
+              "url": "https://i.ytimg.com/vi/K3aytSbtarY/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+              },
+              "standard": {
+              "url": "https://i.ytimg.com/vi/K3aytSbtarY/sddefault.jpg",
+              "width": 640,
+              "height": 480
+              },
+              "maxres": {
+              "url": "https://i.ytimg.com/vi/K3aytSbtarY/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+              }
+              },
+              "channelTitle": "Associated Press",
+              "type": "upload"
+              },
+              "contentDetails": {
+              "upload": {
+              "videoId": "K3aytSbtarY"
+              }
+              }
+              },
+              {
+              "kind": "youtube#activity",
+              "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/405jePEUc63vOquuCA5LSjmUorg\"",
+              "id": "VTE0NzE2NjAwMDcxMzk3MDU2ODM3NTMxMDQ=",
+              "snippet": {
+              "publishedAt": "2016-08-20T02:26:47.000Z",
+              "channelId": "UC52X5wxOL_s5yw0dQk7NtgA",
+              "title": "N.M. Immigrant Teens Take US Citizenship Oath",
+              "description": "Around three dozen teens from Asia and Latin America have received citizenship certificates at a special ceremony in New Mexico. (Aug. 19)\n\nSubscribe for more Breaking News: http://smarturl.it/AssociatedPress\r\nGet updates and more Breaking News here: http://smarturl.it/APBreakingNews\r\n\r\nThe Associated Press is the essential global news network, delivering fast, unbiased news from every corner of the world to all media platforms and formats.\r\nAP’s commitment to independent, comprehensive journalism has deep roots. Founded in 1846, AP has covered all the major news events of the past 165 years, providing high-quality, informed reporting of everything from wars and elections to championship games and royal weddings. AP is the largest and most trusted source of independent news and information.\r\nToday, AP employs the latest technology to collect and distribute content - we have daily uploads covering the latest and breaking news in the world of politics, sport and entertainment. Join us in a conversation about world events, the newsgathering process or whatever aspect of the news universe you find interesting or important. Subscribe: http://smarturl.it/AssociatedPress\r\n\r\nhttp://www.ap.org/\r\nhttps://plus.google.com/+AP/\r\nhttps://www.facebook.com/APNews\r\nhttps://twitter.com/AP",
+              "thumbnails": {
+              "default": {
+              "url": "https://i.ytimg.com/vi/jQ0KNWaMN-s/default.jpg",
+              "width": 120,
+              "height": 90
+              },
+              "medium": {
+              "url": "https://i.ytimg.com/vi/jQ0KNWaMN-s/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+              },
+              "high": {
+              "url": "https://i.ytimg.com/vi/jQ0KNWaMN-s/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+              },
+              "standard": {
+              "url": "https://i.ytimg.com/vi/jQ0KNWaMN-s/sddefault.jpg",
+              "width": 640,
+              "height": 480
+              },
+              "maxres": {
+              "url": "https://i.ytimg.com/vi/jQ0KNWaMN-s/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+              }
+              },
+              "channelTitle": "Associated Press",
+              "type": "upload"
+              },
+              "contentDetails": {
+              "upload": {
+              "videoId": "jQ0KNWaMN-s"
+              }
+              }
+              }
+              ]
+}

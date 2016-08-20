@@ -95,6 +95,9 @@ class ChannelModel : NSObject {
     
     func removeVideoByIndex(index: Int) -> Video? {
         // Remove from queue first to avoid accessing nil videoList value by observed queue's index
+        if (queue.count <= index) {
+            return nil
+        }
         let videoID: String = queue.removeAtIndex(index)
         if let removedVideo: Video? = videoList.removeValueForKey(videoID) {
             // Adjust playing video
