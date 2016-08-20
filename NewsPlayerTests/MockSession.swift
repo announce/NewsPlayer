@@ -14,7 +14,6 @@ class MockSession: NSURLSession {
     typealias Response = (data: NSData?, urlResponse: NSURLResponse?, error: NSError?)
     
     var completionHandler: ((NSData!, NSURLResponse!, NSError!) -> Void)?
-    
     static var mockResponse: Response = (data: nil, urlResponse: nil, error: nil)
     
     static func createResponse(url: NSURL, data: NSData, statusCode: Int = 200) -> Response {
@@ -34,6 +33,7 @@ class MockSession: NSURLSession {
     class MockTask: NSURLSessionDataTask {
         typealias Response = (data: NSData?, urlResponse: NSURLResponse?, error: NSError?)
         var mockResponse: Response
+        private (set) var called: [String: Response] = [:]
         let completionHandler: ((NSData!, NSURLResponse!, NSError!) -> Void)?
         
         init(response: Response, completionHandler: ((NSData!, NSURLResponse!, NSError!) -> Void)?) {
@@ -41,6 +41,7 @@ class MockSession: NSURLSession {
             self.completionHandler = completionHandler
         }
         override func resume() {
+            called["\(#function)"] = mockResponse
             completionHandler!(mockResponse.data, mockResponse.urlResponse, mockResponse.error)
         }
     }
