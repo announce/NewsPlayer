@@ -85,7 +85,6 @@
 		C547E3811D6948A00079987D /* NSBundle+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+.swift"; sourceTree = "<group>"; };
 		C547E3841D695FBB0079987D /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		C547E3871D69605F0079987D /* NSLocale+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLocale+.swift"; sourceTree = "<group>"; };
-		C547E38D1D696B470079987D /* XCGLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = XCGLogger.framework; path = "/Users/ymkjp/Library/Developer/Xcode/DerivedData/NewsPlayer-brwmyxwiqmztsrbbblwsjrqkfwcu/Build/Products/Debug-iphonesimulator/XCGLogger.framework"; sourceTree = "<absolute>"; };
 		C570DC5F1BB584BC0027232E /* eq_16_32x32.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = eq_16_32x32.gif; sourceTree = "<group>"; };
 		C570DC671BB5975C0027232E /* eq_16.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = eq_16.gif; sourceTree = "<group>"; };
 		C570DC681BB5975C0027232E /* eq_16x16.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = eq_16x16.gif; sourceTree = "<group>"; };
@@ -236,7 +235,6 @@
 		C5DE793A1BA1D59A00E594EE = {
 			isa = PBXGroup;
 			children = (
-				C547E38D1D696B470079987D /* XCGLogger.framework */,
 				C5DE79451BA1D59A00E594EE /* NewsPlayer */,
 				C5DE795E1BA1D59A00E594EE /* NewsPlayerTests */,
 				C570DC5E1BB583A40027232E /* Resources */,
