@@ -15,6 +15,16 @@
 		C541B2491D68CA6C00612C75 /* YoutubeActivities02.json in Resources */ = {isa = PBXBuildFile; fileRef = C541B2481D68CA6C00612C75 /* YoutubeActivities02.json */; };
 		C547E3731D69404B0079987D /* PlaylistRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547E3721D69404B0079987D /* PlaylistRefresher.swift */; };
 		C547E3741D6941080079987D /* PlaylistRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547E3721D69404B0079987D /* PlaylistRefresher.swift */; };
+		C547E3761D6941F70079987D /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547E3751D6941F70079987D /* NSObject+.swift */; };
+		C547E3771D6941F90079987D /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547E3751D6941F70079987D /* NSObject+.swift */; };
+		C547E3791D6942740079987D /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547E3781D6942740079987D /* UITableView+.swift */; };
+		C547E37A1D6942740079987D /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547E3781D6942740079987D /* UITableView+.swift */; };
+		C547E37C1D69451B0079987D /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547E37B1D69451B0079987D /* Array+.swift */; };
+		C547E37D1D69451B0079987D /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547E37B1D69451B0079987D /* Array+.swift */; };
+		C547E37F1D6947AF0079987D /* NSError+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547E37E1D6947AF0079987D /* NSError+.swift */; };
+		C547E3801D6947AF0079987D /* NSError+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547E37E1D6947AF0079987D /* NSError+.swift */; };
+		C547E3821D6948A00079987D /* NSBundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547E3811D6948A00079987D /* NSBundle+.swift */; };
+		C547E3831D6948A00079987D /* NSBundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547E3811D6948A00079987D /* NSBundle+.swift */; };
 		C570DC601BB584BC0027232E /* eq_16_32x32.gif in Resources */ = {isa = PBXBuildFile; fileRef = C570DC5F1BB584BC0027232E /* eq_16_32x32.gif */; };
 		C570DC691BB5975C0027232E /* eq_16.gif in Resources */ = {isa = PBXBuildFile; fileRef = C570DC671BB5975C0027232E /* eq_16.gif */; };
 		C570DC6A1BB5975C0027232E /* eq_16x16.gif in Resources */ = {isa = PBXBuildFile; fileRef = C570DC681BB5975C0027232E /* eq_16x16.gif */; };
@@ -62,6 +72,11 @@
 		C541B2461D68A41A00612C75 /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		C541B2481D68CA6C00612C75 /* YoutubeActivities02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = YoutubeActivities02.json; sourceTree = "<group>"; };
 		C547E3721D69404B0079987D /* PlaylistRefresher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistRefresher.swift; sourceTree = "<group>"; };
+		C547E3751D6941F70079987D /* NSObject+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
+		C547E3781D6942740079987D /* UITableView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
+		C547E37B1D69451B0079987D /* Array+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
+		C547E37E1D6947AF0079987D /* NSError+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+.swift"; sourceTree = "<group>"; };
+		C547E3811D6948A00079987D /* NSBundle+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+.swift"; sourceTree = "<group>"; };
 		C570DC5F1BB584BC0027232E /* eq_16_32x32.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = eq_16_32x32.gif; sourceTree = "<group>"; };
 		C570DC671BB5975C0027232E /* eq_16.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = eq_16.gif; sourceTree = "<group>"; };
 		C570DC681BB5975C0027232E /* eq_16x16.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = eq_16x16.gif; sourceTree = "<group>"; };
@@ -184,6 +199,11 @@
 			isa = PBXGroup;
 			children = (
 				C547E3721D69404B0079987D /* PlaylistRefresher.swift */,
+				C547E3751D6941F70079987D /* NSObject+.swift */,
+				C547E37E1D6947AF0079987D /* NSError+.swift */,
+				C547E3811D6948A00079987D /* NSBundle+.swift */,
+				C547E3781D6942740079987D /* UITableView+.swift */,
+				C547E37B1D69451B0079987D /* Array+.swift */,
 			);
 			name = Trait;
 			sourceTree = "<group>";
@@ -432,17 +452,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C547E3821D6948A00079987D /* NSBundle+.swift in Sources */,
 				C5DE794E1BA1D59A00E594EE /* ViewController.swift in Sources */,
+				C547E3761D6941F70079987D /* NSObject+.swift in Sources */,
 				C5DE79491BA1D59A00E594EE /* AppDelegate.swift in Sources */,
 				C50868001BADD79200EF0F01 /* LPRTableView.swift in Sources */,
 				C508680C1BAFE2BA00EF0F01 /* VideoDetailViewController.swift in Sources */,
 				C5AFC3991BAD60D3001CCBD4 /* VideoTableViewCell.swift in Sources */,
 				C5C42CC51BA87B27003D07A3 /* Credential.swift in Sources */,
+				C547E3791D6942740079987D /* UITableView+.swift in Sources */,
 				C5DE794C1BA1D59A00E594EE /* NewsPlayer.xcdatamodeld in Sources */,
 				C5C42CC31BA870BB003D07A3 /* Playlist.swift in Sources */,
 				C5C52B281BB0F48C002ED21C /* LoadingView.swift in Sources */,
+				C547E37F1D6947AF0079987D /* NSError+.swift in Sources */,
 				C547E3731D69404B0079987D /* PlaylistRefresher.swift in Sources */,
 				C59F51D21BB289EF001DA5AB /* Video.swift in Sources */,
+				C547E37C1D69451B0079987D /* Array+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,13 +476,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5DE79621BA1D59A00E594EE /* NewsPlayerTests.swift in Sources */,
+				C547E37D1D69451B0079987D /* Array+.swift in Sources */,
 				C5F0DBE31D68598400185017 /* Video.swift in Sources */,
 				C547E3741D6941080079987D /* PlaylistRefresher.swift in Sources */,
+				C547E37A1D6942740079987D /* UITableView+.swift in Sources */,
 				C5F0DBE41D68598800185017 /* Credential.swift in Sources */,
 				C5F0DBE21D68586900185017 /* PlaylistTests.swift in Sources */,
+				C547E3831D6948A00079987D /* NSBundle+.swift in Sources */,
 				C541B2471D68A41A00612C75 /* Fixtures.swift in Sources */,
 				C5F0DBE61D688D8000185017 /* MockSession.swift in Sources */,
+				C547E3771D6941F90079987D /* NSObject+.swift in Sources */,
 				C5F0DBE01D68579C00185017 /* Playlist.swift in Sources */,
+				C547E3801D6947AF0079987D /* NSError+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
