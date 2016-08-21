@@ -25,7 +25,7 @@ class VideoDetailViewController: UIViewController {
     @IBOutlet weak var detail: UITextView!
     @IBAction func shareVideo(sender: UIBarButtonItem) {
         guard let index = originalIndex,
-            let video: Video = ChannelModel.sharedInstance.getVideoByIndex(index),
+            let video: Video = Playlist.sharedInstance.getVideoByIndex(index),
             let videoUrl = NSURL(string: "https://youtu.be/\(video.id)") else {
                 return
         }

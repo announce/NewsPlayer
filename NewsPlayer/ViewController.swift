@@ -70,8 +70,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         view.addSubview(loadingView)
         videoPlayer.delegate = self
         videoPlayer.loadWithVideoId("", playerVars: playerParams)
-        ChannelModel.sharedInstance.enqueue()
-        ChannelModel.sharedInstance.delegate = self
+        Playlist.sharedInstance.enqueue()
+        Playlist.sharedInstance.delegate = self
         navigationController?.setNavigationBarHidden(true, animated: false)
         initVideoTable()
         initRefreshControl()
@@ -89,13 +89,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         videoTable.registerNib(
             UINib(nibName: cellName, bundle:nil), forCellReuseIdentifier:cellName)
         super.viewWillAppear(animated)
-        ChannelModel.sharedInstance.addObserver(
+        Playlist.sharedInstance.addObserver(
             self, forKeyPath: channelKey, options: .New, context: nil)
     }
     
     override func viewDidDisappear(animated: Bool){
         super.viewDidDisappear(animated)
-        ChannelModel.sharedInstance.removeObserver(self, forKeyPath: channelKey)
+        Playlist.sharedInstance.removeObserver(self, forKeyPath: channelKey)
         reachability?.stopNotifier()
     }
     
@@ -133,7 +133,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func refresh(sender: AnyObject)
     {
-        ChannelModel.sharedInstance.refrashChannels()
+        Playlist.sharedInstance.refrashChannels()
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -151,7 +151,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             refreshControl.endRefreshing()
             reloadTable()
             let path = NSIndexPath.init(
-                forRow: ChannelModel.sharedInstance.currentIndex, inSection: 0)
+                forRow: Playlist.sharedInstance.currentIndex, inSection: 0)
             videoTable?.scrollToRowAtIndexPath(path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
             // TODO Blink
         }
@@ -173,8 +173,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         if reachability.isReachable() {
             print("\(#function)[\(videoPlayer.playerState())]")
-            if ChannelModel.sharedInstance.queue.count <= 0 {
-                ChannelModel.sharedInstance.enqueue()
+            if Playlist.sharedInstance.queue.count <= 0 {
+                Playlist.sharedInstance.enqueue()
             }
             if videoPlayer.playerState() != YTPlayerState.Playing {
                 playerViewDidBecomeReady(videoPlayer)
@@ -197,24 +197,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: -
     private func playCurrentVideo(startAt: Float = 0) {
-        if let video: Video = ChannelModel.sharedInstance.currentVideo() {
+        if let video: Video = Playlist.sharedInstance.currentVideo() {
             videoPlayer.loadVideoById(
                 video.id, startSeconds: startAt, suggestedQuality: YTPlaybackQuality.Default)
             navigationItem.titleView = createTitleLabel(video.title)
-            showPlayingIndicator(ChannelModel.sharedInstance.currentIndex)
-            removeIndicator(ChannelModel.sharedInstance.currentIndex - 1)
+            showPlayingIndicator(Playlist.sharedInstance.currentIndex)
+            removeIndicator(Playlist.sharedInstance.currentIndex - 1)
         } else {
             print("No VideoID yet")
         }
     }
     
     private func playNextVideo() {
-        if let video: Video = ChannelModel.sharedInstance.nextVideo() {
+        if let video: Video = Playlist.sharedInstance.nextVideo() {
             videoPlayer.loadVideoById(
                 video.id, startSeconds: 0, suggestedQuality: YTPlaybackQuality.Default)
             navigationItem.titleView = createTitleLabel(video.title)
-            showPlayingIndicator(ChannelModel.sharedInstance.currentIndex)
-            removeIndicator(ChannelModel.sharedInstance.currentIndex - 1)
+            showPlayingIndicator(Playlist.sharedInstance.currentIndex)
+            removeIndicator(Playlist.sharedInstance.currentIndex - 1)
         } else {
             print("No VideoID yet")
         }
@@ -260,18 +260,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func titleTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         let path = NSIndexPath.init(
-            forRow: ChannelModel.sharedInstance.currentIndex, inSection: 0)
+            forRow: Playlist.sharedInstance.currentIndex, inSection: 0)
         videoTable?.scrollToRowAtIndexPath(path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
     }
     
     private func reloadTable() {
-        ChannelModel.sharedInstance.updateCurrentNumberOfRows()
+        Playlist.sharedInstance.updateCurrentNumberOfRows()
         videoTable.reloadData()
     }
     
     private func deleteRow(indexPath: NSIndexPath, tableView: UITableView) {
-        ChannelModel.sharedInstance.doDataSourceSafely({() -> Void in
-            if nil != ChannelModel.sharedInstance.removeVideoByIndex(indexPath.row) {
+        Playlist.sharedInstance.doDataSourceSafely({() -> Void in
+            if nil != Playlist.sharedInstance.removeVideoByIndex(indexPath.row) {
                 tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)],
                     withRowAnimation: UITableViewRowAnimation.Fade)
             } else {
@@ -286,7 +286,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let detail: VideoDetailViewController = nav.topViewController as! VideoDetailViewController
             detail.delegate = self
             detail.originalIndex = selectedIndex!
-            detail.video = ChannelModel.sharedInstance.getVideoByIndex(selectedIndex!)
+            detail.video = Playlist.sharedInstance.getVideoByIndex(selectedIndex!)
         }
     }
     
@@ -306,12 +306,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func cueToNext(path: NSIndexPath) {
-        let currentIndex = ChannelModel.sharedInstance.currentIndex
+        let currentIndex = Playlist.sharedInstance.currentIndex
         if path.row != currentIndex {
             moveUpToNext(path)
             reloadTable()
         }
-        let blinkPath = NSIndexPath.init(forRow: ChannelModel.sharedInstance.currentIndex + 1, inSection: 0)
+        let blinkPath = NSIndexPath.init(forRow: Playlist.sharedInstance.currentIndex + 1, inSection: 0)
         guard let cell = videoTable.cellForRowAtIndexPath(blinkPath) as? VideoTableViewCell else {
             print("\(#function) No Cell index[\(blinkPath.row)]")
             return
@@ -320,7 +320,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func playNow(path: NSIndexPath) {
-        let isPlayingCell = path.row == ChannelModel.sharedInstance.currentIndex
+        let isPlayingCell = path.row == Playlist.sharedInstance.currentIndex
         cueToNext(path)
         if !isPlayingCell {
             playNextVideo()
@@ -328,11 +328,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func moveUpToNext(originalPath: NSIndexPath) {
-        var targetIndex = ChannelModel.sharedInstance.currentIndex
+        var targetIndex = Playlist.sharedInstance.currentIndex
         if targetIndex < originalPath.row {
             targetIndex += 1
         }
-        ChannelModel.sharedInstance.moveVideoByIndex(
+        Playlist.sharedInstance.moveVideoByIndex(
             originalPath.row, destinationIndex: targetIndex)
     }
     
@@ -360,20 +360,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK LPRTableViewDelegate
     // Called within an animation block when the dragging view is about to show.
     func tableView(tableView: UITableView, showDraggingView view: UIView, atIndexPath indexPath: NSIndexPath) {
-        ChannelModel.sharedInstance.updatingAvailable = false
+        Playlist.sharedInstance.updatingAvailable = false
         showPlayingIndicator(indexPath.row)
     }
     
     // Called within an animation block when the dragging view is about to hide.
     func tableView(tableView: UITableView, hideDraggingView view: UIView, atIndexPath indexPath: NSIndexPath) {
-        ChannelModel.sharedInstance.updatingAvailable = true
+        Playlist.sharedInstance.updatingAvailable = true
         removeIndicator(indexPath.row)
     }
     
     // MARK: -
     // MARK UITableViewDelegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int  {
-        return ChannelModel.sharedInstance.currentNumberOfRows
+        return Playlist.sharedInstance.currentNumberOfRows
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -400,16 +400,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        ChannelModel.sharedInstance.doDataSourceSafely({() -> Void in
+        Playlist.sharedInstance.doDataSourceSafely({() -> Void in
             self.videoTable.reloadData()
-            ChannelModel.sharedInstance.moveVideoByIndex(sourceIndexPath.row, destinationIndex: destinationIndexPath.row)
+            Playlist.sharedInstance.moveVideoByIndex(sourceIndexPath.row, destinationIndex: destinationIndexPath.row)
         })
     }
     
     func initVideoCell(indexPath: NSIndexPath) -> VideoTableViewCell {
         let cell = videoTable.dequeueReusableCellWithIdentifier(
             cellName, forIndexPath: indexPath) as! VideoTableViewCell
-        if indexPath.row != ChannelModel.sharedInstance.currentIndex {
+        if indexPath.row != Playlist.sharedInstance.currentIndex {
             cell.removeAllIndicator()
         } else {
             cell.addPlayingIndicator()
@@ -460,17 +460,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         switch state {
         case YTPlayerState.Unstarted:
             print("didChangeToState: Unstarted")
-            changePlayingAnimation(ChannelModel.sharedInstance.currentIndex, start: false)
+            changePlayingAnimation(Playlist.sharedInstance.currentIndex, start: false)
         case YTPlayerState.Ended:
             print("didChangeToState: Ended")
-            changePlayingAnimation(ChannelModel.sharedInstance.currentIndex, start: false)
+            changePlayingAnimation(Playlist.sharedInstance.currentIndex, start: false)
             playNextVideo()
         case YTPlayerState.Playing:
             print("didChangeToState: Playing")
-            changePlayingAnimation(ChannelModel.sharedInstance.currentIndex, start: true)
+            changePlayingAnimation(Playlist.sharedInstance.currentIndex, start: true)
         case YTPlayerState.Paused:
             print("didChangeToState: Paused")
-            changePlayingAnimation(ChannelModel.sharedInstance.currentIndex, start: false)
+            changePlayingAnimation(Playlist.sharedInstance.currentIndex, start: false)
         case YTPlayerState.Buffering:
             print("didChangeToState: Buffering")
             // TODO Notify user if it keeps long time

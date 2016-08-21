@@ -1,5 +1,5 @@
 //
-//  ChannelModel.swift
+//  Playlist.swift
 //  NewsPlayer
 //
 //  Created by YAMAMOTOKenta on 9/16/15.
@@ -14,11 +14,11 @@ protocol ChannelResponseDelegate {
     func endRefreshing()
 }
 
-class ChannelModel : NSObject {
+class Playlist : NSObject {
     
-    class var sharedInstance: ChannelModel {
+    class var sharedInstance: Playlist {
         struct Singleton {
-            static let instance: ChannelModel = ChannelModel()
+            static let instance: Playlist = Playlist()
         }
         return Singleton.instance
     }
