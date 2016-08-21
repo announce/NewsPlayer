@@ -20,7 +20,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         "modestbranding":   1,
     ]
     let cellFixedHeight: CGFloat = 106
-    let cellName = "VideoTableViewCell"
     let channelKey = "queue"
     let detailSegueKey = "showVideoDetail"
     let reachability = Reachability.reachabilityForInternetConnection()
@@ -86,8 +85,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     override func viewWillAppear(animated: Bool) {
-        videoTable.registerNib(
-            UINib(nibName: cellName, bundle:nil), forCellReuseIdentifier:cellName)
+        videoTable.registerCell(type: VideoTableViewCell.self)
         super.viewWillAppear(animated)
         Playlist.sharedInstance.addObserver(
             self, forKeyPath: channelKey, options: .New, context: nil)
@@ -407,8 +405,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func initVideoCell(indexPath: NSIndexPath) -> VideoTableViewCell {
-        let cell = videoTable.dequeueReusableCellWithIdentifier(
-            cellName, forIndexPath: indexPath) as! VideoTableViewCell
+        let cell = videoTable.dequeueCell(VideoTableViewCell.self, indexPath: indexPath)
         if indexPath.row != Playlist.sharedInstance.currentIndex {
             cell.removeAllIndicator()
         } else {

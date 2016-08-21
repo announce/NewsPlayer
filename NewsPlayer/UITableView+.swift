@@ -18,4 +18,8 @@ extension UITableView {
     func registerCells<T: UITableViewCell>(types types: [T.Type]) {
         types.forEach { registerCell(type: $0) }
     }
+    
+    func dequeueCell<T: UITableViewCell>(type: T.Type, indexPath: NSIndexPath) -> T {
+        return self.dequeueReusableCellWithIdentifier(type.className, forIndexPath: indexPath) as! T
+    }
 }
