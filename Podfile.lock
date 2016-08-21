@@ -5,6 +5,7 @@ PODS:
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - SwiftyJSON (2.3.0)
+  - XCGLogger (3.3)
   - youtube-ios-player-helper (0.1.4)
 
 DEPENDENCIES:
@@ -13,6 +14,7 @@ DEPENDENCIES:
     `v2.0`)
   - SDWebImage (~> 3.7)
   - SwiftyJSON (~> 2.3)
+  - XCGLogger (~> 3.3)
   - youtube-ios-player-helper (~> 0.1.4)
 
 EXTERNAL SOURCES:
@@ -30,6 +32,7 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 227b98ae7ec99e1c01148b17fb22357aa91a5675
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
+  XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
   youtube-ios-player-helper: 84b1485ebb4b7c6b619c6e05edcb55186723a7c6
 
 COCOAPODS: 0.38.2
