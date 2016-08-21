@@ -9,7 +9,6 @@
 import Foundation
 import SwiftyJSON
 
-
 class Playlist : NSObject {
     
     class var sharedInstance: Playlist {
@@ -42,17 +41,17 @@ class Playlist : NSObject {
     }
 
     func enqueue() {
-        let channels: [String] = channelList()
-        for channelID in channels {
-            fetchActivities(channelID)
+        let channels = Channel.localizedList()
+        for channel in channels {
+            fetchActivities(channel)
         }
     }
     
     func refrashChannels() {
-        let channels: [String] = channelList()
+        let channels = Channel.localizedList()
         finishedCount = channels.count
-        for channelID in channels {
-            refreshActivities(channelID)
+        for channel in channels {
+            refreshActivities(channel)
         }
     }
     
@@ -91,21 +90,18 @@ class Playlist : NSObject {
     
     func removeVideoByIndex(index: Int) -> Video? {
         // Remove from queue first to avoid accessing nil videoList value by observed queue's index
-        if (queue.count <= index) {
+        guard let videoID: String = queue.remove(index: index) else {
             return nil
         }
-        let videoID: String = queue.removeAtIndex(index)
-        if let removedVideo: Video? = videoList.removeValueForKey(videoID) {
-            // Adjust playing video
-            if index <= currentIndex {
-                currentIndex -= 1
-            }
-            currentNumberOfRows -= 1
-            return removedVideo
-        } else {
-            print("\(#function) -> nil")
+        guard let removedVideo: Video? = videoList.removeValueForKey(videoID) else {
             return nil
         }
+        // Adjust playing video
+        if index <= currentIndex {
+            currentIndex -= 1
+        }
+        currentNumberOfRows -= 1
+        return removedVideo
     }
     
     func insertVideo(newVideo: Video, index: Int) -> Video? {
@@ -168,50 +164,36 @@ class Playlist : NSObject {
     
     func moveVideoByIndex(sourceIndex: Int, destinationIndex: Int) -> Video? {
         let originalIndex = currentIndex
-        if let removedVideo = removeVideoByIndex(sourceIndex) {
-            let video = insertVideo(removedVideo, index: destinationIndex)
-            // Adjust playing video
-            currentIndex = (originalIndex == sourceIndex) ? destinationIndex : currentIndex
-            return video
-        } else {
+        guard let removedVideo = removeVideoByIndex(sourceIndex) else {
             return nil
         }
+        let video = insertVideo(removedVideo, index: destinationIndex)
+        // Adjust playing video
+        currentIndex = (originalIndex == sourceIndex) ? destinationIndex : currentIndex
+        return video
     }
     
-    func channelList() -> [String] {
-        let plistPath = NSBundle.mainBundle().pathForResource("YouTube", ofType: "plist")
-        let registry = NSDictionary(contentsOfFile: plistPath!)
-        var key = ""
-        if let languageCode = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as? String {
-            key = languageCode == "ja" ? "ja" : "en"
-        } else {
-            key = "en"
-        }
-        let channels:Array = registry!.objectForKey("Channels \(key)") as! [String]
-        return channels;
-    }
-    
-    func fetchActivities(channelID: String, pageToken: String = "") {
+    func fetchActivities(channel: Channel, pageToken: String = "") {
         if Const.Max <= queue.count || Const.Max <= waitingList.count {
             print("Queue count reached Const.Max[\(Const.Max)]")
             return
         }
         
         session.dataTaskWithURL(
-            createActivityRequest(channelID, pageToken: pageToken),
+            createActivityRequest(channel, pageToken: pageToken),
             completionHandler: appendVideos).resume()
     }
     
-    func refreshActivities(channelID: String, pageToken: String = "") {
+    func refreshActivities(channel: Channel, pageToken: String = "") {
         session.dataTaskWithURL(
-            createActivityRequest(channelID, pageToken: pageToken),
+            createActivityRequest(channel, pageToken: pageToken),
             completionHandler: insertVideos).resume()
     }
     
-    func createActivityRequest(channelID: String, pageToken: String) -> NSURL {
+    func createActivityRequest(channel: Channel, pageToken: String) -> NSURL {
         let apiKey: String = Credential(key: Credential.Provider.Google).apiKey
         let part = "snippet,contentDetails"
-        return NSURL(string: "\(activityUrl)?part=\(part)&channelId=\(channelID)&pageToken=\(pageToken)&key=\(apiKey)")!
+        return NSURL(string: "\(activityUrl)?part=\(part)&channelId=\(channel.id)&pageToken=\(pageToken)&key=\(apiKey)")!
     }
     
     func finish() {
@@ -304,38 +286,20 @@ class Playlist : NSObject {
         }
     }
     
-    enum Quality: String {
-        case Default   = "default"
-        case Medium    = "medium"
-        case High      = "high"
-        case Standard  = "standard"
-    }
-    
-    let quality = Quality.Default.rawValue
-    
     private func createVideo(item: JSON) -> Video? {
-        if let videoID: String = item["contentDetails", "upload", "videoId"].string {
-            let thumbnail = Video.Thumbnail(
-                url:    item["snippet", "thumbnails", quality, "url"].stringValue,
-                width:  item["snippet", "thumbnails", quality, "width"].intValue,
-                height: item["snippet", "thumbnails", quality, "height"].intValue)
-            return Video(
-                id:             videoID,
-                title:          item["snippet", "title"].stringValue,
-                description:    item["snippet", "description"].stringValue,
-                thumbnail:      thumbnail)
-        } else {
+        guard let videoId = item["contentDetails", "upload", "videoId"].string else {
             return nil
         }
+        return Video(id: videoId, item: item)
     }
     
     private func fetchNextPage(json: JSON) {
-        if let channelID = json["items", 0, "snippet", "channelId"].string,
-            nextPageToken: String = json["nextPageToken"].string {
-                fetchActivities(channelID, pageToken: nextPageToken)
-        } else {
-            let chennelID = json["items", 0, "snippet", "channelId"].stringValue
-            print("ChennelID[\(chennelID)]: Completed to fetch all pages")
+        guard let channelId = json["items", 0, "snippet", "channelId"].string else {
+            return
         }
+        guard let nextPageToken = json["nextPageToken"].string else {
+            return print("Chennel[\(channelId)]: Completed to fetch all pages")
+        }
+        fetchActivities(Channel.init(id: channelId), pageToken: nextPageToken)
     }
 }
