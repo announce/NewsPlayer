@@ -45,7 +45,6 @@ class Video: Equatable {
         )
     }
 
-    
     init(id: String, title: String, description: String, thumbnail: Thumbnail) {
         self.id = id
         self.title = title
