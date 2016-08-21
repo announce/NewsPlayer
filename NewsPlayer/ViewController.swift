@@ -10,7 +10,7 @@ import UIKit
 import youtube_ios_player_helper
 import ReachabilitySwift
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, YTPlayerViewDelegate, LPRTableViewDelegate, VideoDetailControllerDelegate, ChannelResponseDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, YTPlayerViewDelegate, LPRTableViewDelegate, VideoDetailControllerDelegate, PlaylistRefresher {
     
     let playerParams = [
         "playsinline":      1,  // TODO: Remember last settings

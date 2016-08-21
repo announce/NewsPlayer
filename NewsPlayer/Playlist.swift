@@ -10,10 +10,6 @@ import Foundation
 import SwiftyJSON
 
 
-protocol ChannelResponseDelegate {
-    func endRefreshing()
-}
-
 class Playlist : NSObject {
     
     class var sharedInstance: Playlist {
@@ -37,7 +33,7 @@ class Playlist : NSObject {
     var waitingList: [Video] = []
     var currentNumberOfRows: Int = 0
     
-    var delegate: ChannelResponseDelegate? = nil
+    var delegate: PlaylistRefresher? = nil
     var finishedCount: Int = 0
     
     init(session: NSURLSession = NSURLSession.sharedSession()) {
