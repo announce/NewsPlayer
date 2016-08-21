@@ -23,6 +23,7 @@ class VideoDetailViewController: UIViewController {
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var abstract: UITextView!
     @IBOutlet weak var detail: UITextView!
+    @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBAction func shareVideo(sender: UIBarButtonItem) {
         guard let index = originalIndex,
             let video: Video = Playlist.sharedInstance.getVideoByIndex(index),
@@ -78,7 +79,9 @@ class VideoDetailViewController: UIViewController {
     }
 
     func shareViaActivity(items: [AnyObject]) {
+        loading.startAnimating()
         let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
         activityViewController.excludedActivityTypes = [
             UIActivityTypeSaveToCameraRoll,
             UIActivityTypePrint,
@@ -86,6 +89,7 @@ class VideoDetailViewController: UIViewController {
         ]
         dispatch_async(dispatch_get_main_queue(), {
             self.presentViewController(activityViewController, animated: true, completion: nil)
+            self.loading.stopAnimating()
         })
     }
     

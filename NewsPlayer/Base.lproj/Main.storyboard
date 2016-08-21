@@ -187,6 +187,9 @@ http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-a
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
                             </textView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="fdY-PX-W1b">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -201,6 +204,8 @@ http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-a
                             <constraint firstItem="v6V-sQ-B80" firstAttribute="leading" secondItem="2cY-sQ-k6j" secondAttribute="leadingMargin" id="gLc-OM-D7Y"/>
                             <constraint firstItem="v6V-sQ-B80" firstAttribute="top" secondItem="cg7-gc-sIl" secondAttribute="bottom" id="gsC-bK-IHU"/>
                             <constraint firstItem="cg7-gc-sIl" firstAttribute="leading" secondItem="2cY-sQ-k6j" secondAttribute="leadingMargin" constant="-1" id="hVO-CI-EMZ"/>
+                            <constraint firstItem="fdY-PX-W1b" firstAttribute="centerX" secondItem="2cY-sQ-k6j" secondAttribute="centerX" id="veg-s4-jiO"/>
+                            <constraint firstItem="fdY-PX-W1b" firstAttribute="centerY" secondItem="2cY-sQ-k6j" secondAttribute="centerY" id="wsS-Gh-glq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cg7-gc-sIl" secondAttribute="trailing" constant="1" id="zfr-fa-EKO"/>
                         </constraints>
                     </view>
@@ -219,6 +224,7 @@ http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-a
                     <connections>
                         <outlet property="abstract" destination="hfD-jq-G3n" id="hkv-6m-Zyz"/>
                         <outlet property="detail" destination="cg7-gc-sIl" id="885-pc-HrG"/>
+                        <outlet property="loading" destination="fdY-PX-W1b" id="qEG-7c-bUP"/>
                         <outlet property="thumbnail" destination="H7X-Lz-yvw" id="pEa-GZ-hf9"/>
                     </connections>
                 </viewController>
