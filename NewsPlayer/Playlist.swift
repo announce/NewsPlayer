@@ -21,8 +21,6 @@ class Playlist : NSObject {
     struct Const {
         static let Max = 2000
     }
-    let activityUrl = "https://www.googleapis.com/youtube/v3/activities"
-    let session: NSURLSession
     
     dynamic var queue: [String] = []
     var videoList: [String: Video] = [:]
@@ -31,19 +29,20 @@ class Playlist : NSObject {
     var updatingAvailable: Bool = true
     var waitingList: [Video] = []
     var currentNumberOfRows: Int = 0
+    var activityApi: ActivityApi
     
     var delegate: PlaylistRefresher? = nil
     var finishedCount: Int = 0
     
     init(session: NSURLSession = NSURLSession.sharedSession()) {
-        self.session = session
+        self.activityApi = ActivityApi(session: session)
         super.init()
     }
 
     func enqueue() {
         let channels = Channel.localizedList()
         for channel in channels {
-            fetchActivities(channel)
+            fetchActivity(channel, handler: appendVideos)
         }
     }
     
@@ -51,7 +50,7 @@ class Playlist : NSObject {
         let channels = Channel.localizedList()
         finishedCount = channels.count
         for channel in channels {
-            refreshActivities(channel)
+            activityApi.resume(channel, handler: insertVideos)
         }
     }
     
@@ -173,27 +172,12 @@ class Playlist : NSObject {
         return video
     }
     
-    func fetchActivities(channel: Channel, pageToken: String = "") {
+    func fetchActivity(channel: Channel, pageToken: String = "", handler: NSURLSession.CompletionHandler) {
         if Const.Max <= queue.count || Const.Max <= waitingList.count {
             Logger.log?.debug("Queue count reached Const.Max[\(Const.Max)]")
             return
         }
-        
-        session.dataTaskWithURL(
-            createActivityRequest(channel, pageToken: pageToken),
-            completionHandler: appendVideos).resume()
-    }
-    
-    func refreshActivities(channel: Channel, pageToken: String = "") {
-        session.dataTaskWithURL(
-            createActivityRequest(channel, pageToken: pageToken),
-            completionHandler: insertVideos).resume()
-    }
-    
-    func createActivityRequest(channel: Channel, pageToken: String) -> NSURL {
-        let apiKey: String = Credential(key: Credential.Provider.Google).apiKey
-        let part = "snippet,contentDetails"
-        return NSURL(string: "\(activityUrl)?part=\(part)&channelId=\(channel.id)&pageToken=\(pageToken)&key=\(apiKey)")!
+        return activityApi.resume(channel, pageToken: pageToken, handler: handler)
     }
     
     func finish() {
@@ -301,6 +285,6 @@ class Playlist : NSObject {
             Logger.log?.debug("Chennel[\(channelId)]: Completed to fetch all pages")
             return
         }
-        fetchActivities(Channel.init(id: channelId), pageToken: nextPageToken)
+        fetchActivity(Channel.init(id: channelId), pageToken: nextPageToken, handler: appendVideos)
     }
 }

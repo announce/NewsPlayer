@@ -16,7 +16,7 @@ class PlaylistTest: XCTestCase {
         super.setUp()
         subject = Playlist(session: session)
         MockSession.mockResponse = MockSession.createResponse(
-            NSURL(string: subject.activityUrl)!,
+            NSURL(string: ActivityApi.baseUrl)!,
             data: Fixtures.read("YoutubeActivities01"))
     }
     
