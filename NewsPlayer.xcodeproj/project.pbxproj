@@ -36,6 +36,8 @@
 		C59F51D21BB289EF001DA5AB /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F51D11BB289EF001DA5AB /* Video.swift */; };
 		C5AFC3991BAD60D3001CCBD4 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFC3971BAD60D3001CCBD4 /* VideoTableViewCell.swift */; };
 		C5AFC39A1BAD60D3001CCBD4 /* VideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5AFC3981BAD60D3001CCBD4 /* VideoTableViewCell.xib */; };
+		C5C39A801D6976C10053B1F3 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C39A7D1D6971240053B1F3 /* Logger.swift */; };
+		C5C39A811D6976C20053B1F3 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C39A7D1D6971240053B1F3 /* Logger.swift */; };
 		C5C42CBB1BA48127003D07A3 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5C42CBA1BA48127003D07A3 /* Credentials.plist */; };
 		C5C42CC11BA86F7D003D07A3 /* YouTube.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5C42CC01BA86F7D003D07A3 /* YouTube.plist */; };
 		C5C42CC31BA870BB003D07A3 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C42CC21BA870BB003D07A3 /* Playlist.swift */; };
@@ -83,6 +85,7 @@
 		C547E3811D6948A00079987D /* NSBundle+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+.swift"; sourceTree = "<group>"; };
 		C547E3841D695FBB0079987D /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		C547E3871D69605F0079987D /* NSLocale+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLocale+.swift"; sourceTree = "<group>"; };
+		C547E38D1D696B470079987D /* XCGLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = XCGLogger.framework; path = "/Users/ymkjp/Library/Developer/Xcode/DerivedData/NewsPlayer-brwmyxwiqmztsrbbblwsjrqkfwcu/Build/Products/Debug-iphonesimulator/XCGLogger.framework"; sourceTree = "<absolute>"; };
 		C570DC5F1BB584BC0027232E /* eq_16_32x32.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = eq_16_32x32.gif; sourceTree = "<group>"; };
 		C570DC671BB5975C0027232E /* eq_16.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = eq_16.gif; sourceTree = "<group>"; };
 		C570DC681BB5975C0027232E /* eq_16x16.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = eq_16x16.gif; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 		C59F51D11BB289EF001DA5AB /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		C5AFC3971BAD60D3001CCBD4 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		C5AFC3981BAD60D3001CCBD4 /* VideoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoTableViewCell.xib; sourceTree = "<group>"; };
+		C5C39A7D1D6971240053B1F3 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		C5C42CB91BA47704003D07A3 /* NewsPlayer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewsPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		C5C42CBA1BA48127003D07A3 /* Credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
 		C5C42CC01BA86F7D003D07A3 /* YouTube.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YouTube.plist; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 				C547E3841D695FBB0079987D /* Channel.swift */,
 				C59F51D11BB289EF001DA5AB /* Video.swift */,
 				C5C42CC41BA87B27003D07A3 /* Credential.swift */,
+				C5C39A7D1D6971240053B1F3 /* Logger.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -231,6 +236,7 @@
 		C5DE793A1BA1D59A00E594EE = {
 			isa = PBXGroup;
 			children = (
+				C547E38D1D696B470079987D /* XCGLogger.framework */,
 				C5DE79451BA1D59A00E594EE /* NewsPlayer */,
 				C5DE795E1BA1D59A00E594EE /* NewsPlayerTests */,
 				C570DC5E1BB583A40027232E /* Resources */,
@@ -460,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5C39A811D6976C20053B1F3 /* Logger.swift in Sources */,
 				C547E3821D6948A00079987D /* NSBundle+.swift in Sources */,
 				C5DE794E1BA1D59A00E594EE /* ViewController.swift in Sources */,
 				C547E3761D6941F70079987D /* NSObject+.swift in Sources */,
@@ -492,6 +499,7 @@
 				C547E37A1D6942740079987D /* UITableView+.swift in Sources */,
 				C5F0DBE41D68598800185017 /* Credential.swift in Sources */,
 				C5F0DBE21D68586900185017 /* PlaylistTests.swift in Sources */,
+				C5C39A801D6976C10053B1F3 /* Logger.swift in Sources */,
 				C547E3861D695FBB0079987D /* Channel.swift in Sources */,
 				C547E3831D6948A00079987D /* NSBundle+.swift in Sources */,
 				C541B2471D68A41A00612C75 /* Fixtures.swift in Sources */,
@@ -626,6 +634,7 @@
 				INFOPLIST_FILE = NewsPlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = top.announce.NewsPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "NewsPlayer/NewsPlayer-Bridging-Header.h";

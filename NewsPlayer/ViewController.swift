@@ -168,11 +168,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func reachabilityChanged(note: NSNotification) {
         guard let reachability = note.object as? Reachability else {
-            print(#function)
+            Logger.log?.warning("Reachability is nil")
             return
         }
         if reachability.isReachable() {
-            print("\(#function)[\(videoPlayer.playerState())]")
+            Logger.log?.info("\(videoPlayer.playerState())")
             if Playlist.sharedInstance.queue.count <= 0 {
                 Playlist.sharedInstance.enqueue()
             }
@@ -204,7 +204,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             showPlayingIndicator(Playlist.sharedInstance.currentIndex)
             removeIndicator(Playlist.sharedInstance.currentIndex - 1)
         } else {
-            print("No VideoID yet")
+            Logger.log?.debug("No VideoID yet")
         }
     }
     
@@ -216,7 +216,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             showPlayingIndicator(Playlist.sharedInstance.currentIndex)
             removeIndicator(Playlist.sharedInstance.currentIndex - 1)
         } else {
-            print("No VideoID yet")
+            Logger.log?.debug("No VideoID yet")
         }
     }
     
@@ -225,7 +225,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
             cell.addPlayingIndicator()
         } else {
-            print("\(#function) No cell index[\(targetIndex)]")
+            Logger.log?.debug("No cell index[\(targetIndex)]")
         }
     }
     
@@ -237,7 +237,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
             cell.removeAllIndicator()
         } else {
-            print("\(#function) No cell index[\(targetIndex)]")
+            Logger.log?.debug("No cell index[\(targetIndex)]")
         }
     }
     
@@ -275,7 +275,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)],
                     withRowAnimation: UITableViewRowAnimation.Fade)
             } else {
-                print("Failed to remove video from list")
+                Logger.log?.debug("Failed to remove video from list")
             }
         })
     }
@@ -300,7 +300,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         case .PlayNow:
             playNow(path)
         default:
-            print("Ignoring command[\(command)]")
+            Logger.log?.info("Ignoring command[\(command)]")
             break
         }
     }
@@ -313,7 +313,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         let blinkPath = NSIndexPath.init(forRow: Playlist.sharedInstance.currentIndex + 1, inSection: 0)
         guard let cell = videoTable.cellForRowAtIndexPath(blinkPath) as? VideoTableViewCell else {
-            print("\(#function) No Cell index[\(blinkPath.row)]")
+            Logger.log?.info("No cell index[\(blinkPath.row)]")
             return
         }
         blinkCell(cell, originalColor: cell.backgroundColor, targetColor: UIColor.lightGrayColor())
@@ -444,7 +444,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: -
     // MARK: YTPlayerViewDelegate
     func playerViewDidBecomeReady(playerView: YTPlayerView!) {
-        print("playerViewDidBecomeReady")
+        Logger.log?.debug("playerViewDidBecomeReady")
         // FIXME: Not proper timing
         reloadTable()
         playCurrentVideo()
@@ -459,69 +459,69 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func playerView(playerView: YTPlayerView!, didChangeToState state: YTPlayerState) {
         switch state {
         case YTPlayerState.Unstarted:
-            print("didChangeToState: Unstarted")
+            Logger.log?.debug("didChangeToState: Unstarted")
             changePlayingAnimation(Playlist.sharedInstance.currentIndex, start: false)
         case YTPlayerState.Ended:
-            print("didChangeToState: Ended")
+            Logger.log?.debug("didChangeToState: Ended")
             changePlayingAnimation(Playlist.sharedInstance.currentIndex, start: false)
             playNextVideo()
         case YTPlayerState.Playing:
-            print("didChangeToState: Playing")
+            Logger.log?.debug("didChangeToState: Playing")
             changePlayingAnimation(Playlist.sharedInstance.currentIndex, start: true)
         case YTPlayerState.Paused:
-            print("didChangeToState: Paused")
+            Logger.log?.debug("didChangeToState: Paused")
             changePlayingAnimation(Playlist.sharedInstance.currentIndex, start: false)
         case YTPlayerState.Buffering:
-            print("didChangeToState: Buffering")
+            Logger.log?.debug("didChangeToState: Buffering")
             // TODO Notify user if it keeps long time
         case YTPlayerState.Queued:
-            print("didChangeToState: Queued")
+            Logger.log?.debug("didChangeToState: Queued")
         default:
-            print("didChangeToState: \(state.rawValue)")
+            Logger.log?.debug("didChangeToState: \(state.rawValue)")
         }
     }
     
     func playerView(playerView: YTPlayerView!, didChangeToQuality quality: YTPlaybackQuality) {
         switch quality {
         case YTPlaybackQuality.Small:
-            print("didChangeToQuality: Small")
+            Logger.log?.debug("didChangeToQuality: Small")
         case YTPlaybackQuality.Medium:
-            print("didChangeToQuality: Medium")
+            Logger.log?.debug("didChangeToQuality: Medium")
         case YTPlaybackQuality.Large:
-            print("didChangeToQuality: Large")
+            Logger.log?.debug("didChangeToQuality: Large")
         case YTPlaybackQuality.HD720:
-            print("didChangeToQuality: HD720")
+            Logger.log?.debug("didChangeToQuality: HD720")
         case YTPlaybackQuality.HD1080:
-            print("didChangeToQuality: HD1080")
+            Logger.log?.debug("didChangeToQuality: HD1080")
         case YTPlaybackQuality.HighRes:
-            print("didChangeToQuality: HighRes")
+            Logger.log?.debug("didChangeToQuality: HighRes")
         case YTPlaybackQuality.Auto:
-            print("didChangeToQuality: Auto")
+            Logger.log?.debug("didChangeToQuality: Auto")
         case YTPlaybackQuality.Default:
-            print("didChangeToQuality: Default")
+            Logger.log?.debug("didChangeToQuality: Default")
         default:
-            print("didChangeToQuality: \(quality.rawValue)")
+            Logger.log?.debug("didChangeToQuality: \(quality.rawValue)")
         }
     }
     
     func playerView(playerView: YTPlayerView!, receivedError error: YTPlayerError) {
         switch error {
         case YTPlayerError.InvalidParam:
-            print("receivedError: InvalidParam")
+            Logger.log?.warning("receivedError: InvalidParam")
         case YTPlayerError.HTML5Error:
-            print("receivedError: HTML5Error")
+            Logger.log?.warning("receivedError: HTML5Error")
             checkNetwork()
         case YTPlayerError.VideoNotFound:
-            print("receivedError: VideoNotFound")
+            Logger.log?.warning("receivedError: VideoNotFound")
         case YTPlayerError.Unknown:
-            print("receivedError: Unknown")
+            Logger.log?.warning("receivedError: Unknown")
         default:
-            print("receivedError: \(error.rawValue)")
+            Logger.log?.warning("receivedError: \(error.rawValue)")
         }
     }
     
 //    func playerView(playerView: YTPlayerView!, didPlayTime playTime: Float) {
-//        println("didPlayTime: \(playTime)")
+//        Logger.log?.warning("didPlayTime: \(playTime)")
 //    }
 }
 

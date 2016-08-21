@@ -65,13 +65,13 @@ class Playlist : NSObject {
     }
     
     func currentVideo() -> Video? {
-        print("currentVideo[\(currentIndex)]")
+        Logger.log?.debug("currentVideo[\(currentIndex)]")
         return getVideoByIndex(currentIndex)
     }
     
     func updateCurrentNumberOfRows() -> Int {
         currentNumberOfRows = queue.count
-        print("currentNumberOfRows[\(currentNumberOfRows)]")
+        Logger.log?.debug("currentNumberOfRows[\(currentNumberOfRows)]")
         return currentNumberOfRows
     }
     
@@ -117,7 +117,7 @@ class Playlist : NSObject {
             queue.insert(newVideo.id, atIndex: index)
             return newVideo
         } else {
-            print("\(#function) -> nil")
+            Logger.log?.info("Out of index[\(index)] against \(queue.count)")
             return nil
         }
     }
@@ -147,7 +147,7 @@ class Playlist : NSObject {
     
     func insertVideo(newVideo: Video, atIndex: Int) {
         if atIndex >= queue.count {
-            print("\(#function) Invalid index \(queue.count) is smaller than \(atIndex)")
+            Logger.log?.info("Out of index[\(atIndex)] against \(queue.count) ")
             return
         }
         if (videoList[newVideo.id] == newVideo) {
@@ -158,7 +158,7 @@ class Playlist : NSObject {
             queue.insert(newVideo.id, atIndex: atIndex)
             videoList[newVideo.id] = newVideo
         } else {
-            print("\(#function) Ignored newVideo[\(newVideo.id)] while table manupulating")
+            Logger.log?.info("Ignored newVideo[\(newVideo.id)] while table manupulating")
         }
     }
     
@@ -175,7 +175,7 @@ class Playlist : NSObject {
     
     func fetchActivities(channel: Channel, pageToken: String = "") {
         if Const.Max <= queue.count || Const.Max <= waitingList.count {
-            print("Queue count reached Const.Max[\(Const.Max)]")
+            Logger.log?.debug("Queue count reached Const.Max[\(Const.Max)]")
             return
         }
         
@@ -205,18 +205,18 @@ class Playlist : NSObject {
     
     func insertVideos(data: NSData?, _: NSURLResponse?, error: NSError?) {
         if (error != nil) {
-            print("\(#function) NSError in response: \(error)")
+            Logger.log?.warning("NSError in response: \(error)")
             return
         }
         if (nil == data) {
-            print("\(#function) NSData is nil")
+            Logger.log?.warning("NSData is nil")
             return
         }
         
         let json = JSON(data: data!)
         
         if json.isEmpty || !json["error"].isEmpty {
-            print("Unxecpected data. Check Credentials.plist's `Google API Key` is valid.")
+            Logger.log?.error("Unxecpected data. Check Credentials.plist's `Google API Key` is valid.")
             return
         }
         
@@ -237,17 +237,17 @@ class Playlist : NSObject {
     
     func appendVideos(data: NSData?, _: NSURLResponse?, error: NSError?) {
         if (error != nil) {
-            print("\(#function) NSError in response: \(error)")
+            Logger.log?.warning("NSError in response: \(error)")
             return
         }
         if (nil == data) {
-            print("\(#function) NSData is nil")
+            Logger.log?.warning("NSData is nil")
             return
         }
         
         let json = JSON(data: data!)
         if json.isEmpty || !json["error"].isEmpty {
-            print("Empty data. Check Credentials.plist's `Google API Key` is valid.")
+            Logger.log?.error("Empty data. Check Credentials.plist's `Google API Key` is valid.")
             return
         }
         if isLatest(json) {
@@ -278,7 +278,7 @@ class Playlist : NSObject {
         }
         
         if latestEtags[channelID] == etag {
-            print("No updates for channelID[\(channelID)]")
+            Logger.log?.info("No updates for channelID[\(channelID)]")
             return true
         } else {
             latestEtags.updateValue(etag, forKey: channelID)
@@ -298,7 +298,8 @@ class Playlist : NSObject {
             return
         }
         guard let nextPageToken = json["nextPageToken"].string else {
-            return print("Chennel[\(channelId)]: Completed to fetch all pages")
+            Logger.log?.debug("Chennel[\(channelId)]: Completed to fetch all pages")
+            return
         }
         fetchActivities(Channel.init(id: channelId), pageToken: nextPageToken)
     }
