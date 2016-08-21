@@ -1,5 +1,5 @@
 //
-//  ChannelModelTest.swift
+//  PlaylistTest.swift
 //  NewsPlayer
 //
 //  Created by YAMAMOTOKenta on 8/20/16.
@@ -8,13 +8,13 @@
 
 import XCTest
 
-class ChannelModelTest: XCTestCase {
-    var subject: ChannelModel!
+class PlaylistTest: XCTestCase {
+    var subject: Playlist!
     let session = MockSession()
     
     override func setUp() {
         super.setUp()
-        subject = ChannelModel(session: session)
+        subject = Playlist(session: session)
         MockSession.mockResponse = MockSession.createResponse(
             NSURL(string: subject.activityUrl)!,
             data: Fixtures.read("YoutubeActivities01"))

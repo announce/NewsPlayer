@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BLO-u9-TDP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BLO-u9-TDP">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -112,26 +112,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cg7-gc-sIl">
-                                <rect key="frame" x="20" y="170" width="560" height="386"/>
-                                <string key="text">PARIS -- France's data privacy regulator has rejected Google's appeal of an order to remove search results worldwide upon request.
-
-In a statement Monday, the agency known as CNIL denied that it was trying to apply French law globally, but rather to request that any companies that offer services in Europe conform to legislation.
- 
-The latest order from CNIL came in response to the May 2014 ruling from Europe's highest court that people have the right to control what appears when their name is searched online. Google says it has received 318,269 requests for removal, and accepted delisting of about 40 percent of the URLs evaluated.
- 
-Facebook links accounted for the most of any single website, Google said.
- 
-CNIL said Google must comply with the order or face possible sanctions.
-
-http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-appeal/2972090.html</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6V-sQ-B80">
-                                <rect key="frame" x="20" y="556" width="560" height="44"/>
+                                <rect key="frame" x="20" y="552" width="560" height="48"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="v6V-sQ-B80" secondAttribute="height" multiplier="140:12" id="5AL-J3-8Gi"/>
                                     <constraint firstAttribute="height" constant="44" id="dVG-bF-r6L"/>
                                 </constraints>
                                 <items>
@@ -148,55 +132,82 @@ http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-a
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="dVG-bF-r6L"/>
+                                    </mask>
+                                </variation>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H7X-Lz-yvw">
-                                <rect key="frame" x="20" y="72" width="120" height="90"/>
+                                <rect key="frame" x="86" y="64" width="427" height="320"/>
                                 <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="KN1-CV-gnV"/>
-                                    <constraint firstAttribute="height" constant="90" id="WhT-KW-54j"/>
-                                    <constraint firstAttribute="width" secondItem="H7X-Lz-yvw" secondAttribute="height" multiplier="4:3" id="gcH-v8-ssU"/>
+                                    <constraint firstAttribute="height" constant="320" id="WhT-KW-54j"/>
+                                    <constraint firstAttribute="width" secondItem="H7X-Lz-yvw" secondAttribute="height" multiplier="4:3" id="hpH-4B-0tZ"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="WhT-KW-54j"/>
+                                        <exclude reference="KN1-CV-gnV"/>
                                     </mask>
                                 </variation>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hfD-jq-G3n">
-                                <rect key="frame" x="144" y="72" width="436" height="90"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" maximumZoomScale="3" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hfD-jq-G3n">
+                                <rect key="frame" x="-160" y="384" width="919" height="33"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="436" id="6ei-hD-Ko2"/>
+                                    <constraint firstAttribute="height" constant="90" id="H4s-dt-rgv"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES" address="YES" calendarEvent="YES"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="6ei-hD-Ko2"/>
+                                        <exclude reference="H4s-dt-rgv"/>
+                                    </mask>
+                                </variation>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" maximumZoomScale="3" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cg7-gc-sIl">
+                                <rect key="frame" x="19" y="417" width="560" height="135"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES"/>
+                                </accessibility>
+                                <string key="text">PARIS -- France's data privacy regulator has rejected Google's appeal of an order to remove search results worldwide upon request.
+
+In a statement Monday, the agency known as CNIL denied that it was trying to apply French law globally, but rather to request that any companies that offer services in Europe conform to legislation.
+
+http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-appeal/2972090.html</string>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
                             </textView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="fdY-PX-W1b">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="H7X-Lz-yvw" firstAttribute="leading" secondItem="2cY-sQ-k6j" secondAttribute="leadingMargin" id="2Bn-zA-M3f"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="cg7-gc-sIl" secondAttribute="trailing" id="5OD-x5-XHw"/>
-                            <constraint firstItem="v6V-sQ-B80" firstAttribute="top" secondItem="cg7-gc-sIl" secondAttribute="bottom" id="5uF-tZ-kDU"/>
-                            <constraint firstItem="cg7-gc-sIl" firstAttribute="top" secondItem="hfD-jq-G3n" secondAttribute="bottom" constant="8" id="8BG-sY-ZQE"/>
-                            <constraint firstItem="hfD-jq-G3n" firstAttribute="leading" secondItem="H7X-Lz-yvw" secondAttribute="trailing" constant="4" id="DRU-lO-5h2"/>
+                            <constraint firstItem="H7X-Lz-yvw" firstAttribute="centerX" secondItem="2cY-sQ-k6j" secondAttribute="centerX" id="9xm-US-37p"/>
+                            <constraint firstItem="hfD-jq-G3n" firstAttribute="top" secondItem="H7X-Lz-yvw" secondAttribute="bottom" id="APD-ub-IQV"/>
+                            <constraint firstItem="hfD-jq-G3n" firstAttribute="centerX" secondItem="2cY-sQ-k6j" secondAttribute="centerX" id="FUq-d1-1Kj"/>
+                            <constraint firstItem="H7X-Lz-yvw" firstAttribute="top" secondItem="tbR-9Y-33z" secondAttribute="bottom" id="Iqm-Cw-kEf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="v6V-sQ-B80" secondAttribute="trailing" id="KLS-Q2-gZC"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hfD-jq-G3n" secondAttribute="trailing" id="OLB-be-jbk"/>
-                            <constraint firstItem="hfD-jq-G3n" firstAttribute="top" secondItem="2cY-sQ-k6j" secondAttribute="topMargin" constant="8" id="ORW-z5-gr8"/>
+                            <constraint firstItem="v6V-sQ-B80" firstAttribute="centerX" secondItem="2cY-sQ-k6j" secondAttribute="centerX" id="M53-tG-YD4"/>
                             <constraint firstItem="vnO-k4-enK" firstAttribute="top" secondItem="v6V-sQ-B80" secondAttribute="bottom" id="Swx-nc-ITN"/>
-                            <constraint firstItem="H7X-Lz-yvw" firstAttribute="top" secondItem="tbR-9Y-33z" secondAttribute="bottom" constant="8" id="bZc-2G-kpL"/>
-                            <constraint firstItem="cg7-gc-sIl" firstAttribute="leading" secondItem="2cY-sQ-k6j" secondAttribute="leadingMargin" id="c7O-Yo-bLA"/>
+                            <constraint firstItem="cg7-gc-sIl" firstAttribute="top" secondItem="hfD-jq-G3n" secondAttribute="bottom" id="eck-Zd-OJ8"/>
                             <constraint firstItem="v6V-sQ-B80" firstAttribute="leading" secondItem="2cY-sQ-k6j" secondAttribute="leadingMargin" id="gLc-OM-D7Y"/>
                             <constraint firstItem="v6V-sQ-B80" firstAttribute="top" secondItem="cg7-gc-sIl" secondAttribute="bottom" id="gsC-bK-IHU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hfD-jq-G3n" secondAttribute="trailing" constant="8" id="oSw-HY-wDk"/>
-                            <constraint firstItem="hfD-jq-G3n" firstAttribute="top" secondItem="tbR-9Y-33z" secondAttribute="bottom" constant="8" id="tsz-Oy-jFc"/>
-                            <constraint firstItem="cg7-gc-sIl" firstAttribute="top" secondItem="H7X-Lz-yvw" secondAttribute="bottom" constant="8" id="zSZ-Uo-mQ2"/>
+                            <constraint firstItem="cg7-gc-sIl" firstAttribute="leading" secondItem="2cY-sQ-k6j" secondAttribute="leadingMargin" constant="-1" id="hVO-CI-EMZ"/>
+                            <constraint firstItem="fdY-PX-W1b" firstAttribute="centerX" secondItem="2cY-sQ-k6j" secondAttribute="centerX" id="veg-s4-jiO"/>
+                            <constraint firstItem="fdY-PX-W1b" firstAttribute="centerY" secondItem="2cY-sQ-k6j" secondAttribute="centerY" id="wsS-Gh-glq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cg7-gc-sIl" secondAttribute="trailing" constant="1" id="zfr-fa-EKO"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="ORW-z5-gr8"/>
-                                <exclude reference="oSw-HY-wDk"/>
-                                <exclude reference="5uF-tZ-kDU"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="AEa-If-wkE">
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="GGv-5y-dwQ">
@@ -213,12 +224,13 @@ http://www.voanews.com/content/ap-french-data-privacy-regulator-rejects-google-a
                     <connections>
                         <outlet property="abstract" destination="hfD-jq-G3n" id="hkv-6m-Zyz"/>
                         <outlet property="detail" destination="cg7-gc-sIl" id="885-pc-HrG"/>
+                        <outlet property="loading" destination="fdY-PX-W1b" id="qEG-7c-bUP"/>
                         <outlet property="thumbnail" destination="H7X-Lz-yvw" id="pEa-GZ-hf9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4lb-25-gw8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1871" y="359"/>
+            <point key="canvasLocation" x="1871" y="549"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KTR-s4-JYB">
