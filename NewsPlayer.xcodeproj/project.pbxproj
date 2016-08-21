@@ -51,6 +51,10 @@
 		C5DE79531BA1D59A00E594EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5DE79521BA1D59A00E594EE /* Images.xcassets */; };
 		C5DE79561BA1D59A00E594EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DE79541BA1D59A00E594EE /* LaunchScreen.xib */; };
 		C5DE79621BA1D59A00E594EE /* NewsPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DE79611BA1D59A00E594EE /* NewsPlayerTests.swift */; };
+		C5E4ACB61D69AC2D00659DCC /* DeviceVolume.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4ACB51D69AC2D00659DCC /* DeviceVolume.swift */; };
+		C5E4ACB71D69AC2D00659DCC /* DeviceVolume.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4ACB51D69AC2D00659DCC /* DeviceVolume.swift */; };
+		C5E4ACB91D69B43F00659DCC /* speaker-sound-muted.png in Resources */ = {isa = PBXBuildFile; fileRef = C5E4ACB81D69B43F00659DCC /* speaker-sound-muted.png */; };
+		C5E4ACBA1D69B43F00659DCC /* speaker-sound-muted.png in Resources */ = {isa = PBXBuildFile; fileRef = C5E4ACB81D69B43F00659DCC /* speaker-sound-muted.png */; };
 		C5F0DBE01D68579C00185017 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C42CC21BA870BB003D07A3 /* Playlist.swift */; };
 		C5F0DBE21D68586900185017 /* PlaylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F0DBE11D68586900185017 /* PlaylistTests.swift */; };
 		C5F0DBE31D68598400185017 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F51D11BB289EF001DA5AB /* Video.swift */; };
@@ -113,6 +117,8 @@
 		C5DE795B1BA1D59A00E594EE /* NewsPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5DE79601BA1D59A00E594EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5DE79611BA1D59A00E594EE /* NewsPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPlayerTests.swift; sourceTree = "<group>"; };
+		C5E4ACB51D69AC2D00659DCC /* DeviceVolume.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceVolume.swift; sourceTree = "<group>"; };
+		C5E4ACB81D69B43F00659DCC /* speaker-sound-muted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speaker-sound-muted.png"; sourceTree = "<group>"; };
 		C5F0DBE11D68586900185017 /* PlaylistTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTests.swift; sourceTree = "<group>"; };
 		C5F0DBE51D688D8000185017 /* MockSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,6 +190,7 @@
 				C59F51D11BB289EF001DA5AB /* Video.swift */,
 				C5C42CC41BA87B27003D07A3 /* Credential.swift */,
 				C5C39A7D1D6971240053B1F3 /* Logger.swift */,
+				C5E4ACB51D69AC2D00659DCC /* DeviceVolume.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -223,6 +230,7 @@
 		C570DC5E1BB583A40027232E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C5E4ACB81D69B43F00659DCC /* speaker-sound-muted.png */,
 				C570DC5F1BB584BC0027232E /* eq_16_32x32.gif */,
 				C570DC6B1BB598450027232E /* equalizer.gif */,
 				C570DC671BB5975C0027232E /* eq_16.gif */,
@@ -389,6 +397,7 @@
 				C570DC601BB584BC0027232E /* eq_16_32x32.gif in Resources */,
 				C570DC6A1BB5975C0027232E /* eq_16x16.gif in Resources */,
 				C570DC6C1BB598450027232E /* equalizer.gif in Resources */,
+				C5E4ACB91D69B43F00659DCC /* speaker-sound-muted.png in Resources */,
 				C5DE79511BA1D59A00E594EE /* Main.storyboard in Resources */,
 				C5C42CC11BA86F7D003D07A3 /* YouTube.plist in Resources */,
 				C5C42CBB1BA48127003D07A3 /* Credentials.plist in Resources */,
@@ -404,6 +413,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5E4ACBA1D69B43F00659DCC /* speaker-sound-muted.png in Resources */,
 				C541B2491D68CA6C00612C75 /* YoutubeActivities02.json in Resources */,
 				C541B2441D689F8A00612C75 /* YoutubeActivities01.json in Resources */,
 			);
@@ -469,6 +479,7 @@
 				C5DE794E1BA1D59A00E594EE /* ViewController.swift in Sources */,
 				C547E3761D6941F70079987D /* NSObject+.swift in Sources */,
 				C5DE79491BA1D59A00E594EE /* AppDelegate.swift in Sources */,
+				C5E4ACB61D69AC2D00659DCC /* DeviceVolume.swift in Sources */,
 				C547E3851D695FBB0079987D /* Channel.swift in Sources */,
 				C50868001BADD79200EF0F01 /* LPRTableView.swift in Sources */,
 				C508680C1BAFE2BA00EF0F01 /* VideoDetailViewController.swift in Sources */,
@@ -490,6 +501,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5E4ACB71D69AC2D00659DCC /* DeviceVolume.swift in Sources */,
 				C5DE79621BA1D59A00E594EE /* NewsPlayerTests.swift in Sources */,
 				C547E37D1D69451B0079987D /* Array+.swift in Sources */,
 				C5F0DBE31D68598400185017 /* Video.swift in Sources */,

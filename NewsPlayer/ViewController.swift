@@ -443,6 +443,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func playerViewDidBecomeReady(playerView: YTPlayerView!) {
         Logger.log?.debug("playerViewDidBecomeReady")
         // FIXME: Not proper timing
+        DeviceVolume(view: view).showNotice()
         reloadTable()
         playCurrentVideo()
         UIView.animateWithDuration(0.8, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
