@@ -33,7 +33,7 @@ class Video: Equatable {
     var thumbnail: Thumbnail
     var state: State
 
-    convenience init(id: String, item: JSON, quality: Thumbnail.Quality = Thumbnail.Quality.Default) {
+    convenience init(id: String, item: JSON, quality: Thumbnail.Quality = Thumbnail.Quality.High) {
         self.init(
             id: id,
             title: item["snippet", "title"].stringValue,
