@@ -1,0 +1,441 @@
+{
+    "kind": "youtube#videoListResponse",
+    "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/T_znk-Dd6KW3UT_ZIbHT_JVZhD8\"",
+    "pageInfo": {
+        "totalResults": 5,
+        "resultsPerPage": 5
+    },
+    "items": [
+              {
+              "kind": "youtube#video",
+              "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/CL1zP1Zqo4cBCg6Rprzosil8b2c\"",
+              "id": "iFwYhpC9rSU",
+              "snippet": {
+              "publishedAt": "2016-08-20T13:42:27.000Z",
+              "channelId": "UChqUTb7kYRX8-EiaN3XFrSQ",
+              "title": "Massive pro-Houthi rally held in Yemeni capital",
+              "description": "Tens of thousands of Yemenis take to the streets of Sanaa in a massive show of support for the Houthi-led bloc that retains control of the capital and several major towns and cities across the country, in one of the biggest demonstrations in Yemen since 2011 protests that forced President Ali Abdullah Saleh to step down. Rough Cut (no reporter narration).\n\nSubscribe: http://smarturl.it/reuterssubscribe\r\nMore updates and breaking news: http://smarturl.it/BreakingNews\r\n\r\nReuters tells the world's stories like no one else. As the largest international multimedia news provider, Reuters provides coverage around the globe and across topics including business, financial, national, and international news. For over 160 years, Reuters has maintained its reputation for speed, accuracy, and impact while providing exclusives, incisive commentary and forward-looking analysis.\r\n\r\nhttp://reuters.com/\r\nhttps://www.facebook.com/Reuters\r\nhttps://plus.google.com/u/0/s/reuters\r\nhttps://twitter.com/Reuters",
+              "thumbnails": {
+              "default": {
+              "url": "https://i.ytimg.com/vi/iFwYhpC9rSU/default.jpg",
+              "width": 120,
+              "height": 90
+              },
+              "medium": {
+              "url": "https://i.ytimg.com/vi/iFwYhpC9rSU/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+              },
+              "high": {
+              "url": "https://i.ytimg.com/vi/iFwYhpC9rSU/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+              },
+              "standard": {
+              "url": "https://i.ytimg.com/vi/iFwYhpC9rSU/sddefault.jpg",
+              "width": 640,
+              "height": 480
+              },
+              "maxres": {
+              "url": "https://i.ytimg.com/vi/iFwYhpC9rSU/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+              }
+              },
+              "channelTitle": "Reuters",
+              "tags": [
+                       "massive",
+                       "finance",
+                       "business",
+                       "pro-houthi",
+                       "news channel",
+                       "held",
+                       "thomson reuters",
+                       "yemeni",
+                       "news",
+                       "politics",
+                       "headlines",
+                       "reuters news",
+                       "news today",
+                       "lifestyle",
+                       "top news",
+                       "breaking",
+                       "reports",
+                       "news agency",
+                       "rally",
+                       "reuters",
+                       "breaking news",
+                       "capital",
+                       "video news",
+                       "latest"
+                       ],
+              "categoryId": "25",
+              "liveBroadcastContent": "none",
+              "localized": {
+              "title": "Massive pro-Houthi rally held in Yemeni capital",
+              "description": "Tens of thousands of Yemenis take to the streets of Sanaa in a massive show of support for the Houthi-led bloc that retains control of the capital and several major towns and cities across the country, in one of the biggest demonstrations in Yemen since 2011 protests that forced President Ali Abdullah Saleh to step down. Rough Cut (no reporter narration).\n\nSubscribe: http://smarturl.it/reuterssubscribe\r\nMore updates and breaking news: http://smarturl.it/BreakingNews\r\n\r\nReuters tells the world's stories like no one else. As the largest international multimedia news provider, Reuters provides coverage around the globe and across topics including business, financial, national, and international news. For over 160 years, Reuters has maintained its reputation for speed, accuracy, and impact while providing exclusives, incisive commentary and forward-looking analysis.\r\n\r\nhttp://reuters.com/\r\nhttps://www.facebook.com/Reuters\r\nhttps://plus.google.com/u/0/s/reuters\r\nhttps://twitter.com/Reuters"
+              }
+              },
+              "contentDetails": {
+              "duration": "PT46S",
+              "dimension": "2d",
+              "definition": "hd",
+              "caption": "false",
+              "licensedContent": true,
+              "projection": "rectangular"
+              },
+              "status": {
+              "uploadStatus": "processed",
+              "privacyStatus": "public",
+              "license": "youtube",
+              "embeddable": false,
+              "publicStatsViewable": true
+              }
+              },
+              {
+              "kind": "youtube#video",
+              "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/pyBHFgKwQRHvrsCTIWJXhNJq3K0\"",
+              "id": "876E3tpGhZg",
+              "snippet": {
+              "publishedAt": "2016-08-20T12:42:29.000Z",
+              "channelId": "UChqUTb7kYRX8-EiaN3XFrSQ",
+              "title": "Australian athletes entered Olympic arena by \"mistake\": official",
+              "description": "The head of the Australian Olympic Committee says several of its Olympic athletes entered a basketball arena without the proper accreditation by \"mistake.\" Rough Cut (no reporter narration).\n\nSubscribe: http://smarturl.it/reuterssubscribe\r\nMore updates and breaking news: http://smarturl.it/BreakingNews\r\n\r\nReuters tells the world's stories like no one else. As the largest international multimedia news provider, Reuters provides coverage around the globe and across topics including business, financial, national, and international news. For over 160 years, Reuters has maintained its reputation for speed, accuracy, and impact while providing exclusives, incisive commentary and forward-looking analysis.\r\n\r\nhttp://reuters.com/\r\nhttps://www.facebook.com/Reuters\r\nhttps://plus.google.com/u/0/s/reuters\r\nhttps://twitter.com/Reuters",
+              "thumbnails": {
+              "default": {
+              "url": "https://i.ytimg.com/vi/876E3tpGhZg/default.jpg",
+              "width": 120,
+              "height": 90
+              },
+              "medium": {
+              "url": "https://i.ytimg.com/vi/876E3tpGhZg/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+              },
+              "high": {
+              "url": "https://i.ytimg.com/vi/876E3tpGhZg/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+              },
+              "standard": {
+              "url": "https://i.ytimg.com/vi/876E3tpGhZg/sddefault.jpg",
+              "width": 640,
+              "height": 480
+              },
+              "maxres": {
+              "url": "https://i.ytimg.com/vi/876E3tpGhZg/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+              }
+              },
+              "channelTitle": "Reuters",
+              "tags": [
+                       "arena",
+                       "olympic",
+                       "official",
+                       "finance",
+                       "business",
+                       "news channel",
+                       "thomson reuters",
+                       "news",
+                       "politics",
+                       "headlines",
+                       "australian",
+                       "reuters news",
+                       "news today",
+                       "lifestyle",
+                       "top news",
+                       "athletes",
+                       "breaking",
+                       "reports",
+                       "news agency",
+                       "reuters",
+                       "breaking news",
+                       "entered",
+                       "mistake",
+                       "video news",
+                       "latest"
+                       ],
+              "categoryId": "25",
+              "liveBroadcastContent": "none",
+              "localized": {
+              "title": "Australian athletes entered Olympic arena by \"mistake\": official",
+              "description": "The head of the Australian Olympic Committee says several of its Olympic athletes entered a basketball arena without the proper accreditation by \"mistake.\" Rough Cut (no reporter narration).\n\nSubscribe: http://smarturl.it/reuterssubscribe\r\nMore updates and breaking news: http://smarturl.it/BreakingNews\r\n\r\nReuters tells the world's stories like no one else. As the largest international multimedia news provider, Reuters provides coverage around the globe and across topics including business, financial, national, and international news. For over 160 years, Reuters has maintained its reputation for speed, accuracy, and impact while providing exclusives, incisive commentary and forward-looking analysis.\r\n\r\nhttp://reuters.com/\r\nhttps://www.facebook.com/Reuters\r\nhttps://plus.google.com/u/0/s/reuters\r\nhttps://twitter.com/Reuters"
+              }
+              },
+              "contentDetails": {
+              "duration": "PT1M4S",
+              "dimension": "2d",
+              "definition": "hd",
+              "caption": "false",
+              "licensedContent": true,
+              "projection": "rectangular"
+              },
+              "status": {
+              "uploadStatus": "processed",
+              "privacyStatus": "public",
+              "license": "youtube",
+              "embeddable": false,
+              "publicStatsViewable": true
+              }
+              },
+              {
+              "kind": "youtube#video",
+              "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/h0_63Q5rEp9TzMHlE9iYa_UEEv4\"",
+              "id": "HnARQChHgN0",
+              "snippet": {
+              "publishedAt": "2016-08-20T00:12:45.000Z",
+              "channelId": "UChqUTb7kYRX8-EiaN3XFrSQ",
+              "title": "Eager fans line up for Kanye West's 'Pablo' clothing",
+              "description": "Kanye West fans around the world line up for hours to snag his \"The Life of Pablo\" merchandise. Rough Cut (no reporter narration)\n\nSubscribe: http://smarturl.it/reuterssubscribe\r\nMore updates and breaking news: http://smarturl.it/BreakingNews\r\n\r\nReuters tells the world's stories like no one else. As the largest international multimedia news provider, Reuters provides coverage around the globe and across topics including business, financial, national, and international news. For over 160 years, Reuters has maintained its reputation for speed, accuracy, and impact while providing exclusives, incisive commentary and forward-looking analysis.\r\n\r\nhttp://reuters.com/\r\nhttps://www.facebook.com/Reuters\r\nhttps://plus.google.com/u/0/s/reuters\r\nhttps://twitter.com/Reuters",
+              "thumbnails": {
+              "default": {
+              "url": "https://i.ytimg.com/vi/HnARQChHgN0/default.jpg",
+              "width": 120,
+              "height": 90
+              },
+              "medium": {
+              "url": "https://i.ytimg.com/vi/HnARQChHgN0/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+              },
+              "high": {
+              "url": "https://i.ytimg.com/vi/HnARQChHgN0/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+              },
+              "standard": {
+              "url": "https://i.ytimg.com/vi/HnARQChHgN0/sddefault.jpg",
+              "width": 640,
+              "height": 480
+              },
+              "maxres": {
+              "url": "https://i.ytimg.com/vi/HnARQChHgN0/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+              }
+              },
+              "channelTitle": "Reuters",
+              "tags": [
+                       "kanye",
+                       "finance",
+                       "business",
+                       "pablo",
+                       "line",
+                       "news channel",
+                       "thomson reuters",
+                       "west's",
+                       "news",
+                       "politics",
+                       "headlines",
+                       "clothing",
+                       "reuters news",
+                       "news today",
+                       "lifestyle",
+                       "top news",
+                       "breaking",
+                       "reports",
+                       "news agency",
+                       "eager",
+                       "fans",
+                       "reuters",
+                       "breaking news",
+                       "video news",
+                       "latest"
+                       ],
+              "categoryId": "25",
+              "liveBroadcastContent": "none",
+              "localized": {
+              "title": "Eager fans line up for Kanye West's 'Pablo' clothing",
+              "description": "Kanye West fans around the world line up for hours to snag his \"The Life of Pablo\" merchandise. Rough Cut (no reporter narration)\n\nSubscribe: http://smarturl.it/reuterssubscribe\r\nMore updates and breaking news: http://smarturl.it/BreakingNews\r\n\r\nReuters tells the world's stories like no one else. As the largest international multimedia news provider, Reuters provides coverage around the globe and across topics including business, financial, national, and international news. For over 160 years, Reuters has maintained its reputation for speed, accuracy, and impact while providing exclusives, incisive commentary and forward-looking analysis.\r\n\r\nhttp://reuters.com/\r\nhttps://www.facebook.com/Reuters\r\nhttps://plus.google.com/u/0/s/reuters\r\nhttps://twitter.com/Reuters"
+              }
+              },
+              "contentDetails": {
+              "duration": "PT1M36S",
+              "dimension": "2d",
+              "definition": "hd",
+              "caption": "false",
+              "licensedContent": true,
+              "projection": "rectangular"
+              },
+              "status": {
+              "uploadStatus": "processed",
+              "privacyStatus": "public",
+              "license": "youtube",
+              "embeddable": false,
+              "publicStatsViewable": true
+              }
+              },
+              {
+              "kind": "youtube#video",
+              "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/KTapQu455-aHeiam-D6aDRnEZk8\"",
+              "id": "3yeH2uhGsLU",
+              "snippet": {
+              "publishedAt": "2016-08-19T21:57:14.000Z",
+              "channelId": "UChqUTb7kYRX8-EiaN3XFrSQ",
+              "title": "Wall Street closes out the week in the red",
+              "description": "U.S. stocks edged lower on Friday, as investors weighed prospects for an interest rate increase in the coming months. Bobbi Rebell reports.\n\nSubscribe: http://smarturl.it/reuterssubscribe\r\nMore updates and breaking news: http://smarturl.it/BreakingNews\r\n\r\nReuters tells the world's stories like no one else. As the largest international multimedia news provider, Reuters provides coverage around the globe and across topics including business, financial, national, and international news. For over 160 years, Reuters has maintained its reputation for speed, accuracy, and impact while providing exclusives, incisive commentary and forward-looking analysis.\r\n\r\nhttp://reuters.com/\r\nhttps://www.facebook.com/Reuters\r\nhttps://plus.google.com/u/0/s/reuters\r\nhttps://twitter.com/Reuters",
+              "thumbnails": {
+              "default": {
+              "url": "https://i.ytimg.com/vi/3yeH2uhGsLU/default.jpg",
+              "width": 120,
+              "height": 90
+              },
+              "medium": {
+              "url": "https://i.ytimg.com/vi/3yeH2uhGsLU/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+              },
+              "high": {
+              "url": "https://i.ytimg.com/vi/3yeH2uhGsLU/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+              },
+              "standard": {
+              "url": "https://i.ytimg.com/vi/3yeH2uhGsLU/sddefault.jpg",
+              "width": 640,
+              "height": 480
+              },
+              "maxres": {
+              "url": "https://i.ytimg.com/vi/3yeH2uhGsLU/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+              }
+              },
+              "channelTitle": "Reuters",
+              "tags": [
+                       "week",
+                       "street",
+                       "finance",
+                       "business",
+                       "wall",
+                       "news channel",
+                       "thomson reuters",
+                       "news",
+                       "politics",
+                       "headlines",
+                       "reuters news",
+                       "news today",
+                       "closes",
+                       "lifestyle",
+                       "top news",
+                       "breaking",
+                       "reports",
+                       "news agency",
+                       "reuters",
+                       "breaking news",
+                       "video news",
+                       "red",
+                       "latest"
+                       ],
+              "categoryId": "25",
+              "liveBroadcastContent": "none",
+              "localized": {
+              "title": "Wall Street closes out the week in the red",
+              "description": "U.S. stocks edged lower on Friday, as investors weighed prospects for an interest rate increase in the coming months. Bobbi Rebell reports.\n\nSubscribe: http://smarturl.it/reuterssubscribe\r\nMore updates and breaking news: http://smarturl.it/BreakingNews\r\n\r\nReuters tells the world's stories like no one else. As the largest international multimedia news provider, Reuters provides coverage around the globe and across topics including business, financial, national, and international news. For over 160 years, Reuters has maintained its reputation for speed, accuracy, and impact while providing exclusives, incisive commentary and forward-looking analysis.\r\n\r\nhttp://reuters.com/\r\nhttps://www.facebook.com/Reuters\r\nhttps://plus.google.com/u/0/s/reuters\r\nhttps://twitter.com/Reuters"
+              }
+              },
+              "contentDetails": {
+              "duration": "PT1M3S",
+              "dimension": "2d",
+              "definition": "hd",
+              "caption": "false",
+              "licensedContent": true,
+              "projection": "rectangular"
+              },
+              "status": {
+              "uploadStatus": "processed",
+              "privacyStatus": "public",
+              "license": "youtube",
+              "embeddable": false,
+              "publicStatsViewable": true
+              }
+              },
+              {
+              "kind": "youtube#video",
+              "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/RSFXjo_v60dmmFObJ6GJYaaTuuI\"",
+              "id": "uDc-OjGHXqk",
+              "snippet": {
+              "publishedAt": "2016-08-19T21:39:27.000Z",
+              "channelId": "UChqUTb7kYRX8-EiaN3XFrSQ",
+              "title": "Items from Ali's career hit the auction block",
+              "description": "Nearly 100 items associated with the life of Muhammad Ali hit the auction block. The sale includes the first Ali heavyweight championship belt ever to be offered at auction. Rough Cut (no reporter narration).\n\nSubscribe: http://smarturl.it/reuterssubscribe\r\nMore updates and breaking news: http://smarturl.it/BreakingNews\r\n\r\nReuters tells the world's stories like no one else. As the largest international multimedia news provider, Reuters provides coverage around the globe and across topics including business, financial, national, and international news. For over 160 years, Reuters has maintained its reputation for speed, accuracy, and impact while providing exclusives, incisive commentary and forward-looking analysis.\r\n\r\nhttp://reuters.com/\r\nhttps://www.facebook.com/Reuters\r\nhttps://plus.google.com/u/0/s/reuters\r\nhttps://twitter.com/Reuters",
+              "thumbnails": {
+              "default": {
+              "url": "https://i.ytimg.com/vi/uDc-OjGHXqk/default.jpg",
+              "width": 120,
+              "height": 90
+              },
+              "medium": {
+              "url": "https://i.ytimg.com/vi/uDc-OjGHXqk/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+              },
+              "high": {
+              "url": "https://i.ytimg.com/vi/uDc-OjGHXqk/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+              },
+              "standard": {
+              "url": "https://i.ytimg.com/vi/uDc-OjGHXqk/sddefault.jpg",
+              "width": 640,
+              "height": 480
+              },
+              "maxres": {
+              "url": "https://i.ytimg.com/vi/uDc-OjGHXqk/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+              }
+              },
+              "channelTitle": "Reuters",
+              "tags": [
+                       "hit",
+                       "finance",
+                       "business",
+                       "news channel",
+                       "thomson reuters",
+                       "news",
+                       "politics",
+                       "headlines",
+                       "reuters news",
+                       "news today",
+                       "lifestyle",
+                       "top news",
+                       "career",
+                       "items",
+                       "breaking",
+                       "reports",
+                       "news agency",
+                       "auction",
+                       "reuters",
+                       "breaking news",
+                       "ali's",
+                       "video news",
+                       "block",
+                       "latest"
+                       ],
+              "categoryId": "25",
+              "liveBroadcastContent": "none",
+              "localized": {
+              "title": "Items from Ali's career hit the auction block",
+              "description": "Nearly 100 items associated with the life of Muhammad Ali hit the auction block. The sale includes the first Ali heavyweight championship belt ever to be offered at auction. Rough Cut (no reporter narration).\n\nSubscribe: http://smarturl.it/reuterssubscribe\r\nMore updates and breaking news: http://smarturl.it/BreakingNews\r\n\r\nReuters tells the world's stories like no one else. As the largest international multimedia news provider, Reuters provides coverage around the globe and across topics including business, financial, national, and international news. For over 160 years, Reuters has maintained its reputation for speed, accuracy, and impact while providing exclusives, incisive commentary and forward-looking analysis.\r\n\r\nhttp://reuters.com/\r\nhttps://www.facebook.com/Reuters\r\nhttps://plus.google.com/u/0/s/reuters\r\nhttps://twitter.com/Reuters"
+              }
+              },
+              "contentDetails": {
+              "duration": "PT1M47S",
+              "dimension": "2d",
+              "definition": "hd",
+              "caption": "false",
+              "licensedContent": true,
+              "projection": "rectangular"
+              },
+              "status": {
+              "uploadStatus": "processed",
+              "privacyStatus": "public",
+              "license": "youtube",
+              "embeddable": false,
+              "publicStatsViewable": true
+              }
+              }
+              ]
+}

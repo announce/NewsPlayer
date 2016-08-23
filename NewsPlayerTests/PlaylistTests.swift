@@ -15,9 +15,12 @@ class PlaylistTest: XCTestCase {
     override func setUp() {
         super.setUp()
         subject = Playlist(session: session)
-        MockSession.mockResponse = MockSession.createResponse(
+        MockSession.upsertMockResponse(
             NSURL(string: ActivityApi.baseUrl)!,
-            data: Fixtures.read("YoutubeActivities01"))
+            data: Fixtures.read("YoutubeActivities02"))
+        MockSession.upsertMockResponse(
+            NSURL(string: VideoApi.baseUrl)!,
+            data: Fixtures.read("YoutubeVideos02"))
     }
     
     func testCurrentIndex() {
