@@ -19,10 +19,8 @@ class Playlist : NSObject {
     }
     
     struct Const {
-        static let Max = 2000
+        static let MaxQueueLength = 1000
     }
-    let activityUrl = "https://www.googleapis.com/youtube/v3/activities"
-    let session: NSURLSession
     
     dynamic var queue: [String] = []
     var videoList: [String: Video] = [:]
@@ -31,19 +29,22 @@ class Playlist : NSObject {
     var updatingAvailable: Bool = true
     var waitingList: [Video] = []
     var currentNumberOfRows: Int = 0
+    var activityApi: ActivityApi
+    var videoApi: VideoApi
     
     var delegate: PlaylistRefresher? = nil
     var finishedCount: Int = 0
     
     init(session: NSURLSession = NSURLSession.sharedSession()) {
-        self.session = session
+        self.activityApi = ActivityApi(session: session)
+        self.videoApi = VideoApi(session: session)
         super.init()
     }
-
+    
     func enqueue() {
         let channels = Channel.localizedList()
         for channel in channels {
-            fetchActivities(channel)
+            fetchActivity(channel, handler: fetchVideos)
         }
     }
     
@@ -51,7 +52,7 @@ class Playlist : NSObject {
         let channels = Channel.localizedList()
         finishedCount = channels.count
         for channel in channels {
-            refreshActivities(channel)
+            activityApi.resume(channel, handler: insertVideos)
         }
     }
     
@@ -173,97 +174,91 @@ class Playlist : NSObject {
         return video
     }
     
-    func fetchActivities(channel: Channel, pageToken: String = "") {
-        if Const.Max <= queue.count || Const.Max <= waitingList.count {
-            Logger.log?.debug("Queue count reached Const.Max[\(Const.Max)]")
+    func fetchActivity(channel: Channel, pageToken: String = "", handler: NSURLSession.CompletionHandler) {
+        if Const.MaxQueueLength <= queue.count || Const.MaxQueueLength <= waitingList.count {
+            Logger.log?.debug("Queue count reached max length [\(Const.MaxQueueLength)]")
             return
         }
-        
-        session.dataTaskWithURL(
-            createActivityRequest(channel, pageToken: pageToken),
-            completionHandler: appendVideos).resume()
-    }
-    
-    func refreshActivities(channel: Channel, pageToken: String = "") {
-        session.dataTaskWithURL(
-            createActivityRequest(channel, pageToken: pageToken),
-            completionHandler: insertVideos).resume()
-    }
-    
-    func createActivityRequest(channel: Channel, pageToken: String) -> NSURL {
-        let apiKey: String = Credential(key: Credential.Provider.Google).apiKey
-        let part = "snippet,contentDetails"
-        return NSURL(string: "\(activityUrl)?part=\(part)&channelId=\(channel.id)&pageToken=\(pageToken)&key=\(apiKey)")!
+        return activityApi.resume(channel, pageToken: pageToken, handler: handler)
     }
     
     func finish() {
         finishedCount -= 1
         if finishedCount <= 0 {
-            delegate?.endRefreshing()
+            dispatch_async(dispatch_get_main_queue(), {
+                self.delegate?.endRefreshing()
+            })
         }
     }
     
-    func insertVideos(data: NSData?, _: NSURLResponse?, error: NSError?) {
+    func parseJson(data: NSData?, error: NSError?) -> JSON? {
         if (error != nil) {
             Logger.log?.warning("NSError in response: \(error)")
-            return
+            return nil
         }
         if (nil == data) {
             Logger.log?.warning("NSData is nil")
-            return
-        }
-        
-        let json = JSON(data: data!)
-        
-        if json.isEmpty || !json["error"].isEmpty {
-            Logger.log?.error("Unxecpected data. Check Credentials.plist's `Google API Key` is valid.")
-            return
-        }
-        
-        if isLatest(json) {
-            finish()
-            return
-        }
-        
-        for (_,item):(String, JSON) in json["items"] {
-            if let video: Video = createVideo(item) {
-                insertVideo(video, atIndex: currentIndex + 1)
-            } else {
-                continue
-            }
-        }
-        finish()
-    }
-    
-    func appendVideos(data: NSData?, _: NSURLResponse?, error: NSError?) {
-        if (error != nil) {
-            Logger.log?.warning("NSError in response: \(error)")
-            return
-        }
-        if (nil == data) {
-            Logger.log?.warning("NSData is nil")
-            return
+            return nil
         }
         
         let json = JSON(data: data!)
         if json.isEmpty || !json["error"].isEmpty {
             Logger.log?.error("Empty data. Check Credentials.plist's `Google API Key` is valid.")
+            return nil
+        }
+        return json
+    }
+    
+    func insertVideos(data: NSData?, _: NSURLResponse?, error: NSError?) {
+        guard let activityJson = parseJson(data, error: error) else { return }
+        if isLatest(activityJson) {
+            finish()
             return
         }
-        if isLatest(json) {
+        exctractEmbeddableVideos(activityJson["items"]) { (items:[JSON]) in
+            items.forEach {(item: JSON) in
+                if let video: Video = self.createVideo(item) {
+                    self.insertVideo(video, atIndex: self.currentIndex + 1)
+                }
+            }
+        }
+        finish()
+    }
+    
+    func fetchVideos(data: NSData?, _: NSURLResponse?, error: NSError?) {
+        guard let activityJson = parseJson(data, error: error) else { return }
+        if isLatest(activityJson) {
             // TODO Check all channels and notify to user
             return
         }
-        
-        for (_,item):(String, JSON) in json["items"] {
-            if let video: Video = createVideo(item) {
-                appendVideo(video)
-            } else {
-                continue
+        exctractEmbeddableVideos(activityJson["items"]) { (items:[JSON]) in
+            items.forEach {(item: JSON) in
+                if let video: Video = self.createVideo(item) {
+                    self.appendVideo(video)
+                }
             }
         }
-        
-        fetchNextPage(json)
+        fetchNextPage(activityJson)
+    }
+    
+    func exctractEmbeddableVideos(originalItems: JSON, callBack: (items: [JSON]) -> Void) {
+        let ids = retreiveVideoIds(originalItems)
+        videoApi.resume(ids) { (data: NSData?, response: NSURLResponse?, error: NSError?) in
+            guard let json = self.parseJson(data, error: error) else { return }
+            let embeddables: [JSON] = json["items"].flatMap { (_:String, item:JSON) -> JSON in
+                if let embeddable: Bool = item["status", "embeddable"].bool where embeddable == true {
+                    return item
+                }
+                return nil
+            }
+            callBack(items: embeddables)
+        }
+    }
+    
+    func retreiveVideoIds(items: JSON) -> [String] {
+        return items.flatMap { (_:String, item: JSON) in
+            item["contentDetails", "upload", "videoId"].string
+        }
     }
     
     private func isLatest(json: JSON) -> Bool {
@@ -287,20 +282,21 @@ class Playlist : NSObject {
     }
     
     private func createVideo(item: JSON) -> Video? {
-        guard let videoId = item["contentDetails", "upload", "videoId"].string else {
+        guard let videoId = item["id"].string else {
             return nil
         }
         return Video(id: videoId, item: item)
     }
     
-    private func fetchNextPage(json: JSON) {
-        guard let channelId = json["items", 0, "snippet", "channelId"].string else {
+    private func fetchNextPage(activityJson: JSON) {
+        guard let channelId = activityJson["items", 0, "snippet", "channelId"].string else {
+            Logger.log?.warning("Failed to retrieve channelId")
             return
         }
-        guard let nextPageToken = json["nextPageToken"].string else {
+        guard let nextPageToken = activityJson["nextPageToken"].string else {
             Logger.log?.debug("Chennel[\(channelId)]: Completed to fetch all pages")
             return
         }
-        fetchActivities(Channel.init(id: channelId), pageToken: nextPageToken)
+        fetchActivity(Channel.init(id: channelId), pageToken: nextPageToken, handler: fetchVideos)
     }
 }

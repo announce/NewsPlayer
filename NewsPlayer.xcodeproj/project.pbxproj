@@ -10,6 +10,14 @@
 		1E4E5B0714E5829B3A6C2875 /* Pods_NewsPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4118D673C1EBB29C980E205F /* Pods_NewsPlayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C50868001BADD79200EF0F01 /* LPRTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50867FF1BADD79200EF0F01 /* LPRTableView.swift */; };
 		C508680C1BAFE2BA00EF0F01 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508680B1BAFE2BA00EF0F01 /* VideoDetailViewController.swift */; };
+		C53820D21D69FC4000777FC6 /* ActivityApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53820D11D69FC4000777FC6 /* ActivityApi.swift */; };
+		C53820D31D69FC4000777FC6 /* ActivityApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53820D11D69FC4000777FC6 /* ActivityApi.swift */; };
+		C53820D51D69FF1100777FC6 /* NSURLSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53820D41D69FF1100777FC6 /* NSURLSession+.swift */; };
+		C53820D61D69FF1100777FC6 /* NSURLSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53820D41D69FF1100777FC6 /* NSURLSession+.swift */; };
+		C53820D81D6A0EB400777FC6 /* VideoApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53820D71D6A0EB400777FC6 /* VideoApi.swift */; };
+		C53820D91D6A0EB400777FC6 /* VideoApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53820D71D6A0EB400777FC6 /* VideoApi.swift */; };
+		C53820DB1D6CA2EE00777FC6 /* YoutubeVideos01.json in Resources */ = {isa = PBXBuildFile; fileRef = C53820DA1D6CA2EE00777FC6 /* YoutubeVideos01.json */; };
+		C53820DD1D6CAC9100777FC6 /* YoutubeVideos02.json in Resources */ = {isa = PBXBuildFile; fileRef = C53820DC1D6CAC9100777FC6 /* YoutubeVideos02.json */; };
 		C541B2441D689F8A00612C75 /* YoutubeActivities01.json in Resources */ = {isa = PBXBuildFile; fileRef = C541B2431D689F8A00612C75 /* YoutubeActivities01.json */; };
 		C541B2471D68A41A00612C75 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = C541B2461D68A41A00612C75 /* Fixtures.swift */; };
 		C541B2491D68CA6C00612C75 /* YoutubeActivities02.json in Resources */ = {isa = PBXBuildFile; fileRef = C541B2481D68CA6C00612C75 /* YoutubeActivities02.json */; };
@@ -78,6 +86,11 @@
 		4118D673C1EBB29C980E205F /* Pods_NewsPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C50867FF1BADD79200EF0F01 /* LPRTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LPRTableView.swift; sourceTree = "<group>"; };
 		C508680B1BAFE2BA00EF0F01 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
+		C53820D11D69FC4000777FC6 /* ActivityApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityApi.swift; sourceTree = "<group>"; };
+		C53820D41D69FF1100777FC6 /* NSURLSession+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLSession+.swift"; sourceTree = "<group>"; };
+		C53820D71D6A0EB400777FC6 /* VideoApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoApi.swift; sourceTree = "<group>"; };
+		C53820DA1D6CA2EE00777FC6 /* YoutubeVideos01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = YoutubeVideos01.json; sourceTree = "<group>"; };
+		C53820DC1D6CAC9100777FC6 /* YoutubeVideos02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = YoutubeVideos02.json; sourceTree = "<group>"; };
 		C541B2431D689F8A00612C75 /* YoutubeActivities01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = YoutubeActivities01.json; sourceTree = "<group>"; };
 		C541B2461D68A41A00612C75 /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		C541B2481D68CA6C00612C75 /* YoutubeActivities02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = YoutubeActivities02.json; sourceTree = "<group>"; };
@@ -191,6 +204,8 @@
 				C5C42CC41BA87B27003D07A3 /* Credential.swift */,
 				C5C39A7D1D6971240053B1F3 /* Logger.swift */,
 				C5E4ACB51D69AC2D00659DCC /* DeviceVolume.swift */,
+				C53820D11D69FC4000777FC6 /* ActivityApi.swift */,
+				C53820D71D6A0EB400777FC6 /* VideoApi.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -209,6 +224,8 @@
 			children = (
 				C541B2431D689F8A00612C75 /* YoutubeActivities01.json */,
 				C541B2481D68CA6C00612C75 /* YoutubeActivities02.json */,
+				C53820DA1D6CA2EE00777FC6 /* YoutubeVideos01.json */,
+				C53820DC1D6CAC9100777FC6 /* YoutubeVideos02.json */,
 			);
 			name = Fixtures;
 			sourceTree = "<group>";
@@ -221,6 +238,7 @@
 				C547E37E1D6947AF0079987D /* NSError+.swift */,
 				C547E3811D6948A00079987D /* NSBundle+.swift */,
 				C547E3871D69605F0079987D /* NSLocale+.swift */,
+				C53820D41D69FF1100777FC6 /* NSURLSession+.swift */,
 				C547E3781D6942740079987D /* UITableView+.swift */,
 				C547E37B1D69451B0079987D /* Array+.swift */,
 			);
@@ -292,8 +310,8 @@
 			children = (
 				C5DE79611BA1D59A00E594EE /* NewsPlayerTests.swift */,
 				C5F0DBE11D68586900185017 /* PlaylistTests.swift */,
-				C5DE795F1BA1D59A00E594EE /* Supporting Files */,
 				C5F0DBE51D688D8000185017 /* MockSession.swift */,
+				C5DE795F1BA1D59A00E594EE /* Supporting Files */,
 				C541B2451D689FE600612C75 /* Fixtures */,
 				C541B2461D68A41A00612C75 /* Fixtures.swift */,
 			);
@@ -413,7 +431,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C53820DB1D6CA2EE00777FC6 /* YoutubeVideos01.json in Resources */,
 				C5E4ACBA1D69B43F00659DCC /* speaker-sound-muted.png in Resources */,
+				C53820DD1D6CAC9100777FC6 /* YoutubeVideos02.json in Resources */,
 				C541B2491D68CA6C00612C75 /* YoutubeActivities02.json in Resources */,
 				C541B2441D689F8A00612C75 /* YoutubeActivities01.json in Resources */,
 			);
@@ -478,11 +498,13 @@
 				C547E3821D6948A00079987D /* NSBundle+.swift in Sources */,
 				C5DE794E1BA1D59A00E594EE /* ViewController.swift in Sources */,
 				C547E3761D6941F70079987D /* NSObject+.swift in Sources */,
+				C53820D81D6A0EB400777FC6 /* VideoApi.swift in Sources */,
 				C5DE79491BA1D59A00E594EE /* AppDelegate.swift in Sources */,
 				C5E4ACB61D69AC2D00659DCC /* DeviceVolume.swift in Sources */,
 				C547E3851D695FBB0079987D /* Channel.swift in Sources */,
 				C50868001BADD79200EF0F01 /* LPRTableView.swift in Sources */,
 				C508680C1BAFE2BA00EF0F01 /* VideoDetailViewController.swift in Sources */,
+				C53820D21D69FC4000777FC6 /* ActivityApi.swift in Sources */,
 				C5AFC3991BAD60D3001CCBD4 /* VideoTableViewCell.swift in Sources */,
 				C5C42CC51BA87B27003D07A3 /* Credential.swift in Sources */,
 				C547E3791D6942740079987D /* UITableView+.swift in Sources */,
@@ -492,6 +514,7 @@
 				C5C52B281BB0F48C002ED21C /* LoadingView.swift in Sources */,
 				C547E37F1D6947AF0079987D /* NSError+.swift in Sources */,
 				C547E3731D69404B0079987D /* PlaylistRefresher.swift in Sources */,
+				C53820D51D69FF1100777FC6 /* NSURLSession+.swift in Sources */,
 				C59F51D21BB289EF001DA5AB /* Video.swift in Sources */,
 				C547E37C1D69451B0079987D /* Array+.swift in Sources */,
 			);
@@ -507,6 +530,7 @@
 				C5F0DBE31D68598400185017 /* Video.swift in Sources */,
 				C547E3741D6941080079987D /* PlaylistRefresher.swift in Sources */,
 				C547E37A1D6942740079987D /* UITableView+.swift in Sources */,
+				C53820D31D69FC4000777FC6 /* ActivityApi.swift in Sources */,
 				C5F0DBE41D68598800185017 /* Credential.swift in Sources */,
 				C5F0DBE21D68586900185017 /* PlaylistTests.swift in Sources */,
 				C5C39A801D6976C10053B1F3 /* Logger.swift in Sources */,
@@ -516,7 +540,9 @@
 				C5F0DBE61D688D8000185017 /* MockSession.swift in Sources */,
 				C547E3771D6941F90079987D /* NSObject+.swift in Sources */,
 				C5F0DBE01D68579C00185017 /* Playlist.swift in Sources */,
+				C53820D61D69FF1100777FC6 /* NSURLSession+.swift in Sources */,
 				C547E3891D69605F0079987D /* NSLocale+.swift in Sources */,
+				C53820D91D6A0EB400777FC6 /* VideoApi.swift in Sources */,
 				C547E3801D6947AF0079987D /* NSError+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

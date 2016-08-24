@@ -13,21 +13,26 @@ import Foundation
 class MockSession: NSURLSession {
     typealias Response = (data: NSData?, urlResponse: NSURLResponse?, error: NSError?)
     
-    var completionHandler: ((NSData!, NSURLResponse!, NSError!) -> Void)?
-    static var mockResponse: Response = (data: nil, urlResponse: nil, error: nil)
+    var completionHandler: NSURLSession.CompletionHandler?
+    static var mockResponse: [NSURL: Response] = [:]
     
-    static func createResponse(url: NSURL, data: NSData, statusCode: Int = 200) -> Response {
+    static func upsertMockResponse(url: NSURL, data: NSData, statusCode: Int = 200) -> Response? {
         let urlResponse = NSHTTPURLResponse(URL: url, statusCode: statusCode, HTTPVersion: nil, headerFields: nil)
-        return (data: data, urlResponse: urlResponse, error: nil)
+        return mockResponse.updateValue((data: data, urlResponse: urlResponse, error: nil),
+                                        forKey: normalizeUrl(url))
+    }
+    
+    static func normalizeUrl(url: NSURL) -> NSURL {
+        return NSURL(scheme: url.scheme, host: url.host, path: url.path!)!
     }
     
     override class func sharedSession() -> NSURLSession {
         return MockSession()
     }
     
-    override func dataTaskWithURL(url: NSURL, completionHandler: ((NSData!, NSURLResponse!, NSError!) -> Void)?) -> NSURLSessionDataTask {
+    override func dataTaskWithURL(url: NSURL, completionHandler: NSURLSession.CompletionHandler) -> NSURLSessionDataTask {
         self.completionHandler = completionHandler
-        return MockTask(response: MockSession.mockResponse, completionHandler: completionHandler)
+        return MockTask(response: MockSession.mockResponse[MockSession.normalizeUrl(url)]!, completionHandler: completionHandler)
     }
     
     class MockTask: NSURLSessionDataTask {
