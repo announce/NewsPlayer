@@ -7,20 +7,29 @@
 //
 
 import XCTest
+import MockURLSession
 
 class PlaylistTest: XCTestCase {
     var subject: Playlist!
-    let session = MockSession()
+    let session = MockURLSession()
+    let activitiesEndpoint = NSURL(string: ActivityApi.baseUrl)!
+    let videosEndpoint = NSURL(string: VideoApi.baseUrl)!
+    
+    class Normalizer: MockURLSessionNormalizer {
+        func normalizeUrl(url: NSURL) -> NSURL {
+            let components = NSURLComponents()
+            components.host = url.host
+            components.path = url.path
+            return components.URL!
+        }
+    }
     
     override func setUp() {
         super.setUp()
         subject = Playlist(session: session)
-        MockSession.upsertMockResponse(
-            NSURL(string: ActivityApi.baseUrl)!,
-            data: Fixtures.read("YoutubeActivities02"))
-        MockSession.upsertMockResponse(
-            NSURL(string: VideoApi.baseUrl)!,
-            data: Fixtures.read("YoutubeVideos02"))
+        session.normalizer = Normalizer()
+        session.registerMockResponse(activitiesEndpoint, data: Fixtures.read("YoutubeActivities02"))
+        session.registerMockResponse(videosEndpoint, data: Fixtures.read("YoutubeVideos02"))
     }
     
     func testCurrentIndex() {
@@ -31,6 +40,8 @@ class PlaylistTest: XCTestCase {
         XCTAssert(subject.queue.isEmpty)
         subject.enqueue()
         XCTAssert(subject.queue.count > 0)
+        XCTAssertNotNil(session.resumedResponse(activitiesEndpoint))
+        XCTAssertNotNil(session.resumedResponse(videosEndpoint))
     }
     
     func testCurrentVideo() {
@@ -86,12 +97,12 @@ class PlaylistTest: XCTestCase {
         let sourceIndex = random() % subject.queue.count
         let destinationIndex = random() % subject.queue.count
         // TODO: Test against current index
-//        let sourceVideo = subject.getVideoByIndex(sourceIndex)
-//        let destinationVideo = subject.getVideoByIndex(sourceIndex)
+        //        let sourceVideo = subject.getVideoByIndex(sourceIndex)
+        //        let destinationVideo = subject.getVideoByIndex(sourceIndex)
         subject.doDataSourceSafely({() -> Void in
             XCTAssertNotNil(self.subject.moveVideoByIndex(sourceIndex, destinationIndex: destinationIndex))
-//            XCTAssertEqual(self.subject.getVideoByIndex(sourceIndex), destinationVideo)
-//            XCTAssertEqual(self.subject.getVideoByIndex(destinationIndex), sourceVideo)
+            //            XCTAssertEqual(self.subject.getVideoByIndex(sourceIndex), destinationVideo)
+            //            XCTAssertEqual(self.subject.getVideoByIndex(destinationIndex), sourceVideo)
         })
     }
 }

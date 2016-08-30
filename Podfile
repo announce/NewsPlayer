@@ -12,5 +12,5 @@ target 'NewsPlayer' do
 end
 
 target 'NewsPlayerTests' do
-
+	pod 'MockURLSession'
 end
