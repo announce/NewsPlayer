@@ -192,6 +192,7 @@ class Playlist : NSObject {
     }
     
     func parseJson(data: Data?, error: Error?) -> JSON? {
+//        Logger.log?.info("parseJson\(String(describing: data))")
         if (error != nil) {
             Logger.log?.warning("Error in response: \(String(describing: error))")
             return nil
@@ -200,13 +201,17 @@ class Playlist : NSObject {
             Logger.log?.warning("NSData is nil")
             return nil
         }
-        
-        let json = try? JSON(data: data!)
-        if json == nil || json!.isEmpty || json!["error"].isEmpty {
-            Logger.log?.error("Empty data. Check Credentials.plist's `Google API Key` is valid.")
-            return nil
+        do {
+            let json = try JSON(data: data!)
+            if json.isEmpty || json["error"].isEmpty {
+                Logger.log?.error("Empty data. Check if Credentials.plist's `Google API Key` is valid.")
+                return nil
+            }
+            return json
+        } catch (let message) {
+            Logger.log?.error("Failed to parse json \(message)")
         }
-        return json
+        return nil
     }
     
     func insertVideos(data: Data?, _: URLResponse?, error: Error?) {

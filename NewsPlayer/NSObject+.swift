@@ -9,11 +9,4 @@
 import Foundation
 
 extension NSObject {
-    class var className: String {
-        return String(self.className)
-    }
-    
-    var className: String {
-        return type(of:self).className
-    }
 }

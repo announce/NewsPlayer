@@ -328,7 +328,6 @@
 				E25A6D4F91CA34F9CF1CF023 /* Pods-NewsPlayerTests.debug.xcconfig */,
 				031BA9B7F7BCD59835A675D6 /* Pods-NewsPlayerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

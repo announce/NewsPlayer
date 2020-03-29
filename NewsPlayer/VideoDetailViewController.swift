@@ -33,7 +33,7 @@ class VideoDetailViewController: UIViewController {
         }
         SDWebImageDownloader.shared.downloadImage(with: URL(string: video.thumbnail.url), options: SDWebImageDownloaderOptions.highPriority, progress: nil, completed: {(image, data, error, finished) in
             if image != nil && finished {
-                self.shareViaActivity(items: [video.title, videoUrl, image])
+                self.shareViaActivity(items: [video.title, videoUrl, image!])
             }
         })
     }
