@@ -11,21 +11,21 @@ import Foundation
 class VideoApi {
     static let baseUrl = "https://www.googleapis.com/youtube/v3/videos"
     static let defaultPart = "snippet,contentDetails,status"
-    let session: NSURLSession
+    let session: URLSession
     
-    init(session: NSURLSession = NSURLSession.sharedSession()) {
+    init(session: URLSession = URLSession.shared) {
         self.session = session
     }
     
-    func resume(ids: [String], handler: NSURLSession.CompletionHandler) {
-        return session.dataTaskWithURL(
-            requestUrl(ids),
+    func resume(ids: [String], handler: @escaping URLSession.CompletionHandler) {
+        return session.dataTask(
+            with: requestUrl(ids: ids),
             completionHandler: handler).resume()
     }
     
-    func requestUrl(ids: [String], part: String = defaultPart) -> NSURL {
+    func requestUrl(ids: [String], part: String = defaultPart) -> URL {
         let apiKey: String = Credential(key:.Google).apiKey
-        let id = ids.joinWithSeparator(",")
-        return NSURL(string: "\(VideoApi.baseUrl)?part=\(part)&id=\(id)&key=\(apiKey)")!
+        let id = ids.joined(separator: ",")
+        return URL(string: "\(VideoApi.baseUrl)?part=\(part)&id=\(id)&key=\(apiKey)")!
     }
 }

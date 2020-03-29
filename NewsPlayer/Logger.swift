@@ -11,16 +11,11 @@ import XCGLogger
 class Logger {
     static let log = Logger.load()
     static func load() -> XCGLogger? {
-        let log = XCGLogger.defaultInstance()
+        let log = XCGLogger.default
         #if DEBUG
-            log.xcodeColorsEnabled = true
-            log.setup(.Verbose,
-                      showThreadName: true,
-                      showLogLevel: true,
-                      showFileNames: true,
-                      showLineNumbers: true)
+        log.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true)
         #else
-            log.setup(.Info)
+        log.setup(level: .severe, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true)
         #endif
         return log
     }

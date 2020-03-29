@@ -26,13 +26,14 @@ class VideoDetailViewController: UIViewController {
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBAction func shareVideo(sender: UIBarButtonItem) {
         guard let index = originalIndex,
-            let video: Video = Playlist.sharedInstance.getVideoByIndex(index),
-            let videoUrl = NSURL(string: "https://youtu.be/\(video.id)") else {
+            let video: Video = Playlist.sharedInstance.getVideoByIndex(index: index),
+            let videoUrl = URL(string: "https://youtu.be/\(video.id)") else {
                 return
+        
         }
-        SDWebImageDownloader.sharedDownloader().downloadImageWithURL(NSURL(string: video.thumbnail.url), options: SDWebImageDownloaderOptions.HighPriority, progress: nil, completed: {(image, data, error, finished) in
+        SDWebImageDownloader.shared.downloadImage(with: URL(string: video.thumbnail.url), options: SDWebImageDownloaderOptions.highPriority, progress: nil, completed: {(image, data, error, finished) in
             if image != nil && finished {
-                self.shareViaActivity([video.title, videoUrl, image])
+                self.shareViaActivity(items: [video.title, videoUrl, image])
             }
         })
     }
@@ -44,7 +45,7 @@ class VideoDetailViewController: UIViewController {
             dismiss()
             return
         }
-        delegate.execute(Command.PlayNext, targetCellIndex: targetIndex)
+        delegate.execute(command: Command.PlayNext, targetCellIndex: targetIndex)
         dismiss()
     }
     @IBAction func playNow(sender: UIBarButtonItem) {
@@ -52,7 +53,7 @@ class VideoDetailViewController: UIViewController {
             dismiss()
             return
         }
-        delegate.execute(Command.PlayNow, targetCellIndex: targetIndex)
+        delegate.execute(command: Command.PlayNow, targetCellIndex: targetIndex)
         dismiss()
     }
     
@@ -63,7 +64,7 @@ class VideoDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if video != nil {
-            thumbnail.sd_setImageWithURL(NSURL(string: video!.thumbnail.url))
+            thumbnail.sd_setImage(with: URL(string: video!.thumbnail.url))
             abstract.text = "\(video!.title)"
             detail.text = "\(video!.description)"
         }
@@ -75,22 +76,22 @@ class VideoDetailViewController: UIViewController {
     }
     
     func dismiss() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
-    func shareViaActivity(items: [AnyObject]) {
+    func shareViaActivity(items: [Any]) {
         loading.startAnimating()
         let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
         activityViewController.excludedActivityTypes = [
-            UIActivityTypeSaveToCameraRoll,
-            UIActivityTypePrint,
-            UIActivityTypeAssignToContact,
+            UIActivity.ActivityType.saveToCameraRoll,
+            UIActivity.ActivityType.print,
+            UIActivity.ActivityType.assignToContact,
         ]
-        dispatch_async(dispatch_get_main_queue(), {
-            self.presentViewController(activityViewController, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(activityViewController, animated: true, completion: nil)
             self.loading.stopAnimating()
-        })
+        }
     }
     
     /*

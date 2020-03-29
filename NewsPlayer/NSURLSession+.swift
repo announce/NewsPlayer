@@ -8,6 +8,6 @@
 
 import Foundation
 
-extension NSURLSession {
-    typealias CompletionHandler = (NSData?, NSURLResponse?, NSError?) -> Void
+extension URLSession {
+    typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
 }

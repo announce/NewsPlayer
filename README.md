@@ -4,17 +4,15 @@ NewsPlayer
 [![Build Status](https://travis-ci.org/announce/NewsPlayer.svg?branch=master)](https://travis-ci.org/announce/NewsPlayer)
 
 ## What's this?
-This is a source code repository of the news player iOS App.
-
-![iPhone4 Screenshot #1](https://dl.dropboxusercontent.com/u/6998388/NewsPlayer/3.5-inch%20%28iPhone%204%29%20-%20Screenshot%201.jpg)
+This is a source code repository of [‎Newsline on the App Store](https://apps.apple.com/app/id1046346302).
 
 ## Requirement
-- Xcode v7.3.x
+- Xcode v10.3.x
 - Ruby v2.x.x
 
 ## Setup
 1. Get Google's API key
-  1. Go to [console.developers.google.com](https://console.developers.google.com/project)
+  1. Go to [console.developers.google.com](https://console.developers.google.com/apis/credentials?project=newsplayer-1064)
   1. Create Project > APIs & auth > Credentials > API key > iOS key
 1. Run commands below
 

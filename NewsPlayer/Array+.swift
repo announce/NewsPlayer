@@ -10,23 +10,18 @@ import Foundation
 
 extension Array where Element: Equatable {
     
-    mutating func remove(index index: Int) -> Element? {
-        if (count <= index) {
+    mutating func remove(index i: Int) -> Element? {
+        if (count <= i) {
             return nil
         }
-        return removeAtIndex(index)
+        return remove(at: i)
     }
     
-    mutating func remove(element element: Element) -> Element? {
-        guard let index = indexOf(element) else {
+    mutating func remove(element e: Element) -> Element? {
+        guard let index = index(of: e) else {
             return nil
         }
-        return removeAtIndex(index)
+        return remove(at: index)
     }
     
-    mutating func remove(elements elements: [Element]) {
-        for element in elements {
-            remove(element: element)
-        }
-    }
 }

@@ -8,17 +8,17 @@
 
 import Foundation
 
-extension NSBundle {
+extension Bundle {
     
     static var appId: String {
-        return self.mainBundle().bundleIdentifier!
+        return self.main.bundleIdentifier!
     }
     
     static var appVersion: String {
-        return self.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        return self.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     }
     
     static var releaseVersion: String {
-        return self.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
+        return self.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
     }
 }

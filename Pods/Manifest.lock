@@ -1,41 +1,50 @@
 PODS:
-  - FLAnimatedImage (1.0.8)
-  - MockURLSession (1.0.0)
-  - ReachabilitySwift (2.0)
-  - SDWebImage (3.7.3):
-    - SDWebImage/Core (= 3.7.3)
-  - SDWebImage/Core (3.7.3)
-  - SwiftyJSON (2.3.0)
-  - XCGLogger (3.3)
-  - youtube-ios-player-helper (0.1.4)
+  - FLAnimatedImage (1.0.12)
+  - MockURLSession (3.1.0)
+  - ObjcExceptionBridging (1.0.1):
+    - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
+  - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
+  - ReachabilitySwift (5.0.0)
+  - SDWebImage (5.6.1):
+    - SDWebImage/Core (= 5.6.1)
+  - SDWebImage/Core (5.6.1)
+  - SwiftyJSON (5.0.0)
+  - XCGLogger (7.0.1):
+    - XCGLogger/Core (= 7.0.1)
+  - XCGLogger/Core (7.0.1):
+    - ObjcExceptionBridging
+  - youtube-ios-player-helper (0.1.6)
 
 DEPENDENCIES:
-  - FLAnimatedImage (~> 1.0)
-  - MockURLSession
-  - ReachabilitySwift (from `https://github.com/ashleymills/Reachability.swift`, tag
-    `v2.0`)
-  - SDWebImage (~> 3.7)
-  - SwiftyJSON (~> 2.3)
-  - XCGLogger (~> 3.3)
-  - youtube-ios-player-helper (~> 0.1.4)
+  - FLAnimatedImage (~> 1.0.12)
+  - MockURLSession (~> 3.1.0)
+  - ReachabilitySwift (~> 5.0.0)
+  - SDWebImage (~> 5.6.1)
+  - SwiftyJSON (~> 5.0.0)
+  - XCGLogger (~> 7.0.1)
+  - youtube-ios-player-helper (~> 0.1.6)
 
-EXTERNAL SOURCES:
-  ReachabilitySwift:
-    :git: https://github.com/ashleymills/Reachability.swift
-    :tag: v2.0
-
-CHECKOUT OPTIONS:
-  ReachabilitySwift:
-    :git: https://github.com/ashleymills/Reachability.swift
-    :tag: v2.0
+SPEC REPOS:
+  trunk:
+    - FLAnimatedImage
+    - MockURLSession
+    - ObjcExceptionBridging
+    - ReachabilitySwift
+    - SDWebImage
+    - SwiftyJSON
+    - XCGLogger
+    - youtube-ios-player-helper
 
 SPEC CHECKSUMS:
-  FLAnimatedImage: f9422f796135aff80d8c00b2afc48015bb746e24
-  MockURLSession: e88932b231712703debe7e4332812d08baff6a5f
-  ReachabilitySwift: 227b98ae7ec99e1c01148b17fb22357aa91a5675
-  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
-  SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
-  XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
-  youtube-ios-player-helper: 84b1485ebb4b7c6b619c6e05edcb55186723a7c6
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  MockURLSession: 9a4184db7a82875df5e61b16f220ed6066a0e987
+  ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  SDWebImage: 7edb9c3ea661e77a66661f7f044de8c1b55d1120
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  XCGLogger: 1943831ef907df55108b0b18657953f868de973b
+  youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-COCOAPODS: 0.38.2
+PODFILE CHECKSUM: cf9b0f60383793bd58a4ff07e854e786259eb009
+
+COCOAPODS: 1.9.1
