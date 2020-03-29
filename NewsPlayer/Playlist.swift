@@ -22,7 +22,7 @@ class Playlist : NSObject {
         static let MaxQueueLength = 1000
     }
     
-    dynamic var queue: [String] = []
+    @objc dynamic var queue: [String] = []
     var videoList: [String: Video] = [:]
     var currentIndex: Int = 0
     var latestEtags: [String: String] = [:]
@@ -35,7 +35,7 @@ class Playlist : NSObject {
     var delegate: PlaylistRefresher? = nil
     var finishedCount: Int = 0
     
-    init(session: NSURLSession = NSURLSession.sharedSession()) {
+    init(session: URLSession = URLSession.shared) {
         self.activityApi = ActivityApi(session: session)
         self.videoApi = VideoApi(session: session)
         super.init()
@@ -44,7 +44,7 @@ class Playlist : NSObject {
     func enqueue() {
         let channels = Channel.localizedList()
         for channel in channels {
-            fetchActivity(channel, handler: fetchVideos)
+            fetchActivity(channel: channel, handler: fetchVideos)
         }
     }
     
@@ -52,7 +52,7 @@ class Playlist : NSObject {
         let channels = Channel.localizedList()
         finishedCount = channels.count
         for channel in channels {
-            activityApi.resume(channel, handler: insertVideos)
+            activityApi.resume(channel: channel, handler: insertVideos)
         }
     }
     
@@ -67,7 +67,7 @@ class Playlist : NSObject {
     
     func currentVideo() -> Video? {
         Logger.log?.debug("currentVideo[\(currentIndex)]")
-        return getVideoByIndex(currentIndex)
+        return getVideoByIndex(index: currentIndex)
     }
     
     func updateCurrentNumberOfRows() -> Int {
@@ -79,7 +79,7 @@ class Playlist : NSObject {
     func getVideoByIndex(index: Int) -> Video? {
         if (queue.count > 0) {
             let videoID: String = queue[index]
-            if let video: Video? = videoList[videoID] {
+            if let video: Video = videoList[videoID] {
                 return video
             } else {
                 return nil
@@ -94,7 +94,7 @@ class Playlist : NSObject {
         guard let videoID: String = queue.remove(index: index) else {
             return nil
         }
-        guard let removedVideo: Video? = videoList.removeValueForKey(videoID) else {
+        guard let removedVideo: Video = videoList.removeValue(forKey: videoID) else {
             return nil
         }
         // Adjust playing video
@@ -115,7 +115,7 @@ class Playlist : NSObject {
             // Insert video to videoList first
             // to avoid accessing nil videoList value by observed queue's index
             videoList[newVideo.id] = newVideo
-            queue.insert(newVideo.id, atIndex: index)
+            queue.insert(newVideo.id, at: index)
             return newVideo
         } else {
             Logger.log?.info("Out of index[\(index)] against \(queue.count)")
@@ -129,7 +129,7 @@ class Playlist : NSObject {
         closure()
         updatingAvailable = originalState
         for video in waitingList {
-            appendVideo(video)
+            appendVideo(newVideo: video)
         }
     }
     
@@ -156,7 +156,7 @@ class Playlist : NSObject {
             return
         }
         if updatingAvailable {
-            queue.insert(newVideo.id, atIndex: atIndex)
+            queue.insert(newVideo.id, at: atIndex)
             videoList[newVideo.id] = newVideo
         } else {
             Logger.log?.info("Ignored newVideo[\(newVideo.id)] while table manupulating")
@@ -165,98 +165,103 @@ class Playlist : NSObject {
     
     func moveVideoByIndex(sourceIndex: Int, destinationIndex: Int) -> Video? {
         let originalIndex = currentIndex
-        guard let removedVideo = removeVideoByIndex(sourceIndex) else {
+        guard let removedVideo = removeVideoByIndex(index: sourceIndex) else {
             return nil
         }
-        let video = insertVideo(removedVideo, index: destinationIndex)
+        let video = insertVideo(newVideo: removedVideo, index: destinationIndex)
         // Adjust playing video
         currentIndex = (originalIndex == sourceIndex) ? destinationIndex : currentIndex
         return video
     }
     
-    func fetchActivity(channel: Channel, pageToken: String = "", handler: NSURLSession.CompletionHandler) {
+    func fetchActivity(channel: Channel, pageToken: String = "", handler: @escaping URLSession.CompletionHandler) {
         if Const.MaxQueueLength <= queue.count || Const.MaxQueueLength <= waitingList.count {
             Logger.log?.debug("Queue count reached max length [\(Const.MaxQueueLength)]")
             return
         }
-        return activityApi.resume(channel, pageToken: pageToken, handler: handler)
+        return activityApi.resume(channel: channel, pageToken: pageToken, handler: handler)
     }
     
     func finish() {
         finishedCount -= 1
         if finishedCount <= 0 {
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 self.delegate?.endRefreshing()
-            })
+            }
         }
     }
     
-    func parseJson(data: NSData?, error: NSError?) -> JSON? {
+    func parseJson(data: Data?, error: Error?) -> JSON? {
+//        Logger.log?.info("parseJson\(String(describing: data))")
         if (error != nil) {
-            Logger.log?.warning("NSError in response: \(error)")
+            Logger.log?.warning("Error in response: \(String(describing: error))")
             return nil
         }
         if (nil == data) {
             Logger.log?.warning("NSData is nil")
             return nil
         }
-        
-        let json = JSON(data: data!)
-        if json.isEmpty || !json["error"].isEmpty {
-            Logger.log?.error("Empty data. Check Credentials.plist's `Google API Key` is valid.")
-            return nil
+        do {
+            let json = try JSON(data: data!)
+            if json.isEmpty || json["error"].isEmpty {
+                Logger.log?.error("Empty data. Check if Credentials.plist's `Google API Key` is valid.")
+                return nil
+            }
+            return json
+        } catch (let message) {
+            Logger.log?.error("Failed to parse json \(message)")
         }
-        return json
+        return nil
     }
     
-    func insertVideos(data: NSData?, _: NSURLResponse?, error: NSError?) {
-        guard let activityJson = parseJson(data, error: error) else { return }
-        if isLatest(activityJson) {
+    func insertVideos(data: Data?, _: URLResponse?, error: Error?) {
+        guard let activityJson = parseJson(data: data, error: error) else { return }
+        if isLatest(json: activityJson) {
             finish()
             return
         }
-        exctractEmbeddableVideos(activityJson["items"]) { (items:[JSON]) in
+        exctractEmbeddableVideos(originalItems: activityJson["items"]) { (items:[JSON]) in
             items.forEach {(item: JSON) in
-                if let video: Video = self.createVideo(item) {
-                    self.insertVideo(video, atIndex: self.currentIndex + 1)
+                if let video: Video = self.createVideo(item: item) {
+                    self.insertVideo(newVideo: video, atIndex: self.currentIndex + 1)
                 }
             }
         }
         finish()
     }
     
-    func fetchVideos(data: NSData?, _: NSURLResponse?, error: NSError?) {
-        guard let activityJson = parseJson(data, error: error) else { return }
-        if isLatest(activityJson) {
+    func fetchVideos(data: Data?, _: URLResponse?, error: Error?) {
+        guard let activityJson = parseJson(data: data, error: error) else { return }
+        if isLatest(json: activityJson) {
             // TODO Check all channels and notify to user
             return
         }
-        exctractEmbeddableVideos(activityJson["items"]) { (items:[JSON]) in
+        exctractEmbeddableVideos(originalItems: activityJson["items"]) { (items:[JSON]) in
             items.forEach {(item: JSON) in
-                if let video: Video = self.createVideo(item) {
-                    self.appendVideo(video)
+                if let video: Video = self.createVideo(item: item) {
+                    self.appendVideo(newVideo: video)
                 }
             }
         }
-        fetchNextPage(activityJson)
+        fetchNextPage(activityJson: activityJson)
     }
     
-    func exctractEmbeddableVideos(originalItems: JSON, callBack: (items: [JSON]) -> Void) {
-        let ids = retreiveVideoIds(originalItems)
-        videoApi.resume(ids) { (data: NSData?, response: NSURLResponse?, error: NSError?) in
-            guard let json = self.parseJson(data, error: error) else { return }
-            let embeddables: [JSON] = json["items"].flatMap { (_:String, item:JSON) -> JSON in
-                if let embeddable: Bool = item["status", "embeddable"].bool where embeddable == true {
+    func exctractEmbeddableVideos(originalItems: JSON, callBack: @escaping (_: [JSON]) -> Void) {
+        let ids = retreiveVideoIds(items: originalItems)
+        videoApi.resume(ids: ids) { (data: Data?, response: URLResponse?, error: Error?) in
+            guard let json = self.parseJson(data: data, error: error) else { return }
+            let embeddables: [JSON?] = json["items"].compactMap { (_:String, item:JSON) -> JSON? in
+                if let _: Bool = item["status", "embeddable"].bool {
                     return item
                 }
                 return nil
             }
-            callBack(items: embeddables)
+            callBack(embeddables.compactMap{$0})
         }
     }
     
     func retreiveVideoIds(items: JSON) -> [String] {
-        return items.flatMap { (_:String, item: JSON) in
+        return items.compactMap { (_:String, item: JSON) in
             item["contentDetails", "upload", "videoId"].string
         }
     }
@@ -297,6 +302,6 @@ class Playlist : NSObject {
             Logger.log?.debug("Chennel[\(channelId)]: Completed to fetch all pages")
             return
         }
-        fetchActivity(Channel.init(id: channelId), pageToken: nextPageToken, handler: fetchVideos)
+        fetchActivity(channel: Channel.init(id: channelId), pageToken: nextPageToken, handler: fetchVideos)
     }
 }

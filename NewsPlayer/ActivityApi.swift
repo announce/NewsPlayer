@@ -11,20 +11,20 @@ import Foundation
 class ActivityApi {
     static let baseUrl = "https://www.googleapis.com/youtube/v3/activities"
     static let defaultPart = "snippet,contentDetails"
-    let session: NSURLSession
+    let session: URLSession
     
-    init(session: NSURLSession = NSURLSession.sharedSession()) {
+    init(session: URLSession = URLSession.shared) {
         self.session = session
     }
     
-    func resume(channel: Channel, pageToken: String = "", handler: NSURLSession.CompletionHandler) {
-        return session.dataTaskWithURL(
-            requestUrl(channel, pageToken: pageToken),
+    func resume(channel: Channel, pageToken: String = "", handler: @escaping URLSession.CompletionHandler) {
+        return session.dataTask(
+            with: requestUrl(channel: channel, pageToken: pageToken),
             completionHandler: handler).resume()
     }
     
-    func requestUrl(channel: Channel, pageToken: String, part: String = defaultPart) -> NSURL {
+    func requestUrl(channel: Channel, pageToken: String, part: String = defaultPart) -> URL {
         let apiKey: String = Credential(key: .Google).apiKey
-        return NSURL(string: "\(ActivityApi.baseUrl)?part=\(part)&channelId=\(channel.id)&pageToken=\(pageToken)&key=\(apiKey)")!
+        return URL(string: "\(ActivityApi.baseUrl)?part=\(part)&channelId=\(channel.id)&pageToken=\(pageToken)&key=\(apiKey)")!
     }
 }

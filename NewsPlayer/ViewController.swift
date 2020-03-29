@@ -8,7 +8,7 @@
 
 import UIKit
 import youtube_ios_player_helper
-import ReachabilitySwift
+import Reachability
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, YTPlayerViewDelegate, LPRTableViewDelegate, VideoDetailControllerDelegate, PlaylistRefresher {
     
@@ -22,7 +22,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let cellFixedHeight: CGFloat = 106
     let channelKey = "queue"
     let detailSegueKey = "showVideoDetail"
-    let reachability = Reachability.reachabilityForInternetConnection()
+    let reachability = try! Reachability()
     var selectedIndex: Int?
     var refreshControl = UIRefreshControl()
     
@@ -37,9 +37,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return
         }
         switch videoPlayer.playerState() {
-        case .Playing:
+        case .playing:
             videoPlayer.pauseVideo()
-        case .Paused:
+        case .paused:
             videoPlayer.playVideo()
         default:
             break
@@ -47,11 +47,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     @IBAction func rewindVideo(sender: UIBarButtonItem) {
         let currentTime = videoPlayer?.currentTime() ?? 0
-        videoPlayer?.seekToSeconds(currentTime + 10, allowSeekAhead: true)
+        videoPlayer?.seek(toSeconds: currentTime + 10, allowSeekAhead: true)
     }
     @IBAction func forwardVideo(sender: UIBarButtonItem) {
         let currentTime = videoPlayer?.currentTime() ?? 0
-        videoPlayer?.seekToSeconds(currentTime - 10, allowSeekAhead: true)
+        videoPlayer?.seek(toSeconds: currentTime - 10, allowSeekAhead: true)
     }
     @IBAction func playNextVideo(sender: UIBarButtonItem) {
         playNextVideo()
@@ -68,44 +68,49 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         view.addSubview(loadingView)
         videoPlayer.delegate = self
-        videoPlayer.loadWithVideoId("", playerVars: playerParams)
+        videoPlayer.load(withVideoId: "", playerVars: playerParams)
         Playlist.sharedInstance.enqueue()
         Playlist.sharedInstance.delegate = self
         navigationController?.setNavigationBarHidden(true, animated: false)
         initVideoTable()
         initRefreshControl()
-        reachability?.whenReachable = { reachability in
-            self.updateLabelColourWhenReachable(reachability)
+        reachability.whenReachable = { reachability in
+            self.updateLabelColourWhenReachable(reachability: reachability)
         }
-        reachability?.whenUnreachable = { reachability in
-            self.updateLabelColourWhenNotReachable(reachability)
+        reachability.whenUnreachable = { reachability in
+            self.updateLabelColourWhenNotReachable(reachability: reachability)
         }
-        reachability?.startNotifier()
+        do {
+            try reachability.startNotifier()
+        } catch {
+            Logger.log?.warning("Unable to start notifier")
+        }
         checkNetwork()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         videoTable.registerCell(type: VideoTableViewCell.self)
         super.viewWillAppear(animated)
         Playlist.sharedInstance.addObserver(
-            self, forKeyPath: channelKey, options: .New, context: nil)
+            self, forKeyPath: channelKey, options: .new, context: nil)
     }
     
-    override func viewDidDisappear(animated: Bool){
+    override func viewDidDisappear(_ animated: Bool){
         super.viewDidDisappear(animated)
         Playlist.sharedInstance.removeObserver(self, forKeyPath: channelKey)
-        reachability?.stopNotifier()
+        reachability.stopNotifier()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if (keyPath == channelKey) {
-        }
-    }
+   
+    // Swift 4
+    //    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutableRawPointer) {
+    //        if (keyPath == channelKey) {
+    //        }
+    //    }
     
     func initVideoTable() {
         videoTable.dataSource = self
@@ -114,43 +119,40 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func checkNetwork() {
-        guard let networkState = reachability else {
-            return
-        }
-        if networkState.isReachable() {
-            updateLabelColourWhenReachable(networkState)
+        if reachability.connection != .unavailable {
+            updateLabelColourWhenReachable(reachability: reachability)
         } else {
-            updateLabelColourWhenNotReachable(networkState)
+            updateLabelColourWhenNotReachable(reachability: reachability)
         }
     }
     
     func initRefreshControl() {
-        refreshControl.addTarget(self, action: #selector(refresh), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
         videoTable?.addSubview(refreshControl)
     }
     
-    func refresh(sender: AnyObject)
+    @objc func refresh(sender: AnyObject)
     {
         Playlist.sharedInstance.refrashChannels()
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        let isPortrait: Bool  = UIDevice.currentDevice().orientation.isPortrait
-        videoTable?.hidden = !isPortrait
-        videoToolBar?.hidden = !isPortrait
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        let isPortrait: Bool  = UIDevice.current.orientation.isPortrait
+        videoTable?.isHidden = !isPortrait
+        videoToolBar?.isHidden = !isPortrait
+        super.viewWillTransition(to: size, with: coordinator)
     }
     
     // MARK: -
     // MARK ChannelResponseDelegate
     func endRefreshing() {
-        if refreshControl.refreshing
+        if refreshControl.isRefreshing
         {
             refreshControl.endRefreshing()
             reloadTable()
-            let path = NSIndexPath.init(
-                forRow: Playlist.sharedInstance.currentIndex, inSection: 0)
-            videoTable?.scrollToRowAtIndexPath(path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            let path = IndexPath.init(
+                row: Playlist.sharedInstance.currentIndex, section: 0)
+            videoTable?.scrollToRow(at: path as IndexPath, at: UITableView.ScrollPosition.top, animated: true)
             // TODO Blink
         }
     }
@@ -169,38 +171,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             Logger.log?.warning("Reachability is nil")
             return
         }
-        if reachability.isReachable() {
+        if reachability.connection != .unavailable {
             Logger.log?.info("\(videoPlayer.playerState())")
             if Playlist.sharedInstance.queue.count <= 0 {
                 Playlist.sharedInstance.enqueue()
             }
-            if videoPlayer.playerState() != YTPlayerState.Playing {
+            if videoPlayer.playerState() != YTPlayerState.playing {
                 playerViewDidBecomeReady(videoPlayer)
             }
-            updateLabelColourWhenReachable(reachability)
+            updateLabelColourWhenReachable(reachability: reachability)
         } else {
-            updateLabelColourWhenNotReachable(reachability)
+            updateLabelColourWhenNotReachable(reachability: reachability)
         }
     }
     
     private func alertNoNetworkConnection()
     {
-        let alertController = UIAlertController(title: "Network not found", message: "Is this device connected to Internet?", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Network not found", message: "Is this device connected to Internet?", preferredStyle: .alert)
         
-        let defaultAction = UIAlertAction(title: "Check it again", style: .Default, handler: {(_: UIAlertAction) in self.checkNetwork()})
+        let defaultAction = UIAlertAction(title: "Check it again", style: .default, handler: {(_: UIAlertAction) in self.checkNetwork()})
         alertController.addAction(defaultAction)
         
-        presentViewController(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
     
     // MARK: -
     private func playCurrentVideo(startAt: Float = 0) {
         if let video: Video = Playlist.sharedInstance.currentVideo() {
-            videoPlayer.loadVideoById(
-                video.id, startSeconds: startAt, suggestedQuality: YTPlaybackQuality.Default)
-            navigationItem.titleView = createTitleLabel(video.title)
-            showPlayingIndicator(Playlist.sharedInstance.currentIndex)
-            removeIndicator(Playlist.sharedInstance.currentIndex - 1)
+            videoPlayer.loadVideo(
+                byId: video.id, startSeconds: startAt, suggestedQuality: YTPlaybackQuality.default)
+            navigationItem.titleView = createTitleLabel(text: video.title)
+            showPlayingIndicator(targetIndex: Playlist.sharedInstance.currentIndex)
+            removeIndicator(targetIndex: Playlist.sharedInstance.currentIndex - 1)
         } else {
             Logger.log?.debug("No VideoID yet")
         }
@@ -208,19 +210,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     private func playNextVideo() {
         if let video: Video = Playlist.sharedInstance.nextVideo() {
-            videoPlayer.loadVideoById(
-                video.id, startSeconds: 0, suggestedQuality: YTPlaybackQuality.Default)
-            navigationItem.titleView = createTitleLabel(video.title)
-            showPlayingIndicator(Playlist.sharedInstance.currentIndex)
-            removeIndicator(Playlist.sharedInstance.currentIndex - 1)
+            videoPlayer.loadVideo(
+                byId: video.id, startSeconds: 0, suggestedQuality: YTPlaybackQuality.default)
+            navigationItem.titleView = createTitleLabel(text: video.title)
+            showPlayingIndicator(targetIndex: Playlist.sharedInstance.currentIndex)
+            removeIndicator(targetIndex: Playlist.sharedInstance.currentIndex - 1)
         } else {
             Logger.log?.debug("No VideoID yet")
         }
     }
     
     private func showPlayingIndicator(targetIndex: Int) {
-        let path = NSIndexPath.init(forRow: targetIndex, inSection: 0)
-        if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
+        let path = IndexPath.init(row: targetIndex, section: 0)
+        if let cell = videoTable.cellForRow(at: path as IndexPath) as? VideoTableViewCell {
             cell.addPlayingIndicator()
         } else {
             Logger.log?.debug("No cell index[\(targetIndex)]")
@@ -231,8 +233,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if targetIndex < 0 {
             return
         }
-        let path = NSIndexPath.init(forRow: targetIndex, inSection: 0)
-        if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
+        let path = IndexPath.init(row: targetIndex, section: 0)
+        if let cell = videoTable.cellForRow(at: path as IndexPath) as? VideoTableViewCell {
             cell.removeAllIndicator()
         } else {
             Logger.log?.debug("No cell index[\(targetIndex)]")
@@ -240,114 +242,114 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     private func changePlayingAnimation(targetIndex: Int, start: Bool) {
-        let path = NSIndexPath.init(forRow: targetIndex, inSection: 0)
-        if let cell = videoTable.cellForRowAtIndexPath(path) as? VideoTableViewCell {
+        let path = IndexPath.init(row: targetIndex, section: 0)
+        if let cell = videoTable.cellForRow(at: path as IndexPath) as? VideoTableViewCell {
             start ? cell.startPlayingAnimation() : cell.stopPlayingAnimation()
         }
     }
     
     private func createTitleLabel(text: String) -> UILabel {
         let label = UILabel.init()
-        label.font = UIFont.systemFontOfSize(10)
+        label.font = UIFont.systemFont(ofSize: 10)
         label.text = text
         label.sizeToFit()
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(titleTapped)))
-        label.userInteractionEnabled = true
+        label.isUserInteractionEnabled = true
         return label
     }
     
-    func titleTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        let path = NSIndexPath.init(
-            forRow: Playlist.sharedInstance.currentIndex, inSection: 0)
-        videoTable?.scrollToRowAtIndexPath(path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+    @objc func titleTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        let path = IndexPath.init(
+            row: Playlist.sharedInstance.currentIndex, section: 0)
+        videoTable?.scrollToRow(at: path as IndexPath, at: UITableView.ScrollPosition.top, animated: true)
     }
     
     private func reloadTable() {
-        Playlist.sharedInstance.updateCurrentNumberOfRows()
+        let _ = Playlist.sharedInstance.updateCurrentNumberOfRows()
         videoTable.reloadData()
     }
     
-    private func deleteRow(indexPath: NSIndexPath, tableView: UITableView) {
-        Playlist.sharedInstance.doDataSourceSafely({() -> Void in
-            if nil != Playlist.sharedInstance.removeVideoByIndex(indexPath.row) {
-                tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)],
-                    withRowAnimation: UITableViewRowAnimation.Fade)
+    private func deleteRow(indexPath: IndexPath, tableView: UITableView) {
+        Playlist.sharedInstance.doDataSourceSafely(closure: {() -> Void in
+            if nil != Playlist.sharedInstance.removeVideoByIndex(index: indexPath.row) {
+                tableView.deleteRows(at: [IndexPath(row: indexPath.row, section: 0) as IndexPath],
+                                     with: UITableView.RowAnimation.fade)
             } else {
                 Logger.log?.debug("Failed to remove video from list")
             }
         })
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == detailSegueKey && selectedIndex != nil) {
-            let nav = segue.destinationViewController as! UINavigationController
+            let nav = segue.destination as! UINavigationController
             let detail: VideoDetailViewController = nav.topViewController as! VideoDetailViewController
             detail.delegate = self
             detail.originalIndex = selectedIndex!
-            detail.video = Playlist.sharedInstance.getVideoByIndex(selectedIndex!)
+            detail.video = Playlist.sharedInstance.getVideoByIndex(index: selectedIndex!)
         }
     }
     
     // MARK: -
     // MARK VideoDetailControllerDelegate
     func execute(command: VideoDetailViewController.Command, targetCellIndex: Int) {
-        let path = NSIndexPath.init(forRow: targetCellIndex, inSection: 0)
+        let path = IndexPath.init(row: targetCellIndex, section: 0)
         switch command {
         case .PlayNext:
-            cueToNext(path)
+            cueToNext(path: path)
         case .PlayNow:
-            playNow(path)
+            playNow(path: path)
         default:
             Logger.log?.info("Ignoring command[\(command)]")
             break
         }
     }
     
-    func cueToNext(path: NSIndexPath) {
+    func cueToNext(path: IndexPath) {
         let currentIndex = Playlist.sharedInstance.currentIndex
         if path.row != currentIndex {
-            moveUpToNext(path)
+            moveUpToNext(originalPath: path)
             reloadTable()
         }
-        let blinkPath = NSIndexPath.init(forRow: Playlist.sharedInstance.currentIndex + 1, inSection: 0)
-        guard let cell = videoTable.cellForRowAtIndexPath(blinkPath) as? VideoTableViewCell else {
+        let blinkPath = IndexPath.init(row: Playlist.sharedInstance.currentIndex + 1, section: 0)
+        guard let cell = videoTable.cellForRow(at: blinkPath as IndexPath) as? VideoTableViewCell else {
             Logger.log?.info("No cell index[\(blinkPath.row)]")
             return
         }
-        blinkCell(cell, originalColor: cell.backgroundColor, targetColor: UIColor.lightGrayColor())
+        blinkCell(cell: cell, originalColor: cell.backgroundColor, targetColor: UIColor.lightGray)
     }
     
-    func playNow(path: NSIndexPath) {
+    func playNow(path: IndexPath) {
         let isPlayingCell = path.row == Playlist.sharedInstance.currentIndex
-        cueToNext(path)
+        cueToNext(path: path)
         if !isPlayingCell {
             playNextVideo()
         }
     }
     
-    func moveUpToNext(originalPath: NSIndexPath) {
+    func moveUpToNext(originalPath: IndexPath) {
         var targetIndex = Playlist.sharedInstance.currentIndex
         if targetIndex < originalPath.row {
             targetIndex += 1
         }
-        Playlist.sharedInstance.moveVideoByIndex(
-            originalPath.row, destinationIndex: targetIndex)
+        let _ = Playlist.sharedInstance.moveVideoByIndex(
+            sourceIndex: originalPath.row, destinationIndex: targetIndex)
     }
     
     private func blinkCell(cell: UITableViewCell, originalColor: UIColor?, targetColor: UIColor, count: Int = 1) {
         let color = count % 2 == 0 ? originalColor : targetColor
-        UIView.animateWithDuration(0.6, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        UIView.animate(withDuration: 0.6, delay: 0, options: [.curveEaseIn, .curveEaseOut], animations: { () -> Void in
             cell.backgroundColor = color
             }, completion: { _ in
                 if count > 0 {
-                    self.blinkCell(cell, originalColor: originalColor, targetColor: targetColor, count: count - 1)
+                    self.blinkCell(cell: cell, originalColor: originalColor, targetColor: targetColor, count: count - 1)
                 }
         })
     }
     
     // MARK: -
     // MARK UIScrollViewDelegate
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (videoTable.contentOffset.y >= (videoTable.contentSize.height - videoTable.bounds.size.height))
         {
             reloadTable()
@@ -357,82 +359,82 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: -
     // MARK LPRTableViewDelegate
     // Called within an animation block when the dragging view is about to show.
-    func tableView(tableView: UITableView, showDraggingView view: UIView, atIndexPath indexPath: NSIndexPath) {
+    private func tableView(tableView: UITableView, showDraggingView view: UIView, atIndexPath indexPath: IndexPath) {
         Playlist.sharedInstance.updatingAvailable = false
-        showPlayingIndicator(indexPath.row)
+        showPlayingIndicator(targetIndex: indexPath.row)
     }
     
     // Called within an animation block when the dragging view is about to hide.
-    func tableView(tableView: UITableView, hideDraggingView view: UIView, atIndexPath indexPath: NSIndexPath) {
+    private func tableView(tableView: UITableView, hideDraggingView view: UIView, atIndexPath indexPath: IndexPath) {
         Playlist.sharedInstance.updatingAvailable = true
-        removeIndicator(indexPath.row)
+        removeIndicator(targetIndex: indexPath.row)
     }
     
     // MARK: -
     // MARK UITableViewDelegate
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int  {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int  {
         return Playlist.sharedInstance.currentNumberOfRows
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        return initVideoCell(indexPath).render(indexPath.row)
+        return initVideoCell(indexPath: indexPath).render(index: indexPath.row)
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         return cellFixedHeight
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    private func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
-            deleteRow(indexPath, tableView: tableView)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            deleteRow(indexPath: indexPath, tableView: tableView)
         }
     }
     
-    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    private func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        Playlist.sharedInstance.doDataSourceSafely({() -> Void in
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        Playlist.sharedInstance.doDataSourceSafely(closure: {() -> Void in
             self.videoTable.reloadData()
-            Playlist.sharedInstance.moveVideoByIndex(sourceIndexPath.row, destinationIndex: destinationIndexPath.row)
+            let _ = Playlist.sharedInstance.moveVideoByIndex(sourceIndex: sourceIndexPath.row, destinationIndex: destinationIndexPath.row)
         })
     }
     
-    func initVideoCell(indexPath: NSIndexPath) -> VideoTableViewCell {
-        let cell = videoTable.dequeueCell(VideoTableViewCell.self, indexPath: indexPath)
+    func initVideoCell(indexPath: IndexPath) -> VideoTableViewCell {
+        let cell = videoTable.dequeueCell(type: VideoTableViewCell.self, indexPath: indexPath)
         if indexPath.row != Playlist.sharedInstance.currentIndex {
             cell.removeAllIndicator()
         } else {
             cell.addPlayingIndicator()
-            videoPlayer.playerState() == YTPlayerState.Playing ? cell.startPlayingAnimation() : cell.stopPlayingAnimation()
+            videoPlayer.playerState() == YTPlayerState.playing ? cell.startPlayingAnimation() : cell.stopPlayingAnimation()
         }
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    private func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         selectedIndex = indexPath.row
-        performSegueWithIdentifier(detailSegueKey, sender: nil)
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        performSegue(withIdentifier: detailSegueKey, sender: nil)
+        tableView.deselectRow(at: indexPath as IndexPath, animated: false)
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let playNextAction = UITableViewRowAction(style: .Normal, title: "Cue") {
-            (action, indexPath) in self.cueToNext(indexPath)}
-        playNextAction.backgroundColor = UIColor.grayColor()
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let playNextAction = UITableViewRowAction(style: .normal, title: "Cue") {
+            (action, indexPath) in self.cueToNext(path: indexPath)}
+        playNextAction.backgroundColor = UIColor.gray
         
-        let playNowAction = UITableViewRowAction(style: .Normal, title: "Play") {
-            (action, indexPath) in self.playNow(indexPath)}
-        playNowAction.backgroundColor = UIColor.lightGrayColor()
+        let playNowAction = UITableViewRowAction(style: .normal, title: "Play") {
+            (action, indexPath) in self.playNow(path: indexPath)}
+        playNowAction.backgroundColor = UIColor.lightGray
         
-        let deleteAction = UITableViewRowAction(style: .Destructive, title: "Delete") {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") {
             (action, indexPath) in
-            self.deleteRow(indexPath, tableView: self.videoTable)
+            self.deleteRow(indexPath: indexPath, tableView: self.videoTable)
         }
 
         return [playNextAction, playNowAction, deleteAction]
@@ -440,13 +442,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: -
     // MARK: YTPlayerViewDelegate
-    func playerViewDidBecomeReady(playerView: YTPlayerView!) {
+    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
         Logger.log?.debug("playerViewDidBecomeReady")
         // FIXME: Not proper timing
         DeviceVolume(view: view).showNotice()
         reloadTable()
         playCurrentVideo()
-        UIView.animateWithDuration(0.8, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        UIView.animate(withDuration: 0.8, delay: 0, options: [.curveEaseIn, .curveEaseOut], animations: { () -> Void in
                 self.loadingView.alpha = 0
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             }, completion: { _ in
@@ -454,64 +456,64 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         })
     }
     
-    func playerView(playerView: YTPlayerView!, didChangeToState state: YTPlayerState) {
+    func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
         switch state {
-        case YTPlayerState.Unstarted:
+        case YTPlayerState.unstarted:
             Logger.log?.debug("didChangeToState: Unstarted")
-            changePlayingAnimation(Playlist.sharedInstance.currentIndex, start: false)
-        case YTPlayerState.Ended:
+            changePlayingAnimation(targetIndex: Playlist.sharedInstance.currentIndex, start: false)
+        case YTPlayerState.ended:
             Logger.log?.debug("didChangeToState: Ended")
-            changePlayingAnimation(Playlist.sharedInstance.currentIndex, start: false)
+            changePlayingAnimation(targetIndex: Playlist.sharedInstance.currentIndex, start: false)
             playNextVideo()
-        case YTPlayerState.Playing:
+        case YTPlayerState.playing:
             Logger.log?.debug("didChangeToState: Playing")
-            changePlayingAnimation(Playlist.sharedInstance.currentIndex, start: true)
-        case YTPlayerState.Paused:
+            changePlayingAnimation(targetIndex: Playlist.sharedInstance.currentIndex, start: true)
+        case YTPlayerState.paused:
             Logger.log?.debug("didChangeToState: Paused")
-            changePlayingAnimation(Playlist.sharedInstance.currentIndex, start: false)
-        case YTPlayerState.Buffering:
+            changePlayingAnimation(targetIndex: Playlist.sharedInstance.currentIndex, start: false)
+        case YTPlayerState.buffering:
             Logger.log?.debug("didChangeToState: Buffering")
             // TODO Notify user if it keeps long time
-        case YTPlayerState.Queued:
+        case YTPlayerState.queued:
             Logger.log?.debug("didChangeToState: Queued")
         default:
             Logger.log?.debug("didChangeToState: \(state.rawValue)")
         }
     }
     
-    func playerView(playerView: YTPlayerView!, didChangeToQuality quality: YTPlaybackQuality) {
+    func playerView(_ playerView: YTPlayerView, didChangeTo quality: YTPlaybackQuality) {
         switch quality {
-        case YTPlaybackQuality.Small:
+        case YTPlaybackQuality.small:
             Logger.log?.debug("didChangeToQuality: Small")
-        case YTPlaybackQuality.Medium:
+        case YTPlaybackQuality.medium:
             Logger.log?.debug("didChangeToQuality: Medium")
-        case YTPlaybackQuality.Large:
+        case YTPlaybackQuality.large:
             Logger.log?.debug("didChangeToQuality: Large")
         case YTPlaybackQuality.HD720:
             Logger.log?.debug("didChangeToQuality: HD720")
         case YTPlaybackQuality.HD1080:
             Logger.log?.debug("didChangeToQuality: HD1080")
-        case YTPlaybackQuality.HighRes:
+        case YTPlaybackQuality.highRes:
             Logger.log?.debug("didChangeToQuality: HighRes")
-        case YTPlaybackQuality.Auto:
+        case YTPlaybackQuality.auto:
             Logger.log?.debug("didChangeToQuality: Auto")
-        case YTPlaybackQuality.Default:
+        case YTPlaybackQuality.default:
             Logger.log?.debug("didChangeToQuality: Default")
         default:
             Logger.log?.debug("didChangeToQuality: \(quality.rawValue)")
         }
     }
     
-    func playerView(playerView: YTPlayerView!, receivedError error: YTPlayerError) {
+    func playerView(_ playerView: YTPlayerView, receivedError error: YTPlayerError) {
         switch error {
-        case YTPlayerError.InvalidParam:
+        case YTPlayerError.invalidParam:
             Logger.log?.warning("receivedError: InvalidParam")
-        case YTPlayerError.HTML5Error:
+        case YTPlayerError.html5Error:
             Logger.log?.warning("receivedError: HTML5Error")
             checkNetwork()
-        case YTPlayerError.VideoNotFound:
+        case YTPlayerError.videoNotFound:
             Logger.log?.warning("receivedError: VideoNotFound")
-        case YTPlayerError.Unknown:
+        case YTPlayerError.unknown:
             Logger.log?.warning("receivedError: Unknown")
         default:
             Logger.log?.warning("receivedError: \(error.rawValue)")

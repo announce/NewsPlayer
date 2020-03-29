@@ -14,8 +14,8 @@ class Credential {
     }
     var apiKey: String
     init(key: Provider) {
-        let credentialsPath = NSBundle.mainBundle().pathForResource("Credentials", ofType: "plist")!
+        let credentialsPath = Bundle.main.path(forResource: "Credentials", ofType: "plist")!
         let credentials = NSDictionary(contentsOfFile: credentialsPath)!
-        self.apiKey = credentials.objectForKey(key.rawValue) as! String
+        self.apiKey = credentials.object(forKey: key.rawValue) as! String
     }
 }

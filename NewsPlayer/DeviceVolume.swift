@@ -19,10 +19,10 @@ class DeviceVolume {
     init(view: UIView, threshold: Float = 0) {
         baseView = view
         mpVolumeView = MPVolumeView(frame: view.bounds)
-        mpVolumeView.hidden = true;
+        mpVolumeView.isHidden = true;
         view.addSubview(mpVolumeView)
         for childView in mpVolumeView.subviews {
-            if (childView.isKindOfClass(UISlider)) {
+            if (childView is UISlider) {
                 self.volumeSlider = childView as? UISlider
             }
         }
@@ -40,7 +40,7 @@ class DeviceVolume {
     }
     
     func showNotice(duration: Double = 3) {
-        Logger.log?.info("Volume \(currentVolume())")
+        Logger.log?.info("Volume \(String(describing: currentVolume()))")
         if hasEnoughVolume() {
             return
         }
@@ -54,9 +54,9 @@ class DeviceVolume {
                                   y: baseView.frame.size.height/2 - size.height/2,
                                   width: size.width,
                                   height: size.height)
-        imageView.backgroundColor = UIColor.lightGrayColor()
+        imageView.backgroundColor = UIColor.lightGray
         baseView.addSubview(imageView)
-        UIView.animateWithDuration(duration, animations: {
+        UIView.animate(withDuration: duration, animations: {
             imageView.alpha = 0
             }, completion: { finished in
                 imageView.removeFromSuperview()

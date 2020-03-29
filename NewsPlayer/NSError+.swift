@@ -10,6 +10,6 @@ import Foundation
 
 extension NSError {
     convenience init(message: String, code: Int = 0) {
-        self.init(domain: NSBundle.appId, code: code, userInfo: [NSLocalizedDescriptionKey: message])
+        self.init(domain: Bundle.appId, code: code, userInfo: [NSLocalizedDescriptionKey: message])
     }
 }

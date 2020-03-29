@@ -9,11 +9,4 @@
 import Foundation
 
 extension NSObject {
-    class var className: String {
-        return String(self)
-    }
-    
-    var className: String {
-        return self.dynamicType.className
-    }
 }

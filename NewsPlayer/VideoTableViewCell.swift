@@ -22,7 +22,7 @@ class VideoTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -30,10 +30,10 @@ class VideoTableViewCell: UITableViewCell {
     
     // :param: index Let them know the indexPath.row, cell does not remember wchich indexPath it belongs
     func render(index: Int) -> VideoTableViewCell {
-        if let video = Playlist.sharedInstance.getVideoByIndex(index) {
+        if let video = Playlist.sharedInstance.getVideoByIndex(index: index) {
             abstract?.numberOfLines = 0
             abstract?.text = "\(video.title)\n\(video.description)"
-            thumbnail?.sd_setImageWithURL(NSURL(string: video.thumbnail.url))
+            thumbnail?.sd_setImage(with: URL(string: video.thumbnail.url))
         } else {
             abstract.text = "textLabel #\(index)"
         }
@@ -62,12 +62,12 @@ class VideoTableViewCell: UITableViewCell {
     }
     
     private func createIndicationView() -> UIImageView {
-        let path = NSBundle.mainBundle().pathForResource("equalizer", ofType: "gif")!
-        let url = NSURL(fileURLWithPath: path)
-        let animatedImage = FLAnimatedImage(animatedGIFData: NSData(contentsOfURL: url))
+        let path = Bundle.main.path(forResource: "equalizer", ofType: "gif")!
+        let url = URL(fileURLWithPath: path)
+        let animatedImage = FLAnimatedImage(animatedGIFData: try? Data(contentsOf: url))
         animatedImageView.animatedImage = animatedImage
         animatedImageView.frame = indicator.bounds
-        animatedImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        animatedImageView.contentMode = UIView.ContentMode.scaleAspectFit
         return animatedImageView
     }
 }

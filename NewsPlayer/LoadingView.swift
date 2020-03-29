@@ -18,12 +18,12 @@ class LoadingView: UIView {
     @IBOutlet weak var loadingImage: UIImageView!
     
     class func instance() -> LoadingView {
-        return UINib(nibName: Const.xibName, bundle: nil).instantiateWithOwner(self, options: nil)[0] as! LoadingView
+        return UINib(nibName: Const.xibName, bundle: nil).instantiate(withOwner: self, options: nil) [0] as! LoadingView
     }
  
     func render() -> LoadingView {
         if let localImage = UIImage(named: "Loading") {
-            loadingImage.sd_setImageWithURL(NSURL(string: Const.agifUrl), placeholderImage: localImage)
+            loadingImage.sd_setImage(with: URL(string: Const.agifUrl), placeholderImage: localImage)
         }
         
         return self

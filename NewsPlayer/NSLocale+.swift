@@ -10,7 +10,7 @@ import Foundation
 
 extension NSLocale {
     static var languageCode: String {
-        guard let code = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as? String else {
+        guard let code = Locale.current.languageCode else {
             return "en"
         }
         return code

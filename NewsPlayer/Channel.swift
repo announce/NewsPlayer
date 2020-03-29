@@ -11,10 +11,10 @@ import Foundation
 class Channel {
     var id: String
     static func localizedList() -> [Channel] {
-        let plistPath = NSBundle.mainBundle().pathForResource("YouTube", ofType: "plist")
+        let plistPath = Bundle.main.path(forResource: "YouTube", ofType: "plist")
         let registry = NSDictionary(contentsOfFile: plistPath!)!
         let key = NSLocale.languageCode == "ja" ? "ja" : "en"
-        let channelIds = registry.objectForKey("Channels \(key)") as! [String]
+        let channelIds = registry.object(forKey: "Channels \(key)") as! [String]
         return channelIds.map {Channel(id: $0)};
     }
     
